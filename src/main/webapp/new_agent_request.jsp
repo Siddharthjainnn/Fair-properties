@@ -1,3 +1,4 @@
+<%@page import="dao.Admin"%>
 <%@page import="dao.agent"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -9,54 +10,481 @@
 <title>Insert title here</title>
 
 <link href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-    	body{
-background:#eee;
-font-weight: 1000;
+<link rel="stylesheet" href="style.css">
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+/* Googlefont Poppins CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
-.panel-order .row {
-	border-bottom: 1px solid #ccc;
+.sidebar{
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background: #0A2558;
+  transition: all 0.5s ease;
 }
-.panel-order .row:last-child {
-	border: 0px;
+.sidebar.active{
+  width: 60px;
 }
-.panel-order .row .col-md-1  {
-	text-align: center;
-	padding-top: 15px;
+.sidebar .logo-details{
+  height: 80px;
+  display: flex;
+  align-items: center;
 }
-.panel-order .row .col-md-1 img {
-	width: 100px;
-	max-height: 150px;
-	
+.sidebar .logo-details i{
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center
 }
-.panel-order .row .row {
-	border-bottom: 5px solid red;
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
 }
-.panel-order .row .col-md-11 {
-	border-left: 1px solid #ccc;
+.sidebar .nav-links{
+  margin-top: 10px;
 }
-.panel-order .row .row .col-md-12 {
-	padding-top: 7px;
-	padding-bottom: 7px; 
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  height: 50px;
 }
-.panel-order .row .row .col-md-12:last-child {
-	font-size: 20px; 
-	color: #555;  
-	background: #efefef;
+.sidebar .nav-links li a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
 }
-.panel-order .btn-group {
-	margin: 0px;
-	padding: 0px;
+.sidebar .nav-links li a.active{
+  background: #081D45;
 }
-.panel-order .panel-body {
-	padding-top: 0px;
-	padding-bottom: 0px;
+.sidebar .nav-links li a:hover{
+  background: #081D45;
 }
-.panel-order .panel-deading {
-	margin-bottom: 0;
-}                    
-    </style>
+.sidebar .nav-links li i{
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+.sidebar .nav-links li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sidebar .nav-links .log_out{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.home-section{
+  position: relative;
+  background: #f5f5f5;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.home-section nav{
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section nav{
+  left: 60px;
+  width: calc(100% - 60px);
+}
+.home-section nav .sidebar-button{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+nav .sidebar-button i{
+  font-size: 35px;
+  margin-right: 10px;
+}
+.home-section nav .search-box{
+  position: relative;
+  height: 50px;
+  max-width: 550px;
+  width: 100%;
+  margin: 0 20px;
+}
+nav .search-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 0 15px;
+}
+nav .search-box .bx-search{
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background: #2697FF;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  transition: all 0.4 ease;
+}
+.home-section nav .profile-details{
+  display: flex;
+  align-items: center;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  height: 50px;
+  min-width: 190px;
+  padding: 0 15px 0 2px;
+}
+nav .profile-details img{
+  height: 40px;
+  width: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+nav .profile-details .admin_name{
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+nav .profile-details i{
+  font-size: 25px;
+  color: #333;
+}
+.home-section .home-content{
+  position: relative;
+  padding-top: 104px;
+}
+.home-content .overview-boxes{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  margin-bottom: 26px;
+}
+.overview-boxes .box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 4 - 15px);
+  background: #fff;
+  padding: 15px 14px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.overview-boxes .box-topic{
+  font-size: 20px;
+  font-weight: 500;
+}
+.home-content .box .number{
+  display: inline-block;
+  font-size: 35px;
+  margin-top: -6px;
+  font-weight: 500;
+}
+.home-content .box .indicator{
+  display: flex;
+  align-items: center;
+}
+.home-content .box .indicator i{
+  height: 20px;
+  width: 20px;
+  background: #8FDACB;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 5px;
+}
+.box .indicator i.down{
+  background: #e87d88;
+}
+.home-content .box .indicator .text{
+  font-size: 12px;
+}
+.home-content .box .cart{
+  display: inline-block;
+  font-size: 32px;
+  height: 50px;
+  width: 50px;
+  background: #cce5ff;
+  line-height: 50px;
+  text-align: center;
+  color: #66b0ff;
+  border-radius: 12px;
+  margin: -15px 0 0 6px;
+}
+.home-content .box .cart.two{
+   color: #2BD47D;
+   background: #C0F2D8;
+ }
+.home-content .box .cart.three{
+   color: #ffc233;
+   background: #ffe8b3;
+ }
+.home-content .box .cart.four{
+   color: #e05260;
+   background: #f7d4d7;
+ }
+.home-content .total-order{
+  font-size: 20px;
+  font-weight: 500;
+}
+.home-content .sales-boxes{
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 20px; */
+}
 
+/* left box */
+.home-content .sales-boxes .recent-sales{
+  width: 100%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.home-content .sales-boxes .sales-details{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sales-boxes .box .title{
+  font-size: 24px;
+  font-weight: 500;
+  /* margin-bottom: 10px; */
+}
+.sales-boxes .sales-details li.topic{
+  font-size: 20px;
+  font-weight: 500;
+}
+.sales-boxes .sales-details li{
+  list-style: none;
+  margin: 8px 0;
+}
+.sales-boxes .sales-details li a{
+  font-size: 18px;
+  color: #333;
+  font-size: 400;
+  text-decoration: none;
+}
+.sales-boxes .box .button{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.sales-boxes .box .button a{
+  color: #fff;
+  background: #0A2558;
+  padding: 4px 12px;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.sales-boxes .box .button a:hover{
+  background:  #0d3073;
+}
+
+/* Right box */
+.home-content .sales-boxes .top-sales{
+  width: 100%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px 0 0;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.sales-boxes .top-sales li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.sales-boxes .top-sales li a img{
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-right: 10px;
+  background: #333;
+}
+.sales-boxes .top-sales li a{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.sales-boxes .top-sales li .product,
+.price{
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+}
+/* Responsive Media Query */
+@media (max-width: 1240px) {
+  .sidebar{
+    width: 60px;
+  }
+  .sidebar.active{
+    width: 220px;
+  }
+  .home-section{
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .sidebar.active ~ .home-section{
+    left: 220px;
+    width: calc(100% - 220px);
+    overflow: hidden;
+  }
+  .home-section nav{
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .sidebar.active ~ .home-section nav{
+    width: calc(100% - 220px);
+    left: 220px;
+  }
+}
+@media (max-width: 1150px) {
+  .home-content .sales-boxes{
+    flex-direction: column;
+  }
+  .home-content .sales-boxes .box{
+    width: 100%;
+    overflow-x: scroll;
+    margin-bottom: 30px;
+  }
+  .home-content .sales-boxes .top-sales{
+    margin: 0;
+  }
+}
+@media (max-width: 1000px) {
+  .overview-boxes .box{
+    width: calc(100% / 2 - 15px);
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 700px) {
+  nav .sidebar-button .dashboard,
+  nav .profile-details .admin_name,
+  nav .profile-details i{
+    display: none;
+  }
+  .home-section nav .profile-details{
+    height: 50px;
+    min-width: 40px;
+  }
+  .home-content .sales-boxes .sales-details{
+    width: 560px;
+  }
+}
+@media (max-width: 550px) {
+  .overview-boxes .box{
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .sidebar.active ~ .home-section nav .profile-details{
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .sidebar{
+    width: 0;
+  }
+  .sidebar.active{
+    width: 60px;
+  }
+  .home-section{
+    width: 100%;
+    left: 0;
+  }
+  .sidebar.active ~ .home-section{
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+  .home-section nav{
+    width: 100%;
+    left: 0;
+  }
+  .sidebar.active ~ .home-section nav{
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+}
+/* CSS for hiding price elements and showing button on mobile and tablet views */
+@media (max-width: 768px) {
+    .top-sales-details .price {
+        display: none;
+    }
+    .view-prices-btn {
+        display: block;
+    }
+}
+
+/* Additional CSS for styling the button */
+.view-prices-btn {
+    display: none;
+    background-color: #4466f2;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.view-prices-btn:hover {
+    background-color: #0d3073;
+}
+
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -153,53 +581,283 @@ body {
 
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 
-<div class="panel panel-default panel-order">
-<div class="panel-heading">
-<strong>Order history</strong>
-<div class="btn-group pull-right">
-<div class="btn-group">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">Filter history <i class="fa fa-filter"></i></button>
-<ul class="dropdown-menu dropdown-menu-right">
-<li><a href="#">Approved orders</a></li>
-<li><a href="#">Pending orders</a></li>
-</ul>
-</div>
-</div>
-</div>
 
 
-
-
+<%-- 
 
 <% for (agent mm : list) {%>
 <div class="panel-body">
 <div class="row">
- <div class="col-md-1"><img src="./get_agent_image?agent_id=<%=mm.getAgentID() %>" class="media-object img-thumbnail" /></div> 
+ <div class="col-md-1"><img src="./get_agent_image?agent_id=<%=mm.getAgentId() %>" class="media-object img-thumbnail" /></div> 
 <div class="col-md-11">
 <div class="row">
 <div class="col-md-12">
-<div class="pull-right" ><a class="btn btn-primary"  href="particular_ageny_info?agent_id=<%=mm.getAgentID() %>" style="background-color: green;width: 5cm;height: 1.4cm;font-weight: 700;font-size:x-large;">View More</a></div>
+<div class="pull-right" ><a class="btn btn-primary"  href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>" style="background-color: green;width: 5cm;height: 1.4cm;font-weight: 700;font-size:x-large;">View More</a></div>
 <span><strong>Order name</strong></span> <span class="label label-info">group name</span><br/>
 Quantity : 2, cost: $323.13 <br/>
-<a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-ok" href="confirm_agent_by_admin?agent_id=<%=mm.getAgentID() %>&agent_user_id=<%=mm.getEmailAddress() %>&agent_login_id=<%=mm.getAgentID() %>&agent_password=<%=mm.getPassword() %>&agent_name=<%=mm.getName() %>" title="View"></a>
-<a data-placement="top" class="btn btn-danger btn-xs glyphicon glyphicon-trash" href="#" title="Danger"></a>
+<a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-ok" href="confirm_agent_by_admin?agent_id=<%=mm.getAgentId() %>&agent_user_id=<%=mm.getEmail() %>&agent_login_id=<%=mm.getAgentId() %>&agent_password=<%=mm.getPassword() %>&agent_name=<%=mm.getFullName() %>" title="View"></a>
+<a data-placement="top" class="btn btn-danger btn-xs glyphicon glyphicon-trash" href="#" title="Danger" href="reject_agent_by_admin?agent_id=<%=mm.getAgentId() %>&agent_user_id=<%=mm.getEmail() %>&agent_login_id=<%=mm.getAgentId() %>&agent_password=<%=mm.getPassword() %>&agent_name=<%=mm.getFullName() %>"></a>
 <a data-placement="top" class="btn btn-info btn-xs glyphicon glyphicon-usd" href="#" title="Danger"></a>
 </div>
-<div class="col-md-12">order made on: 05/31/2014 by <a href="#">Jane Doe </a></div>
+<div class="col-md-12">Request made on: <%=mm.getCreatedOn() %> by <a href="#"><%=mm.getFullName() %> </a></div>
 </div>
 </div>
 </div>
 
-<%} %>
-</div>
 
+</div>
 <%} %>
+
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	                        
+<%} %>                     
                     
 </script>
+
+ --%>
+
+
+
+
+
+
+
+
+
+
+
+
+<%Admin ak=(Admin)session.getAttribute("m"); %>
+
+
+
+<div class="sidebar">
+      <div class="logo-details">
+        <i class="bx bxl-c-plus-plus"></i>
+        <span class="logo_name">Property Fair</span>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#" class="active">
+            <i class="bx bx-grid-alt"></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-box"></i>
+            <span class="links_name">Add Property</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-list-ul"></i>
+            <span class="links_name">Agents</span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="new_agent_request">
+            <i class="bx bx-list-ul"></i>
+            <span class="links_name">New Agent Request</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-pie-chart-alt-2"></i>
+            <span class="links_name">View Property</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-coin-stack"></i>
+            <span class="links_name">Customers</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-book-alt"></i>
+            <span class="links_name">Reivew</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-user"></i>
+            <span class="links_name">Notification</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-message"></i>
+            <span class="links_name">Messages</span>
+          </a>
+        </li>
+         <li>
+          <a href="#">
+            <i class="bx bx-heart"></i>
+            <span class="links_name">Offer</span>
+          </a>
+        </li> 
+       <!--  <li>
+          <a href="#">
+            <i class="bx bx-cog"></i>
+            <span class="links_name">Setting</span>
+          </a>
+        </li>  -->
+        <li class="log_out">
+          <a href="logoutctrl">
+            <i class="bx bx-log-out"></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <section class="home-section">
+      <nav>
+        <div class="sidebar-button">
+          <i class="bx bx-menu sidebarBtn"></i>
+          <span class="dashboard">Admin Dashboard </span>
+        </div>
+        <div class="search-box">
+          <input type="text" placeholder="Search..." />
+          <i class="bx bx-search"></i>
+        </div>
+        <div class="profile-details">
+          <img src="https://ctmirror-images.s3.amazonaws.com/wp-content/uploads/2021/01/dummy-man-570x570-1.png" alt="" />
+           <span class="admin_name"><%=ak.getName() %></span> 
+          <i class="bx bx-chevron-down"></i>
+        </div>
+      </nav>
+
+      <div class="home-content">
+        <div class="overview-boxes">
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Agent Request</div>
+              <%
+// Initialize a local variable to count the number of requests
+int requestCount = 0;
+for (agent mk : list) {
+    requestCount++; // Increment the request count for each iteration
+%>
+        <%} %>
+              <center><div class="number"><%=requestCount %></div></center>
+              <!-- <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <span class="text">Up from yesterday</span>
+              </div> -->
+            </div>
+            <!-- <i class="bx bx-cart-alt cart"></i> -->
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Sales</div>
+              <div class="number">38,876</div>
+              <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <span class="text">Up from yesterday</span>
+              </div>
+            </div>
+            <i class="bx bxs-cart-add cart two"></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Profit</div>
+              <div class="number">$12,876</div>
+              <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <span class="text">Up from yesterday</span>
+              </div>
+            </div>
+            <i class="bx bx-cart cart three"></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Return</div>
+              <div class="number">11,086</div>
+              <div class="indicator">
+                <i class="bx bx-down-arrow-alt down"></i>
+                <span class="text">Down From Today</span>
+              </div>
+            </div>
+            <i class="bx bxs-cart-download cart four"></i>
+          </div>
+        </div>
+
+        <div class="sales-boxes" style="width: 100%;">
+      
+          <div class="top-sales box">
+    <div class="title">New Agent Request</div>
+    
+    
+    <ul class="top-sales-details">
+        <!-- Loop through your list of agents -->
+        <% for (agent mm : list) { %>
+        
+        
+            <li style="border:5px solid #F5F6FA ;height: 2cm;border-radius: 20px ;padding: 10px; ">
+                <a href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>">
+                    <img src="./get_agent_image?agent_id=<%=mm.getAgentId() %>" alt="" />
+                    <span class="product" style="font-weight: 1000;font-size: large;"><%=mm.getFullName() %></span>
+                </a>
+                <!-- Button for mobile and tablet views -->
+                <button class="view-prices-btn">View Prices</button>
+                <!-- Price elements -->
+                
+                <span class="price"><%=mm.getAgentId() %></span>
+                <span class="price"><%=mm.getEmail() %></span>
+                <span class="price"><%=mm.getPhone() %></span>
+                <span class="price"><a class="btn btn-primary"><%=mm.getStatus() %></a></span>
+                <span class="price"><%=mm.getCreatedOn() %></span>
+                
+                <span class="price"><a href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>" style="font-size: large;">View More</a></span>
+            </li>
+            
+            <hr style="color: blue;">
+        <% } %>
+        
+    </ul>
+</div>
+
+    </section>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+<%} %> 
+    <script>
+    
+    
+    
+    
+      let sidebar = document.querySelector(".sidebar");
+      let sidebarBtn = document.querySelector(".sidebarBtn");
+      sidebarBtn.onclick = function () {
+        sidebar.classList.toggle("active");
+        if (sidebar.classList.contains("active")) {
+          sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+      };
+    </script>
+
+
+
+
+<script>
+
+//JavaScript for toggling price elements and button visibility
+document.querySelectorAll('.view-prices-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        button.parentNode.querySelectorAll('.price').forEach(price => {
+            price.style.display = price.style.display === 'none' ? 'inline' : 'none';
+        });
+    });
+});
+
+</script>
+
+
+
 
 </body>
 </html>

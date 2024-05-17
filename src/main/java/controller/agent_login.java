@@ -47,7 +47,7 @@ public class agent_login extends HttpServlet {
 				
 					
 		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("agent_login.jsp");
 			request.setAttribute("kk", "invallied username or password");	
 			rd.forward(request, response);
 		}

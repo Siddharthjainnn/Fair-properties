@@ -53,7 +53,7 @@
 
     <div class="container">
         <h2>Add Property</h2>
-        <form action="add_property_by_agent" method="POST">
+        <form action="add_property_by_agent" method="POST" enctype="multipart/form-data" >
         <div class="form-group">
                 <label for="propertyName">Property Id:</label>
                 <input type="text" class="form-control" id="propertyName" name="propertyid" value="<%= propertyId %>" readonly="readonly" required>

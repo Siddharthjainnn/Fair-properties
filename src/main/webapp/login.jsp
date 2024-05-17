@@ -268,11 +268,78 @@ if(lk!=null)
            		    	<input type="password" class="input" name="password">
             	   </div>
             	</div>
+            	
+            	<span>
             	<a href="#">Forgot Password?</a>
+            	<a href="#" id="newCustomerLink" style="text-decoration: underline; color: blue; cursor: pointer;">New Customer?</a>
+            	</span>
+            	
             	<input type="submit" class="btn" value="Login">
             </form>
         </div>
     </div>
+    
+    
+     <%
+        // Generate random alphabetic characters
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder sb = new StringBuilder();
+        java.util.Random random = new java.util.Random();
+        for (int i = 0; i < 3; i++) {
+            char c = alphabet.charAt(random.nextInt(alphabet.length()));
+            sb.append(c);
+        }
+
+        // Generate random numeric characters
+        String numeric = "0123456789";
+        for (int i = 0; i < 4; i++) {
+            char c = numeric.charAt(random.nextInt(numeric.length()));
+            sb.append(c);
+        }
+
+        // Output the generated customer ID
+        String customerId = sb.toString();
+    %>
+
+<div id="newCustomerModal" class="modal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4);">
+  <div class="modal-content" style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 20%;">
+    <span class="close" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+    <form id="customerForm" action="customer_registeration" method="post">
+      <label for="customerId">Customer ID:</label>
+      <input type="text" id="customerId" name="customerId" style="margin-bottom: 10px; width: 100%;height: 1cm;font-size: medium;" value="<%= customerId %>" readonly="readonly"><br>
+
+      <label for="customerName">Customer Name:</label>
+      <input type="text" id="customerName" name="customerName" style="margin-bottom: 10px; width: 100%;height: 1cm;"><br>
+
+      <label for="customerMobile">Customer Mobile:</label>
+      <input type="text" id="customerMobile" name="customerMobile" style="margin-bottom: 10px; width: 100%;height: 1cm;"><br>
+
+      <label for="customerEmail">Customer Email:</label>
+      <input type="email" id="customerEmail" name="customerEmail" style="margin-bottom: 10px; width: 100%;height: 1cm;"><br>
+
+      <input type="submit" value="Submit" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; width: 100%; border-radius: 4px;">
+    </form>
+  </div>
+</div>
+    <script>
+    
+    document.getElementById("newCustomerLink").addEventListener("click", function(event) {
+    	  event.preventDefault();
+    	  document.getElementById("newCustomerModal").style.display = "block";
+    	});
+
+    	document.getElementsByClassName("close")[0].addEventListener("click", function() {
+    	  document.getElementById("newCustomerModal").style.display = "none";
+    	});
+
+    	window.addEventListener("click", function(event) {
+    	  var modal = document.getElementById("newCustomerModal");
+    	  if (event.target == modal) {
+    	    modal.style.display = "none";
+    	  }
+    	});
+
+    </script>
     <script>
     const inputs = document.querySelectorAll(".input");
 

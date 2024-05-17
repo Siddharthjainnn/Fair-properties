@@ -7,284 +7,282 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-    	body{
-    background:#eee;    
-}
-.widget-author {
-  margin-bottom: 58px;
-}
-.author-card {
-  position: relative;
-  padding-bottom: 48px;
-  background-color: #fff;
-  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
-}
-.author-card .author-card-cover {
-  position: relative;
-  width: 100%;
-  height: 100px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.author-card .author-card-cover::after {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  content: '';
-  opacity: 0.5;
-}
-.author-card .author-card-cover > .btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  padding: 0 10px;
-}
-.author-card .author-card-profile {
-  display: table;
-  position: relative;
-  margin-top: -22px;
-  padding-right: 15px;
-  padding-bottom: 16px;
-  padding-left: 20px;
-  z-index: 5;
-}
-.author-card .author-card-profile .author-card-avatar, .author-card .author-card-profile .author-card-details {
-  display: table-cell;
-  vertical-align: middle;
-}
-.author-card .author-card-profile .author-card-avatar {
-  width: 85px;
-  border-radius: 50%;
-  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .15);
-  overflow: hidden;
-}
-.author-card .author-card-profile .author-card-avatar > img {
-  display: block;
-  width: 100%;
-}
-.author-card .author-card-profile .author-card-details {
-  padding-top: 20px;
-  padding-left: 15px;
-}
-.author-card .author-card-profile .author-card-name {
-  margin-bottom: 2px;
-  font-size: 14px;
-  font-weight: bold;
-}
-.author-card .author-card-profile .author-card-position {
-  display: block;
-  color: #8c8c8c;
-  font-size: 12px;
-  font-weight: 600;
-}
-.author-card .author-card-info {
-  margin-bottom: 0;
-  padding: 0 25px;
-  font-size: 13px;
-}
-.author-card .author-card-social-bar-wrap {
-  position: absolute;
-  bottom: -18px;
-  left: 0;
-  width: 100%;
-}
-.author-card .author-card-social-bar-wrap .author-card-social-bar {
-  display: table;
-  margin: auto;
-  background-color: #fff;
-  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .11);
-}
-.btn-style-1.btn-white {
-    background-color: #fff;
-}
-.list-group-item i {
-    display: inline-block;
-    margin-top: -1px;
-    margin-right: 8px;
-    font-size: 1.2em;
-    vertical-align: middle;
-}
-.mr-1, .mx-1 {
-    margin-right: .25rem !important;
+<style>
+body{
+    background:#eee;
 }
 
-.list-group-item.active:not(.disabled) {
-    border-color: #e7e7e7;
-    background: #fff;
-    color: #ac32e4;
-    cursor: default;
-    pointer-events: none;
-}
-.list-group-flush:last-child .list-group-item:last-child {
-    border-bottom: 0;
+.card {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
 }
 
-.list-group-flush .list-group-item {
-    border-right: 0 !important;
-    border-left: 0 !important;
-}
-
-.list-group-flush .list-group-item {
-    border-right: 0;
-    border-left: 0;
-    border-radius: 0;
-}
-.list-group-item.active {
-    z-index: 2;
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-}
-.list-group-item:last-child {
-    margin-bottom: 0;
-    border-bottom-right-radius: .25rem;
-    border-bottom-left-radius: .25rem;
-}
-a.list-group-item, .list-group-item-action {
-    color: #404040;
-    font-weight: 600;
-}
-.list-group-item {
-    padding-top: 16px;
-    padding-bottom: 16px;
-    -webkit-transition: all .3s;
-    transition: all .3s;
-    border: 1px solid #e7e7e7 !important;
-    border-radius: 0 !important;
-    color: #404040;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    text-decoration: none;
-}
-.list-group-item {
+.card {
     position: relative;
-    display: block;
-    padding: .75rem 1.25rem;
-    margin-bottom: -1px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
     background-color: #fff;
-    border: 1px solid rgba(0,0,0,0.125);
-}
-.list-group-item.active:not(.disabled)::before {
-    background-color: #ac32e4;
-}
-
-.list-group-item::before {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 100%;
-    background-color: transparent;
-    content: '';
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: 1rem;
 }
 
-    </style>
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.5rem 1.5rem;
+}
+
+.form-control{
+font-weight: 1000;
+}
+</style>
 </head>
 <body>
 
 
 <%agent list=(agent)request.getAttribute("LIST"); %>
-<div class="container mt-10">
-<div class="row">
-<div class="col-lg-4 pb-5">
 
-<div class="author-card pb-3">
-<div class="author-card-cover" style="background-image: url(https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title data-original-title="You currently have 290 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
-<div class="author-card-profile">
-<div class="author-card-avatar"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Daniel Adams">
-</div>
-<div class="author-card-details">
-<h5 class="author-card-name text-lg"><%=list.getAgentID() %></h5><span class="author-card-position"><%=list.getName() %></span>
-</div>
-</div>
-</div>
-<div class="wizard">
-<nav class="list-group list-group-flush">
-<a class="list-group-item" href="#">
-<div class="d-flex justify-content-between align-items-center">
-<div><i class="fe-icon-shopping-bag mr-1 text-muted"></i>
-<div class="d-inline-block font-weight-medium text-uppercase">Orders List</div>
-</div><span class="badge badge-secondary">6</span>
-</div>
-</a><a class="list-group-item active" href="#"><i class="fe-icon-user text-muted"></i>Profile Settings</a><a class="list-group-item" href="#"><i class="fe-icon-map-pin text-muted"></i>Addresses</a>
-<a class="list-group-item" href="https://www.bootdey.com/snippets/view/bs4-wishlist-profile-page" target="__blank">
-<div class="d-flex justify-content-between align-items-center">
-<div><i class="fe-icon-heart mr-1 text-muted"></i>
-<div class="d-inline-block font-weight-medium text-uppercase">My Wishlist</div>
-</div><span class="badge badge-secondary">3</span>
-</div>
-</a>
-<a class="list-group-item" href="https://www.bootdey.com/snippets/view/bs4-account-tickets" target="__blank">
-<div class="d-flex justify-content-between align-items-center">
-<div><i class="fe-icon-tag mr-1 text-muted"></i>
-<div class="d-inline-block font-weight-medium text-uppercase">My Tickets</div>
-</div><span class="badge badge-secondary">4</span>
-</div>
-</a>
-</nav>
-</div>
+
+		
+		<div class="container-fluid">
+
+
+  <!-- Title -->
+  <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
+    
+    <div class="hstack gap-3">
+       <a href="reject_agent_by_admin?agent_id=<%=list.getAgentId() %>&agent_user_id=<%=list.getEmail() %>&agent_login_id=<%=list.getAgentId() %>&agent_password=<%=list.getPassword() %>&agent_name=<%=list.getFullName() %>"  class="btn btn-danger btn-sm btn-icon-text" style="width: 4cm;height: 1cm;font-size: large;font-weight: 700"><i class="bi bi-x"></i> <span class="text">Reject</span></a>&nbsp;&nbsp;&nbsp;
+      <a href="confirm_agent_by_admin?agent_id=<%=list.getAgentId() %>&agent_user_id=<%=list.getEmail() %>&agent_login_id=<%=list.getAgentId() %>&agent_password=<%=list.getPassword() %>&agent_name=<%=list.getFullName() %>" class="btn btn-primary btn-sm btn-icon-text" style="width: 6cm;height: 1cm;font-size: large;font-weight: 700" ><i class="bi bi-save"></i> <span class="text">Confirm The Application</span></a>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="row">
+    <!-- Left side -->
+    <div class="col-lg-8">
+      <!-- Basic information -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="h6 mb-4">Basic information</h3>
+          <div class="row">
+          
+          
+           <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Agent Id</label>
+                <input type="text" class="form-control" name="agentId" value="<%=list.getAgentId() %>" readonly>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" name="name" required="required" value="<%=list.getFullName() %>" readonly>
+              </div>
+            </div>
+           
+            
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" required="required" readonly="readonly" value="<%=list.getEmail() %>" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+             <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Phone number</label>
+                <input type="text" class="form-control" name="phone" required="required" readonly="readonly"  value="<%=list.getPhone() %>">
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">License Number</label>
+                <input type="text" class="form-control" name="licenseNumber" required="required" readonly="readonly" value="<%=list.getLicenseNumber() %>" >
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Specialization</label>
+                <input type="text" class="form-control" name="specialization" required="required" readonly="readonly" value="<%=list.getSpecialization()%>">
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Experience(Year)</label>
+                <input type="text" class="form-control" name="experience" required="required" value="<%=list.getExperience() %>" readonly="readonly" >
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Languages spoken</label>
+                <input type="text" class="form-control" name="languagesSpoken" required="required" value="<%=list.getLanguagesSpoken() %>" readonly="readonly" >
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Commission Rate(%)</label>
+                <input type="text" class="form-control" name="commissionRate" required="required"  readonly="readonly" value="<%=list.getCommissionRate()%>">
+              </div>
+            </div>
+          </div>
+          
+          
+           <div class="row">
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" name="dob" required="required" readonly="readonly" value="<%=list.getDob() %>" >
+              </div>
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Gender</label>
+              <input type="text" readonly="readonly" value="<%=list.getGender()%>" class="form-control" readonly >
+              </div>
+              
+              
+               
+         
+              
+            </div>
+            
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Sales Performance (Number of Properties Sold)</label>
+                <input type="text" class="form-control" name="salesperformance" required="required" readonly="readonly" value="<%=list.getSpecialization()%>">
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+      <!-- Address -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="h6 mb-4">Address</h3>
+          <div class="mb-3">
+            <label class="form-label">Permanent Address</label>
+            <input type="text" class="form-control" name="address" required="required" readonly="readonly" value="<%=list.getAddress()%>">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Residential Address</label>
+            <input type="text" class="form-control" name="address1" required="required" readonly="readonly" value="<%=list.getAddress1() %>" >
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label class="form-label">Country</label>
+               <input type="text" class="form-control" value="<%=list.getCountry()%>" readonly="readonly">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label class="form-label">State</label>
+                             <input type="text" value="<%=list.getState()%>" readonly="readonly" class="form-control"> 
+                              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label class="form-label">City</label>
+                
+                <input type="text" value="<%=list.getCity()%>" class="form-control" readonly="readonly">
+                              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label class="form-label">ZIP code</label>
+                <input type="text" class="form-control" name="zipcode" value="<%=list.getZipcode() %>"  readonly="readonly">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Right side -->
+    <div class="col-lg-4">
+      <!-- Status -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="h6">Status</h3>
+          <input type="text" class="form-control" name="status" value="<%=list.getStatus() %>" required="required" readonly >
+        </div>
+      </div>
+      <!-- Avatar -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="h6">Professional Photo</h3>
+          <input class="form-control" type="file"name="image" >
+        </div>
+      </div>
+      
+      
+      <div class="card mb-4">
+        <div class="card-body">
+        
+        <h3 class="h6">Aadhaar Card Number</h3>
+        <input class="form-control" type="text"  name="adharcard" value="<%=list.getAdharcard() %>"  readonly="readonly">
+        <br>
+          <h3 class="h6">Aadhaar Card Document</h3>
+          <input class="form-control" type="file" name="adharcardimage">
+        </div>
+      </div>
+      
+      <div class="card mb-4">
+        <div class="card-body">
+        <h3 class="h6">Pan Card Number</h3>
+        <input class="form-control" type="text" name="pancard" value="<%=list.getPancard() %>" readonly="readonly" >
+        <br>
+          <h3 class="h6">Pan Card Document</h3>
+          <input class="form-control" type="file" name="pancarddoc">
+        </div>
+      </div>
+      
+      <!-- Notes -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="h6">Notes</h3>
+          <input class="form-control" rows="3" name="notes" value="<%=list.getNotes() %>" readonly="readonly" style="height: 2cm;" ></input>
+        </div>
+      </div>
+      <!-- Notification settings -->
+      
+      
+    </div>
+  </div>
 </div>
 
-<div class="col-lg-8 pb-5">
-<form class="row">
-<div class="col-md-6">
-<div class="form-group">
-<label for="account-fn">First Name</label>
-<input class="form-control" type="text" id="account-fn" value="Daniel" required>
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<label for="account-ln">Last Name</label>
-<input class="form-control" type="text" id="account-ln" value="Adams" required>
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<label for="account-email">E-mail Address</label>
-<input class="form-control" type="email" id="account-email" value="daniel.adams@example.com" disabled>
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<label for="account-phone">Phone Number</label>
-<input class="form-control" type="text" id="account-phone" value="+7 (805) 348 95 72" required>
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<label for="account-pass">New Password</label>
-<input class="form-control" type="password" id="account-pass">
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<label for="account-confirm-pass">Confirm Password</label>
-<input class="form-control" type="password" id="account-confirm-pass">
-</div>
-</div>
-<div class="col-12">
-<hr class="mt-2 mb-3">
-<div class="d-flex flex-wrap justify-content-between align-items-center">
-<div class="custom-control custom-checkbox d-block">
-<input class="custom-control-input" type="checkbox" id="subscribe_me" checked>
-<label class="custom-control-label" for="subscribe_me">Subscribe me to Newsletter</label>
-</div>
-<button class="btn btn-style-1 btn-primary" type="button" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Update Profile</button>
-</div>
-</div>
-</form>
-</div>
-</div>
-</div>
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">

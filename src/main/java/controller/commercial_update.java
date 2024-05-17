@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,90 +13,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import dao.PropertyDTO;
 import model.model;
 
 @MultipartConfig(maxFileSize = 160300000)
-@WebServlet("/add_property_by_agent")
-public class add_property_by_agent extends HttpServlet {
+@WebServlet("/commercial_update")
+public class commercial_update extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String a=(String)request.getParameter("agent_id");
-		String b=(String)request.getParameter("agent_name");
-	
-		if(a!=null)
+		String k=(String)request.getParameter("agent_id");
+		String k1=(String)request.getParameter("agent_name"); 
+		String k2=(String)request.getParameter("category");
+		
+		model model=new model();
+		ArrayList<PropertyDTO> ok=model.get_commercial_property(k,k2);
+		if(ok!=null)
 		{
-//			RequestDispatcher rd=request.getRequestDispatcher("property_by_agent.jsp");
-			RequestDispatcher rd=request.getRequestDispatcher("category.jsp");
-			request.setAttribute("msg", a);
-			request.setAttribute("msg1", b);
+			RequestDispatcher rd=request.getRequestDispatcher("update_commercial.jsp");
+			request.setAttribute("LIST", ok);
+			rd.forward(request, response);
+		}else {
+			
+			RequestDispatcher rd=request.getRequestDispatcher("category_view.jsp");
+			request.setAttribute("no", "no Record Found");
 			rd.forward(request, response);
 		}
-		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
-//		property_name
-//		property_id
-//		Property_type
-//		category
-//		price
-//		area
-//		width
-//		length
-//		Transaction
-//		Ownership
-//		cons_year
-//		floors
-//		direction
-//		openside
-//		adress
-//		area
-//		landmark
-//		scheme_no
-//		ward
-//		assembly
-//		zipcode
-//		city
-//		country
-//		state
-//		security
-//		park_area
-//		gas_con
-//		water_con
-//		no_of_lift
-//		overlooking
-//		elec
-//		fur
-//		internet
-//		owner_name
-//		owner_number
-//		owner_email
-//		agent_name
-//		agent_id
-//		status
-//		font_image
-//		image_1
-//		image_2
-//		image_3
-//		image_4
-//		video
-//		notes
-//		rent
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		String property_name = request.getParameter("property_name");
 		String property_id = request.getParameter("property_id");
 		String property_type = request.getParameter("Property_type");
@@ -157,57 +106,7 @@ public class add_property_by_agent extends HttpServlet {
 		
 		
 		
-		Part font_image = request.getPart("font_image");
-        Part image_1 = request.getPart("image_1");
-        Part image_2 = request.getPart("image_2");
-        Part image_3 = request.getPart("image_3");
-        Part image_4 = request.getPart("image_4");
-        Part video = request.getPart("video");
-
-        
-        
-        
-        
-        
-        InputStream is=null;
-        InputStream is1=null;
-        InputStream is2=null;
-        InputStream is3=null;
-        InputStream is4=null;
-        InputStream is5=null;
 		
-		if(font_image!=null)
-		{
-			is=font_image.getInputStream();
-			
-		}
-		
-		if(image_1!=null)
-		{
-			is1=image_1.getInputStream();
-			
-		}
-		if(image_2!=null)
-		{
-			is2=image_2.getInputStream();
-			
-		}
-		if(image_3!=null)
-		{
-			is3=image_3.getInputStream();
-			
-		}
-		
-		if(image_4!=null)
-		{
-			is4=image_4.getInputStream();
-			
-		}
-		if(video!=null)
-		{
-			is5=video.getInputStream();
-			
-		}
 		
         
 		
@@ -218,10 +117,10 @@ public class add_property_by_agent extends HttpServlet {
         
         if(category.equals("commercial"))
         {
-        	 i = model.add_property_1(property_name, property_id, property_type, category, price, area, width, length, transaction, ownership, cons_year, floors, direction, openside, address, landmark, scheme_no, ward, assembly, zipcode, city, country, state, security, park_area, gas_con, water_con, no_of_lift, overlooking, elec, fur, internet, owner_name, owner_number, owner_email, agent_name, agent_id, status, notes, rent,is,is1,is2,is3,is4,is5);
+        	 i = model.update_property_1(property_name, property_id, property_type, category, price, area, width, length, transaction, ownership, cons_year, floors, direction, openside, address, landmark, scheme_no, ward, assembly, zipcode, city, country, state, security, park_area, gas_con, water_con, no_of_lift, overlooking, elec, fur, internet, owner_name, owner_number, owner_email, agent_name, agent_id, status, notes, rent);
 
         }else {
-        	 j = model.add_property_2(property_name, property_id, property_type, category, price, area, width, length, transaction, ownership, cons_year, floors, direction, openside, address, landmark, scheme_no, ward, assembly, zipcode, city, country, state, security, park_area, gas_con, water_con, no_of_lift, overlooking, elec, fur, internet, owner_name, owner_number, owner_email, agent_name, agent_id, status, notes, rent, is, is1, is2, is3, is4, is5, bedrooms, bathrooms, kitchen, living, dining, parking, carpet_area, garden);
+        	 j = model.update_property_2(property_name, property_id, property_type, category, price, area, width, length, transaction, ownership, cons_year, floors, direction, openside, address, landmark, scheme_no, ward, assembly, zipcode, city, country, state, security, park_area, gas_con, water_con, no_of_lift, overlooking, elec, fur, internet, owner_name, owner_number, owner_email, agent_name, agent_id, status, notes, rent, bedrooms, bathrooms, kitchen, living, dining, parking, carpet_area, garden);
 
         }
         
@@ -255,11 +154,14 @@ public class add_property_by_agent extends HttpServlet {
 //        
 //        int i=model.add_property(propertyid,propertyName, propertyType, location, landmark, price, bedrooms, bathrooms, areaSqft, description, listedDate, agentId, country, city, postalCode);
 //        
+        
         if(i!=0)
         {
-        	RequestDispatcher rd=request.getRequestDispatcher("commercial_insertion.jsp");
-        	request.setAttribute("ok", "property added succesfully");
-        	request.setAttribute("msg", agent_id);
+        	PropertyDTO ok=model.get_commercial_property_2(property_id);
+        	RequestDispatcher rd=request.getRequestDispatcher("commercial_update_new.jsp");
+        	request.setAttribute("ok", "property Updated succesfully");
+			/* request.setAttribute("msg", agent_id); */
+        	request.setAttribute("LIST", ok);
         	rd.forward(request, response);
         }
         

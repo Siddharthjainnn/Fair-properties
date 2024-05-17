@@ -1,3 +1,103 @@
+
+<%agent ak=(agent)session.getAttribute("m"); %>
+
+    <%
+    String kk = ak.getPassword();
+    if (kk.equals("pasx87")) {
+%>
+    
+    
+    
+    
+    
+    
+<style>
+body{
+    margin-top:20px;
+    background-color: #f2f3f8;
+}
+.card {
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);
+}
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e5e9f2;
+    border-radius: .2rem;
+}
+
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<body>
+
+<div class="container h-100">
+    		<div class="row h-100">
+				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+					<div class="d-table-cell align-middle">
+
+						<div class="text-center mt-4">
+							<h1 class="h2">Reset password</h1>
+							<p class="lead">
+								Enter your email to reset your password.
+							</p>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<div class="m-sm-4">
+									<form action="forgotpassword_agent"  method="post">
+										<div class="form-group">
+											<label>Email</label>
+											<input type="hidden" value="<%=ak.getFullName()%>" name="name">
+											<input type="hidden" value="<%=ak.getAgentId()%>" name="agent_id">
+											<input type="hidden" value="<%=ak.getPassword()%>" name="password">
+											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" value="<%=ak.getEmail()%>" readonly="readonly">
+										</div>
+										<div class="text-center mt-3">
+									
+											 <button type="submit" class="btn btn-lg btn-primary">Reset password</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <%} else{%>
+    
+
 <%@page import="dao.agent"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -472,10 +572,7 @@ nav .profile-details i{
     
     
     
-<%agent ak=(agent)session.getAttribute("m"); %>
 
-    
-    
     
     
      <div class="sidebar">
@@ -491,7 +588,8 @@ nav .profile-details i{
           </a>
         </li>
         <li>
-          <a href="add_property_by_agent?agent_id=<%=ak.getAgentID()%>">
+         <%--  <a href="add_property_by_agent?agent_id=<%=ak.getAgentId()%>"> --%>
+         <a href="add_property_by_agent?agent_id=<%=ak.getAgentId()%>&agent_name=<%=ak.getFullName()%>">
             <i class="bx bx-box"></i>
             <span class="links_name">Add Property</span>
           </a>
@@ -500,7 +598,7 @@ nav .profile-details i{
         
         
         <li>
-          <a href="#">
+          <a href="edit_property_by_agent?agent_id=<%=ak.getAgentId()%>&agent_name=<%=ak.getFullName()%>">
             <i class="bx bx-pie-chart-alt-2"></i>
             <span class="links_name">View Property</span>
           </a>
@@ -556,7 +654,7 @@ nav .profile-details i{
         </div>
         <div class="profile-details">
           <img src="https://ctmirror-images.s3.amazonaws.com/wp-content/uploads/2021/01/dummy-man-570x570-1.png" alt="" />
-          <span class="admin_name"><%=ak.getName() %></span>
+          <span class="admin_name"><%=ak.getFullName() %></span>
           <i class="bx bx-chevron-down"></i>
         </div>
       </nav>
@@ -744,5 +842,16 @@ nav .profile-details i{
         } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
       };
     </script>
+    
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+    <%} %>

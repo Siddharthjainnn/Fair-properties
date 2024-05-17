@@ -32,31 +32,82 @@ public class agent_registeration extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
-
+ 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		String agentId = request.getParameter("agentId");
-        String name = request.getParameter("name");
+		/*
+		 * 
+		 * String agentId = request.getParameter("agentId"); String name =
+		 * request.getParameter("name"); String email = request.getParameter("email");
+		 * String phone = request.getParameter("phone"); String address =
+		 * request.getParameter("address"); String companyName =
+		 * request.getParameter("companyName"); String licenseNumber =
+		 * request.getParameter("licenseNumber"); String specialization =
+		 * request.getParameter("specialization"); int experience =
+		 * Integer.parseInt(request.getParameter("experience")); String languagesSpoken
+		 * = request.getParameter("languagesSpoken"); double commissionRate =
+		 * Double.parseDouble(request.getParameter("commissionRate")); Part
+		 * profilePicturePart = request.getPart("image"); String socialMediaLinks =
+		 * request.getParameter("socialMediaLinks"); String notes =
+		 * request.getParameter("notes");
+		 */
+        
+        
+        
+        
+        String agentid=request.getParameter("agentId");
+        String fullName = request.getParameter("name");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
-        String address = request.getParameter("address");
-        String companyName = request.getParameter("companyName");
         String licenseNumber = request.getParameter("licenseNumber");
         String specialization = request.getParameter("specialization");
-        int experience = Integer.parseInt(request.getParameter("experience"));
+        String experience = request.getParameter("experience");
         String languagesSpoken = request.getParameter("languagesSpoken");
-        double commissionRate = Double.parseDouble(request.getParameter("commissionRate"));
-        Part profilePicturePart = request.getPart("image");
-        String socialMediaLinks = request.getParameter("socialMediaLinks");
-        String notes = request.getParameter("notes");
+        String commissionRate = request.getParameter("commissionRate");
+        String dob = request.getParameter("dob");
+        String gender = request.getParameter("gender");
+        String salesPerformance = request.getParameter("salesperformance");
+        String address = request.getParameter("address");
+        String address1 = request.getParameter("address1");
+        String country = request.getParameter("country");
+        String state = request.getParameter("state");
+        String city = request.getParameter("city");
+        String zipcode = request.getParameter("zipcode");
+		/* String status = request.getParameter("status"); */
+        String status="Submitted";
+        String adharcard = request.getParameter("adharcard");
+        String pancard=request.getParameter("pancard");
+        String notes=request.getParameter("notes");
+        Part profile = request.getPart("image");
+        Part adharcarddoc = request.getPart("adharcardimage");
+        Part pancarddoc = request.getPart("pancarddoc");
+        
+        
+        
+        
+        
+        
         
         InputStream is=null;
+        InputStream is1=null;
+        InputStream is2=null;
 		
-		if(profilePicturePart!=null)
+		if(profile!=null)
 		{
-			is=profilePicturePart.getInputStream();
+			is=profile.getInputStream();
+			
+		}
+		
+		if(adharcarddoc!=null)
+		{
+			is1=adharcarddoc.getInputStream();
+			
+		}
+		if(pancarddoc!=null)
+		{
+			is2=pancarddoc.getInputStream();
 			
 		}
         
@@ -68,7 +119,11 @@ public class agent_registeration extends HttpServlet {
 		
         model model=new model();
         
-        int j=model.add_agent(agentId,name,email,phone,address,companyName,licenseNumber,specialization,experience,languagesSpoken,commissionRate,is,socialMediaLinks,notes);
+        int j=model.add_agent_1(agentid, fullName, email, phone, licenseNumber, specialization,
+                experience, languagesSpoken, commissionRate, dob, gender,
+                salesPerformance, address, address1, country, state, city,
+                zipcode, status, adharcard, pancard, notes,
+                is, is1, is2);
         
         if(j!=0)
 		{
@@ -78,7 +133,7 @@ public class agent_registeration extends HttpServlet {
 			
 //			RequestDispatcher rx=request.getRequestDispatcher("add_Product_admin_9.jsp");
 //			request.setAttribute("msg", "product added succesffuly");
-	sendOrderConfirmationEmail(email, name, agentId, companyName, licenseNumber, notes);
+	sendOrderConfirmationEmail(email, fullName, agentid, phone, licenseNumber, notes);
 //			rx.forward(request, response);
         	response.sendRedirect("home.jsp");
         	
@@ -128,7 +183,7 @@ public class agent_registeration extends HttpServlet {
 	        message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
 
 	        // Set the email subject.
-	        message.setSubject("Order Confirmation");
+	        message.setSubject("Confirmation of Agent Registration Request Received 🏡");
 String ok="hello to everyone";
 	       
 			// Set the email content (HTML content in this example).
