@@ -27,19 +27,41 @@ public class commercial_update extends HttpServlet {
 		String k1=(String)request.getParameter("agent_name"); 
 		String k2=(String)request.getParameter("category");
 		
-		model model=new model();
-		ArrayList<PropertyDTO> ok=model.get_commercial_property(k,k2);
-		if(ok!=null)
-		{
-			RequestDispatcher rd=request.getRequestDispatcher("update_commercial.jsp");
-			request.setAttribute("LIST", ok);
-			rd.forward(request, response);
+		
+		if(k2.equals("commercial")) {
+			model model=new model();
+			ArrayList<PropertyDTO> ok=model.get_commercial_property(k,k2);
+			if(ok!=null)
+			{
+				RequestDispatcher rd=request.getRequestDispatcher("update_commercial.jsp");
+				request.setAttribute("LIST", ok);
+				rd.forward(request, response);
+			}else {
+				
+				RequestDispatcher rd=request.getRequestDispatcher("category_view.jsp");
+				request.setAttribute("no", "no Record Found");
+				rd.forward(request, response);
+			}
+			
 		}else {
 			
-			RequestDispatcher rd=request.getRequestDispatcher("category_view.jsp");
-			request.setAttribute("no", "no Record Found");
-			rd.forward(request, response);
+			model model=new model();
+			ArrayList<PropertyDTO> ok=model.get_commercial_property(k,k2);
+			if(ok!=null)
+			{
+				RequestDispatcher rd=request.getRequestDispatcher("update_commercial.jsp");
+				request.setAttribute("LIST", ok);
+				rd.forward(request, response);
+			}else {
+				
+				RequestDispatcher rd=request.getRequestDispatcher("category_view.jsp");
+				request.setAttribute("no", "no Record Found");
+				rd.forward(request, response);
+			}
+			
 		}
+		
+		
 	}
 
 	
@@ -169,9 +191,11 @@ public class commercial_update extends HttpServlet {
         
         if(j!=0)
         {
-        	RequestDispatcher rd=request.getRequestDispatcher("residential.jsp");
+        	PropertyDTO ok=model.get_commercial_property_2(property_id);
+        	RequestDispatcher rd=request.getRequestDispatcher("residential_update_new.jsp");
         	request.setAttribute("ok", "property added succesfully");
-        	request.setAttribute("msg", agent_id);
+			/* request.setAttribute("msg", agent_id); */
+        	request.setAttribute("LIST", ok);
         	rd.forward(request, response);
         }
 		

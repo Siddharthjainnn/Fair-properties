@@ -25,17 +25,44 @@ public class commercial_view extends HttpServlet {
 		
 		model model=new model();
 		PropertyDTO ok=model.get_commercial_property_2(k);
-		if(ok!=null)
+		String cat= ok.getCategory();
+		
+		
+		if(cat.equals("residential"))
 		{
-			RequestDispatcher rd=request.getRequestDispatcher("commercial_agent.jsp");
-			request.setAttribute("LIST", ok);
-			rd.forward(request, response);
-		}else {
 			
-			RequestDispatcher rd=request.getRequestDispatcher("category_view.jsp");
-			request.setAttribute("no", "no Record Found");
-			rd.forward(request, response);
+			
+
+			if(ok!=null)
+			{
+				RequestDispatcher rd=request.getRequestDispatcher("residential_agent.jsp");
+				request.setAttribute("LIST", ok);
+				rd.forward(request, response);
+			}else {
+				
+				RequestDispatcher rd=request.getRequestDispatcher("category_view.jsp");
+				request.setAttribute("no", "no Record Found");
+				rd.forward(request, response);
+			}
+			
+			
+			
+		}else {
+
+			if(ok!=null)
+			{
+				RequestDispatcher rd=request.getRequestDispatcher("commercial_agent.jsp");
+				request.setAttribute("LIST", ok);
+				rd.forward(request, response);
+			}else {
+				
+				RequestDispatcher rd=request.getRequestDispatcher("category_view.jsp");
+				request.setAttribute("no", "no Record Found");
+				rd.forward(request, response);
+			}
+			
 		}
+		
 	}
 
 

@@ -61,10 +61,10 @@ public class model {
 
 	    try {
 	        con = create_connection();
-	        PreparedStatement ps=con.prepareStatement("SELECT * FROM property_12 WHERE area = ? AND category = ? AND price = ? ");
+	        PreparedStatement ps=con.prepareStatement("SELECT * FROM property_12 WHERE area = ? AND category = ? AND price <= ?");
 	        ps.setString(1, a);
 	        ps.setString(2, b);
-	        ps.setString(1, c);
+	        ps.setString(3, c);
 
 	        ResultSet rs = ps.executeQuery();
 
@@ -1161,16 +1161,260 @@ return i; // Return the number of rows affected
 }
 
 	public int update_property_2(String property_name, String property_id, String property_type, String category,
-			String price, String area, String width, String length, String transaction, String ownership,
-			String cons_year, String floors, String direction, String openside, String address, String landmark,
-			String scheme_no, String ward, String assembly, String zipcode, String city, String country, String state,
-			String security, String park_area, String gas_con, String water_con, String no_of_lift, String overlooking,
-			String elec, String fur, String internet, String owner_name, String owner_number, String owner_email,
-			String agent_name, String agent_id, String status, String notes, String rent, String bedrooms,
-			String bathrooms, String kitchen, String living, String dining, String parking, String carpet_area,
-			String garden) {
-		// TODO Auto-generated method stub
-		return 0;
+            String price, String area, String width, String length, String transaction, String ownership,
+            String cons_year, String floors, String direction, String openside, String address, String landmark,
+            String scheme_no, String ward, String assembly, String zipcode, String city, String country, String state,
+            String security, String park_area, String gas_con, String water_con, String no_of_lift, String overlooking,
+            String elec, String fur, String internet, String owner_name, String owner_number, String owner_email,
+            String agent_name, String agent_id, String status, String notes, String rent, String bedrooms,
+            String bathrooms, String kitchen, String living, String dining, String parking, String carpet_area,
+            String garden) {
+int i = 0;
+Connection con = null;
+
+try {
+con = create_connection();
+String sql = "UPDATE property_12 SET property_name = ?, property_type = ?, category = ?, price = ?, area = ?, width = ?, length = ?, transaction = ?, ownership = ?, cons_year = ?, floors = ?, direction = ?, openside = ?, address = ?, landmark = ?, scheme_no = ?, ward = ?, assembly = ?, zipcode = ?, city = ?, country = ?, state = ?, security = ?, park_area = ?, gas_con = ?, water_con = ?, no_of_lift = ?, overlooking = ?, elec = ?, fur = ?, internet = ?, owner_name = ?, owner_number = ?, owner_email = ?, agent_name = ?, agent_id = ?, status = ?, notes = ?, rent = ?, bedrooms = ?, bathrooms = ?, kitchen = ?, living = ?, dining = ?, parking = ?, carpet_area = ?, garden = ? WHERE property_id = ?";
+PreparedStatement stmt = con.prepareStatement(sql);
+
+stmt.setString(1, property_name);
+stmt.setString(2, property_type);
+stmt.setString(3, category);
+stmt.setString(4, price);
+stmt.setString(5, area);
+stmt.setString(6, width);
+stmt.setString(7, length);
+stmt.setString(8, transaction);
+stmt.setString(9, ownership);
+stmt.setString(10, cons_year);
+stmt.setString(11, floors);
+stmt.setString(12, direction);
+stmt.setString(13, openside);
+stmt.setString(14, address);
+stmt.setString(15, landmark);
+stmt.setString(16, scheme_no);
+stmt.setString(17, ward);
+stmt.setString(18, assembly);
+stmt.setString(19, zipcode);
+stmt.setString(20, city);
+stmt.setString(21, country);
+stmt.setString(22, state);
+stmt.setString(23, security);
+stmt.setString(24, park_area);
+stmt.setString(25, gas_con);
+stmt.setString(26, water_con);
+stmt.setString(27, no_of_lift);
+stmt.setString(28, overlooking);
+stmt.setString(29, elec);
+stmt.setString(30, fur);
+stmt.setString(31, internet);
+stmt.setString(32, owner_name);
+stmt.setString(33, owner_number);
+stmt.setString(34, owner_email);
+stmt.setString(35, agent_name);
+stmt.setString(36, agent_id);
+stmt.setString(37, status);
+stmt.setString(38, notes);
+stmt.setString(39, rent);
+stmt.setString(40, bedrooms);
+stmt.setString(41, bathrooms);
+stmt.setString(42, kitchen);
+stmt.setString(43, living);
+stmt.setString(44, dining);
+stmt.setString(45, parking);
+stmt.setString(46, carpet_area);
+stmt.setString(47, garden);
+stmt.setString(48, property_id);
+
+i = stmt.executeUpdate(); // Execute the update statement and get the number of affected rows
+
+} catch (Exception e) {
+e.printStackTrace();
+} finally {
+if (con != null) {
+try {
+con.close();
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+}
+
+return i; // Return the number of rows affected
+}
+
+	public ArrayList<PropertyDTO> get_property_by_sub_category(String a) {
+		ArrayList<PropertyDTO> properties = new ArrayList<>();
+	    Connection con = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+
+	    try {
+	        con = create_connection();
+	        String query = "SELECT * FROM property_12 WHERE property_type = ? ";
+	        ps = con.prepareStatement(query);
+	        ps.setString(1, a);
+	        
+
+	     
+
+	        rs = ps.executeQuery();
+
+	        while (rs.next()) {
+	            PropertyDTO property = new PropertyDTO(
+	                rs.getString("property_name"),
+	                rs.getString("property_id"),
+	                rs.getString("property_type"),
+	                rs.getString("category"),
+	                rs.getString("price"),
+	                rs.getString("area"),
+	                rs.getString("width"),
+	                rs.getString("length"),
+	                rs.getString("transaction"),
+	                rs.getString("ownership"),
+	                rs.getString("cons_year"),
+	                rs.getString("floors"),
+	                rs.getString("direction"),
+	                rs.getString("openside"),
+	                rs.getString("address"),
+	                rs.getString("landmark"),
+	                rs.getString("scheme_no"),
+	                rs.getString("ward"),
+	                rs.getString("assembly"),
+	                rs.getString("zipcode"),
+	                rs.getString("city"),
+	                rs.getString("country"),
+	                rs.getString("state"),
+	                rs.getString("security"),
+	                rs.getString("park_area"),
+	                rs.getString("gas_con"),
+	                rs.getString("water_con"),
+	                rs.getString("no_of_lift"),
+	                rs.getString("overlooking"),
+	                rs.getString("elec"),
+	                rs.getString("fur"),
+	                rs.getString("internet"),
+	                rs.getString("owner_name"),
+	                rs.getString("owner_number"),
+	                rs.getString("owner_email"),
+	                rs.getString("agent_name"),
+	                rs.getString("agent_id"),
+	                rs.getString("status"),
+	                rs.getString("notes"),
+	                rs.getString("rent"),
+	                rs.getString("bedrooms"),
+	                rs.getString("bathrooms"),
+	                rs.getString("kitchen"),
+	                rs.getString("living"),
+	                rs.getString("dining"),
+	                rs.getString("parking"),
+	                rs.getString("carpet_area"),
+	                rs.getString("garden")
+	            );
+	            System.out.println("Retrieved property: " + property.getAgentName());
+	            properties.add(property);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (ps != null) ps.close();
+	            if (con != null) con.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    System.out.println("mein return kr raha hu ");
+	    return properties;
+	    
+	}
+
+	public ArrayList<PropertyDTO> get_more_property_by_agent(String a) {
+		ArrayList<PropertyDTO> properties = new ArrayList<>();
+	    Connection con = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+
+	    try {
+	        con = create_connection();
+	        String query = "SELECT * FROM property_12 WHERE agent_id = ? ";
+	        ps = con.prepareStatement(query);
+	        ps.setString(1, a);
+	        
+
+	     
+
+	        rs = ps.executeQuery();
+
+	        while (rs.next()) {
+	            PropertyDTO property = new PropertyDTO(
+	                rs.getString("property_name"),
+	                rs.getString("property_id"),
+	                rs.getString("property_type"),
+	                rs.getString("category"),
+	                rs.getString("price"),
+	                rs.getString("area"),
+	                rs.getString("width"),
+	                rs.getString("length"),
+	                rs.getString("transaction"),
+	                rs.getString("ownership"),
+	                rs.getString("cons_year"),
+	                rs.getString("floors"),
+	                rs.getString("direction"),
+	                rs.getString("openside"),
+	                rs.getString("address"),
+	                rs.getString("landmark"),
+	                rs.getString("scheme_no"),
+	                rs.getString("ward"),
+	                rs.getString("assembly"),
+	                rs.getString("zipcode"),
+	                rs.getString("city"),
+	                rs.getString("country"),
+	                rs.getString("state"),
+	                rs.getString("security"),
+	                rs.getString("park_area"),
+	                rs.getString("gas_con"),
+	                rs.getString("water_con"),
+	                rs.getString("no_of_lift"),
+	                rs.getString("overlooking"),
+	                rs.getString("elec"),
+	                rs.getString("fur"),
+	                rs.getString("internet"),
+	                rs.getString("owner_name"),
+	                rs.getString("owner_number"),
+	                rs.getString("owner_email"),
+	                rs.getString("agent_name"),
+	                rs.getString("agent_id"),
+	                rs.getString("status"),
+	                rs.getString("notes"),
+	                rs.getString("rent"),
+	                rs.getString("bedrooms"),
+	                rs.getString("bathrooms"),
+	                rs.getString("kitchen"),
+	                rs.getString("living"),
+	                rs.getString("dining"),
+	                rs.getString("parking"),
+	                rs.getString("carpet_area"),
+	                rs.getString("garden")
+	            );
+	            System.out.println("Retrieved property: " + property.getAgentName());
+	            properties.add(property);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (ps != null) ps.close();
+	            if (con != null) con.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    System.out.println("mein return kr raha hu ");
+	    return properties;
+	    
 	}
 
 }

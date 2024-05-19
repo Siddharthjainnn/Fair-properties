@@ -143,7 +143,7 @@
                     <div class="col-lg-3">
                       <div class="mb-3">
                         <label class="form-label">Area(Sq.feet)</label>
-                        <input type="text" class="form-control" name="area" required="required" value="<%=pro.getArea()%>">
+                        <input type="text" class="form-control"  required="required" value="<%=pro.getArea()%>">
                       </div>
                     </div>
                   </div>
@@ -617,7 +617,7 @@
                     <div class="col-lg-4">
                       <div class="mb-3">
                         <label class="form-label">Scheme No</label>
-                       <select name="scheme" id="scheme" class="form-control" name="scheme_no">
+                       <select id="scheme" class="form-control" name="scheme_no">
     <option value="<%=pro.getSchemeNo()%>"><%=pro.getSchemeNo()%></option>
        <option value="TPS-8">TPS-8</option>
     <option value="scheme No 9">scheme No 9</option>
@@ -972,7 +972,7 @@
                                 <div class="col-lg-4">
                                     <div class="mb-3">
                                       <label class="form-label">Internet Availablity</label>
-              <select class="select2 form-control select2-hidden-accessible" data-select2-placeholder="Select country" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true" name="fur">
+              <select class="select2 form-control select2-hidden-accessible" data-select2-placeholder="Select country" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true" name="internet">
                <option value="<%=pro.getInternet()%>"><%=pro.getInternet()%></option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>

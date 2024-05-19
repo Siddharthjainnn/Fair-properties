@@ -603,7 +603,7 @@ nav .profile-details i{
             <span class="links_name">View Property</span>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="#">
             <i class="bx bx-coin-stack"></i>
             <span class="links_name">My Customers</span>
@@ -626,7 +626,7 @@ nav .profile-details i{
             <i class="bx bx-message"></i>
             <span class="links_name">Messages</span>
           </a>
-        </li>
+        </li> -->
          
        <!--  <li>
           <a href="#">

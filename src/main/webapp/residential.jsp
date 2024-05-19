@@ -524,77 +524,79 @@
                         <label class="form-label">Ward Number</label>
                         <select name="ward" id="ward" class="form-control" name="ward">
 
-    <option value="1">Sirapur, Ward 1</option>
-    <option value="2">Chandan Nagar, Ward 2</option>
-    <option value="3">Kaalaani Nagar, Ward 3</option>
-    <option value="4">Sukhadev Nagar, Ward 4</option>
-    <option value="5">Raaj Nagar, Ward 5</option>
-    <option value="6">Malhaaraganj, Ward 6</option>
-    <option value="7">Janata Colony, Ward 7</option>
-    <option value="8">Joona Risaala, Ward 8</option>
-    <option value="9">Vrindaavan, Ward 9</option>
-    <option value="10">Baanaganga, Ward 10</option>
-    <option value="11">Bhaageerathpura, Ward 11</option>
-    <option value="12">Govind Colony, Ward 12</option>
-    <option value="13">Sangamanagar, Ward 13</option>
-    <option value="14">Ashok Nagar, Ward 14</option>
-    <option value="15">Bijaasan, Ward 15</option>
-    <option value="16">Nandabaag, Ward 16</option>
-    <option value="17">Kushavaah Nagar, Ward 17</option>
-    <option value="18">Sant Kabeer, Ward 18</option>
-    <option value="19">Vishvakarma, Ward 19</option>
-    <option value="20">Gauree Nagar, Ward 20</option>
-    <option value="21">Shyaam Nagar, Ward 21</option>
-    <option value="22">P.Dee.D.Upaa. Nagar, Ward 22</option>
-    <option value="23">Sv. Raajesh Joshee, Ward 23</option>
-    <option value="24">Sant Baaleejee Mahaaraaj, Ward 24</option>
-    <option value="25">Nanda Nagar, Ward 25</option>
-    <option value="26">Jeen Maata, Ward 26</option>
-    <option value="27">Pashupati Naath, Ward 27</option>
-    <option value="28">Maam Tulaja Bhavaanee, Ward 28</option>
-    <option value="29">Dr Shyaamaaprasaad Mukharjee Nagar, Ward 29</option>
-    <option value="30">Sant Ravidaas, Ward 30</option>
-    <option value="31">Mahaaraaja Chhatrasaal, Ward 31</option>
-    <option value="32">Atal Bihaaree Baajapeyee, Ward 32</option>
-    <option value="33">Sookhaliya, Ward 33</option>
-    <option value="34">Shaheed BhagatSinh, Ward 34</option>
-    <option value="35">Lasudiya Moree, Ward 35</option>
-    <option value="36">Nepaaniya, Ward 36</option>
-    <option value="37">Saamee Kripa, Ward 37</option>
-    <option value="38">Haajee Colony, Ward 38</option>
-    <option value="39">Naaharasha Havelee, Ward 39</option>
-    <option value="40">Khajaraana, Ward 40</option>
-    <option value="41">Kailaashapuree, Ward 41</option>
-    <option value="42">Swami Vivekaanand, Ward 42</option>
-    <option value="43">Shreenagar, Ward 43</option>
-    <option value="44">H.I.G., Ward 44</option>
-    <option value="45">Dr. Bheemrao Ambedkar, Ward 45</option>
-    <option value="46">Somanaath, Ward 46</option>
-    <option value="47">Saradaar Vallabh Bhai, Ward 47</option>
-    <option value="48">Geeta Bhavan, Ward 48</option>
-    <option value="49">Tilak Nagar, Ward 49</option>
-    <option value="50">Brajeshvaree, Ward 50</option>
-    <option value="51">Maam Bhagavatee Nagar, Ward 51</option>
-    <option value="52">Musakkhedi, Ward 52</option>
-    <option value="53">Dr Maulaana Aajaad Nagar, Ward 53</option>
-    <option value="54">Residency, Ward 54</option>
-    <option value="55">Saaooth Tukoganj, Ward 55</option>
-    <option value="56">Snehalata Ganj, Ward 56</option>
-    <option value="57">Devi Ahilyaabai, Ward 57</option>
-    <option value="58">Emli Bazaar, Ward 58</option>
-    <option value="59">Harasiddhee, Ward 59</option>
-    <option value="60">Ranipuraa, Ward 60</option>
-    <option value="61">Taatyaa Saravate, Ward 61</option>
-    <option value="62">Raavajee Baazaar, Ward 62</option>
-    <option value="63">Navalakha, Ward 63</option>
-    <option value="64">Chitaavad, Ward 64</option>
-    <option value="65">Sant Kavar Raam, Ward 65</option>
-    <option value="66">Shaheed Hemu Kolonee, Ward 66</option>
-    <option value="67">Mahaaraaja Holakar, Ward 67</option>
-    <option value="68">Bambaee Baazaar, Ward 68</option>
-    <option value="69">Jawaahar Maarg, Ward 69</option>
-    <option value="70">Lok Naayak Nagar, Ward 70</option>
-    <option value="Dravid Nagar, Ward 71">Dravid Nagar, Ward 71</option>
+    <option value="Sirapur, Ward 1">Sirapur, Ward 1</option>
+    <option value="Chandan Nagar, Ward 2">Chandan Nagar, Ward 2</option>
+    <option value="Kaalaani Nagar, Ward 3">Kaalaani Nagar, Ward 3</option>
+    <option value="Sukhadev Nagar, Ward 4">Sukhadev Nagar, Ward 4</option>
+    <option value="Raaj Nagar, Ward 5">Raaj Nagar, Ward 5</option>
+    <option value="Malhaaraganj, Ward 6">Malhaaraganj, Ward 6</option>
+    <option value="Janata Colony, Ward 7">Janata Colony, Ward 7</option>
+    <option value="Joona Risaala, Ward 8">Joona Risaala, Ward 8</option>
+    <option value="Vrindaavan, Ward 9">Vrindaavan, Ward 9</option>
+    <option value="Baanaganga, Ward 10">Baanaganga, Ward 10</option>
+    <option value="Bhaageerathpura, Ward 11">Bhaageerathpura, Ward 11</option>
+    <option value="Govind Colony, Ward 12">Govind Colony, Ward 12</option>
+    <option value="Sangamanagar, Ward 13">Sangamanagar, Ward 13</option>
+    <option value="Ashok Nagar, Ward 14">Ashok Nagar, Ward 14</option>
+    <option value="Bijaasan, Ward 15">Bijaasan, Ward 15</option>
+    <option value="Nandabaag, Ward 16">Nandabaag, Ward 16</option>
+    <option value="Kushavaah Nagar, Ward 17">Kushavaah Nagar, Ward 17</option>
+    <option value="Sant Kabeer, Ward 18">Sant Kabeer, Ward 18</option>
+    <option value="Vishvakarma, Ward 19">Vishvakarma, Ward 19</option>
+    <option value="Gauree Nagar, Ward 20">Gauree Nagar, Ward 20</option>
+    <option value="Shyaam Nagar, Ward 21">Shyaam Nagar, Ward 21</option>
+    <option value="P.Dee.D.Upaa. Nagar, Ward 22">P.Dee.D.Upaa. Nagar, Ward 22</option>
+    <option value="Sv. Raajesh Joshee, Ward 23">Sv. Raajesh Joshee, Ward 23</option>
+    <option value="Sant Baaleejee Mahaaraaj, Ward 24">Sant Baaleejee Mahaaraaj, Ward 24</option>
+    <option value="Nanda Nagar, Ward 25">Nanda Nagar, Ward 25</option>
+    <option value="Jeen Maata, Ward 26">Jeen Maata, Ward 26</option>
+    <option value="Pashupati Naath, Ward 27">Pashupati Naath, Ward 27</option>
+    <option value="Maam Tulaja Bhavaanee, Ward 28">Maam Tulaja Bhavaanee, Ward 28</option>
+    <option value="Dr Shyaamaaprasaad Mukharjee Nagar, Ward 29">Dr Shyaamaaprasaad Mukharjee Nagar, Ward 29</option>
+    <option value="Sant Ravidaas, Ward 30">Sant Ravidaas, Ward 30</option>
+    <option value="Mahaaraaja Chhatrasaal, Ward 31">Mahaaraaja Chhatrasaal, Ward 31</option>
+    <option value="Atal Bihaaree Baajapeyee, Ward 32">Atal Bihaaree Baajapeyee, Ward 32</option>
+    <option value="Sookhaliya, Ward 33">Sookhaliya, Ward 33</option>
+    <option value="Shaheed BhagatSinh, Ward 34">Shaheed BhagatSinh, Ward 34</option>
+    <option value="Lasudiya Moree, Ward 35">Lasudiya Moree, Ward 35</option>
+    <option value="Nepaaniya, Ward 36">Nepaaniya, Ward 36</option>
+    <option value="Saamee Kripa, Ward 37">Saamee Kripa, Ward 37</option>
+    <option value="Haajee Colony, Ward 38">Haajee Colony, Ward 38</option>
+    <option value="Naaharasha Havelee, Ward 39">Naaharasha Havelee, Ward 39</option>
+    <option value="Khajaraana, Ward 40">Khajaraana, Ward 40</option>
+    <option value="Kailaashapuree, Ward 41">Kailaashapuree, Ward 41</option>
+    <option value="Swami Vivekaanand, Ward 42">Swami Vivekaanand, Ward 42</option>
+    <option value="Shreenagar, Ward 43">Shreenagar, Ward 43</option>
+    <option value="H.I.G., Ward 44">H.I.G., Ward 44</option>
+    <option value="Dr. Bheemrao Ambedkar, Ward 45">Dr. Bheemrao Ambedkar, Ward 45</option>
+    <option value="Somanaath, Ward 46">Somanaath, Ward 46</option>
+    <option value="Saradaar Vallabh Bhai, Ward 47">Saradaar Vallabh Bhai, Ward 47</option>
+    <option value="Geeta Bhavan, Ward 48">Geeta Bhavan, Ward 48</option>
+    <option value="Tilak Nagar, Ward 49">Tilak Nagar, Ward 49</option>
+    <option value="Brajeshvaree, Ward 50">Brajeshvaree, Ward 50</option>
+    <option value="Maam Bhagavatee Nagar, Ward 51">Maam Bhagavatee Nagar, Ward 51</option>
+    <option value="Musakkhedi, Ward 52">Musakkhedi, Ward 52</option>
+    <option value="Dr Maulaana Aajaad Nagar, Ward 53">Dr Maulaana Aajaad Nagar, Ward 53</option>
+    <option value="Residency, Ward 54">Residency, Ward 54</option>
+    <option value="Saaooth Tukoganj, Ward 55">Saaooth Tukoganj, Ward 55</option>
+    <option value="Snehalata Ganj, Ward 56">Snehalata Ganj, Ward 56</option>
+    <option value="Devi Ahilyaabai, Ward 57">Devi Ahilyaabai, Ward 57</option>
+    <option value="Emli Bazaar, Ward 58">Emli Bazaar, Ward 58</option>
+    <option value="Harasiddhee, Ward 59">Harasiddhee, Ward 59</option>
+    <option value="Ranipuraa, Ward 60">Ranipuraa, Ward 60</option>
+    <option value="Taatyaa Saravate, Ward 61">Taatyaa Saravate, Ward 61</option>
+    <option value="Raavajee Baazaar, Ward 62">Raavajee Baazaar, Ward 62</option>
+    <option value="Navalakha, Ward 63">Navalakha, Ward 63</option>
+    <option value="Chitaavad, Ward 64">Chitaavad, Ward 64</option>
+    <option value="Sant Kavar Raam, Ward 65">Sant Kavar Raam, Ward 65</option>
+    <option value="Shaheed Hemu Kolonee, Ward 66">Shaheed Hemu Kolonee, Ward 66</option>
+    <option value="Mahaaraaja Holakar, Ward 67">Mahaaraaja Holakar, Ward 67</option>
+    <option value="Bambaee Baazaar, Ward 68">Bambaee Baazaar, Ward 68</option>
+    <option value="Jawaahar Maarg, Ward 69">Jawaahar Maarg, Ward 69</option>
+    <option value="Lok Naayak Nagar, Ward 70">Lok Naayak Nagar, Ward 70</option>
+
+
+<option value="Dravid Nagar, Ward 71">Dravid Nagar, Ward 71</option>
     <option value="Lok Maanya Nagar, Ward 72">Lok Maanya Nagar, Ward 72</option>
     <option value="Lakshman Sinh Chauhaan, Ward 73">Lakshman Sinh Chauhaan, Ward 73</option>
     <option value="Vishnupuree, Ward 74">Vishnupuree, Ward 74</option>
@@ -611,6 +613,7 @@
     <option value="Prajaapat Nagar, Ward 85">Prajaapat Nagar, Ward 85</option>
 </select>
 
+
                     </div>
                     </div>
                   </div>
@@ -620,54 +623,50 @@
                         <label class="form-label">Scheme No</label>
                        <select name="scheme" id="scheme" class="form-control" name="scheme_no">
     
-    <option value="TPS-1">TPS-1</option>
-    <option value="TPS-2">TPS-2</option>
-    <option value="TPS-3">TPS-3</option>
-    <option value="TPS-4">TPS-4</option>
-    <option value="TPS-5">TPS-5</option>
-    <option value="TPS-8">TPS-8</option>
-    <option value="9">scheme No 9</option>
-    <option value="11">scheme No 11</option>
-    <option value="55">scheme No 30</option>
-    <option value="59">scheme No 31</option>
-    <option value="66">scheme No 38</option>
-    <option value="66">scheme No 43</option>
-    <option value="66">scheme No 46</option>
-    <option value="66">scheme No 47</option>
-    <option value="59">scheme No 50</option>
-    <option value="66">scheme No 51</option>
-    <option value="66">scheme No 53</option>
-    <option value="66">scheme No 54</option>
-    <option value="66">scheme No 55</option>
-    <option value="66">scheme No 59</option>
-    <option value="66">scheme No 66</option>
-    <option value="66">scheme No 71</option>
-    <option value="66">scheme No 74</option>
-    <option value="59">scheme No 77</option>
-    <option value="66">scheme No 78</option>
-    <option value="66">scheme No 91 </option>
-    <option value="66">scheme No 94</option>
-    <option value="66">scheme No 97</option>
-    <option value="98">scheme No 98</option>
-    <option value="99">scheme No 99</option>
-    <option value="100">scheme No 100</option>
-    <option value="101">scheme No 101</option>
-    <option value="102">scheme No 102</option>
-    <option value="103">scheme No 103</option>
-    <option value="113">scheme No 113</option>
-    <option value="114">scheme No 114</option>
-    <option value="117">scheme No 117</option>
-    <option value="121126">scheme No 121</option>
-    <option value="121126">scheme No 126</option>
-    <option value="133">scheme No 133</option>
-    <option value="134">scheme No 134</option>
-    <option value="135">scheme No 135</option>
-    <option value="136">136 - GULMOHAR COMPLEX</option>
-    <option value="136">136 - HARSINGAR COMPLEX CMR-5</option>
-    <option value="136">136 - AMALTAS COMPLEX CMR-2-3</option>
-    <option value="140">140 - ANANDWAN PHASE-1</option>
-    <option value="140">140 - ANANDWAN PHASE-2</option>
+     <option value="TPS-8">TPS-8</option>
+    <option value="scheme No 9">scheme No 9</option>
+    <option value="scheme No 11">scheme No 11</option>
+    <option value="scheme No 30">scheme No 30</option>
+    <option value="scheme No 31">scheme No 31</option>
+    <option value="scheme No 38">scheme No 38</option>
+    <option value="scheme No 43">scheme No 43</option>
+    <option value="scheme No 46">scheme No 46</option>
+    <option value="scheme No 47">scheme No 47</option>
+    <option value="scheme No 50">scheme No 50</option>
+    <option value="scheme No 51">scheme No 51</option>
+    <option value="scheme No 53">scheme No 53</option>
+    <option value="scheme No 54">scheme No 54</option>
+    <option value="scheme No 55">scheme No 55</option>
+    <option value="scheme No 59">scheme No 59</option>
+    <option value="scheme No 66">scheme No 66</option>
+    <option value="scheme No 71">scheme No 71</option>
+    <option value="scheme No 74">scheme No 74</option>
+    <option value="scheme No 77">scheme No 77</option>
+    <option value="scheme No 78">scheme No 78</option>
+    <option value="scheme No 91">scheme No 91</option>
+    <option value="scheme No 94">scheme No 94</option>
+    <option value="scheme No 97">scheme No 97</option>
+    <option value="scheme No 98">scheme No 98</option>
+    <option value="scheme No 99">scheme No 99</option>
+    <option value="scheme No 100">scheme No 100</option>
+    <option value="scheme No 101">scheme No 101</option>
+    <option value="scheme No 102">scheme No 102</option>
+    <option value="scheme No 103">scheme No 103</option>
+    <option value="scheme No 113">scheme No 113</option>
+    <option value="scheme No 114">scheme No 114</option>
+    <option value="scheme No 117">scheme No 117</option>
+    <option value="scheme No 121">scheme No 121</option>
+    <option value="scheme No 126">scheme No 126</option>
+    <option value="scheme No 133">scheme No 133</option>
+    <option value="scheme No 134">scheme No 134</option>
+    <option value="scheme No 135">scheme No 135</option>
+    <option value="136 - GULMOHAR COMPLEX">136 - GULMOHAR COMPLEX</option>
+    <option value="136 - HARSINGAR COMPLEX CMR-5">136 - HARSINGAR COMPLEX CMR-5</option>
+    <option value="136 - AMALTAS COMPLEX CMR-2-3">136 - AMALTAS COMPLEX CMR-2-3</option>
+    <option value="140 - ANANDWAN PHASE-1">140 - ANANDWAN PHASE-1</option>
+    <option value="140 - ANANDWAN PHASE-2">140 - ANANDWAN PHASE-2</option>
 </select>
+
 
                     </div>
                     </div>
@@ -1117,8 +1116,8 @@
                               <div class="col-lg-3">
                                 <div class="mb-3">
                                   <label class="form-label">Agent Name</label>
-                                  <input type="text" class="form-control" value="" readonly="readonly" name="agent_name">
-                                  <input type="hidden" class="form-control" value="" name="agent_id">
+                                  <input type="text" class="form-control" value="<%=k1 %>" readonly="readonly" name="agent_name">
+                                  <input type="hidden" class="form-control" value="<%=k %>" name="agent_id">
                                 </div>
                               </div> 
                             </div>

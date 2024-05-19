@@ -224,9 +224,14 @@ small, time, .small {
 
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<h1 style="font-size: 2em; font-weight: bold; background: linear-gradient(to right, #1e3c72, #2a5298); -webkit-background-clip: text; color: transparent; text-align: center;">
+        COMMERCIAL PROPERTY BY YOU
+    </h1>
 <br>
 <br>
 <br>
+
 <div class="" style="margin-left: 2cm;margin-right: 2cm;">
 <div class="col-md-12">
 <%  for (PropertyDTO p : list) { %>
