@@ -696,7 +696,7 @@ Filter
       
       
        <!--  <button class="secondary" style="background-color: transparent; color: #e53935; border: 1px solid #e53935; padding: 10px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9em; margin-top: 8px;">Get Phone No.</button> -->
-     <a class="btn btn-primary" href="customer_intersted?customer_id=<%=ak.getCustomerId()%>&customer_mail_id=<%=ak.getEmail()%>&proprty_id=<%=mm.getPropertyId()%>&property_name=<%=mm.getPropertyName()%>&customer_name=<%ak.getName();%>" style="background-color: transparent; color: #e53935; border: 1px solid #e53935; padding: 10px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9em; margin-top: 8px;">Interested ? </a>
+     <a class="btn btn-primary" href="customer_intersted?customer_id=<%=name%>&customer_mail_id=<%=email%>&proprty_id=<%=mm.getPropertyId()%>&property_name=<%=mm.getPropertyName()%>&customer_name=<%=name%>&agent_id=<%=mm.getAgentId() %>" style="background-color: transparent; color: #e53935; border: 1px solid #e53935; padding: 10px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9em; margin-top: 8px;">Interested ? </a>
     </div>
    
    

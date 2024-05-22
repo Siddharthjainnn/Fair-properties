@@ -35,6 +35,7 @@ public class admin_loginctrl extends HttpServlet {
 		
 		
 		Admin ok=model.get_admin_login_2(a,b);
+		ArrayList list=model.get_no_of_hit();
 
 		if(ok!=null)
 		{

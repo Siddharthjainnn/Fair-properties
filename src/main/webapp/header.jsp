@@ -1,6 +1,21 @@
+
 <%@page import="dao.Customer"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+      <%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="javax.servlet.http.HttpServletRequest" %>
+<%
+    HttpSession session2 = request.getSession(false);
+    if (session2 == null || session2.getAttribute("email") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+
+    String name = (String) session2.getAttribute("name");
+    String email = (String) session2.getAttribute("email");
+    String pictureUrl = (String) session2.getAttribute("pictureUrl");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,8 +40,13 @@ text-decoration: none;
 
 <%Customer ak=(Customer)session.getAttribute("m"); %>
 
-
-   <%if (ak != null){ %>
+<%-- <h1>Welcome, <%= name %></h1>
+    <img src="<%= pictureUrl %>" alt="Profile Picture">
+    <p>Email: <%= email %></p>
+    <form action="LogoutServlet" method="post">
+        <button type="submit">Logout</button>
+    </form> --%>
+   <%if (ak == null){ %>
    
    
     <main>
@@ -64,7 +84,7 @@ text-decoration: none;
             
             <!-- Example split danger button -->
 <div class="btn-group" style="width:auto;height: 1.4cm;">
-  <button type="button" class="btn btn-danger" style="font-size: 0.6cm;"><%=ak.getName() %></button>
+  <button type="button" class="btn btn-danger" style="font-size: 0.6cm;"><%= name %></button>
   <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 0.6cm;">
     <span class="visually-hidden">Toggle Dropdown</span>
   </button>

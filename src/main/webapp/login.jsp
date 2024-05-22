@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-<script src="https://accounts.google.com/gsi/client" async defer></script>
+
 
 
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
@@ -235,6 +235,8 @@ a:hover{
 	}
 }
 	</style>
+	
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 
@@ -275,49 +277,48 @@ if(lk!=null)
             	<span>
             	
 
-          <div id="g_id_onload"
-         data-client_id="40875275759-e6m67r02ur0r9hv85n7mn8j62tn9nafr.apps.googleusercontent.com"
+         <div id="g_id_onload"
+         data-client_id="822779823535-sudg9mqhhdm7figehb7le4vob1c7ouqm.apps.googleusercontent.com"
          data-login_uri="http://localhost:8080/Bitsquad_real_estate/file"
          data-auto_prompt="false">
     </div>
-    <div class="g_id_signin" data-type="standard"></div>
+    <div id="buttonDiv" class="g_id_signin" data-type="standard"></div>
 
-     <script>
-        function handleCredentialResponse(response) {
-            console.log("Encoded JWT ID token: " + response.credential);
-            fetch('/Bitsquad_real_estate/file', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ token: response.credential })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = "/Bitsquad_real_estate/home.jsp";
-                } else {
-                    console.error('Login failed');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
+    <script>
+    function handleCredentialResponse(response) {
+        console.log("Encoded JWT ID token: " + response.credential);
+        fetch('/Bitsquad_real_estate/file', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ token: response.credential }) // Correct JSON formatting
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = "/Bitsquad_real_estate/home.jsp";
+            } else {
+                console.error('Login failed:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
 
-        window.onload = function () {
-            window.google.accounts.id.initialize({
-                client_id: "40875275759-e6m67r02ur0r9hv85n7mn8j62tn9nafr.apps.googleusercontent.com",
-                callback: handleCredentialResponse
-            });
-            window.google.accounts.id.renderButton(
-                document.getElementById("buttonDiv"),
-                { theme: "outline", size: "large" }  // customization attributes
-            );
-            window.google.accounts.id.prompt(); // also display the One Tap dialog
-        };
+    window.onload = function () {
+        google.accounts.id.initialize({
+            client_id: "822779823535-sudg9mqhhdm7figehb7le4vob1c7ouqm.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "large" }  // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+    };
     </script>
-
           
           
           

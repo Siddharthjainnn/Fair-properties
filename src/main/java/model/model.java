@@ -1417,4 +1417,65 @@ return i; // Return the number of rows affected
 	    
 	}
 
+	public void logLoginActivity(String userId, String email, String name) {
+		 int i = 0;
+	        Connection con = null;
+
+	        try {
+	            con = create_connection();
+	            PreparedStatement stmt = con.prepareStatement(
+	                "INSERT INTO login_activity (user_id,email,name) VALUES (?,?,?)"
+	            );
+	            stmt.setString(1, userId);
+	            stmt.setString(2, email);
+	            stmt.setString(3, name);
+
+	            i = stmt.executeUpdate();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            try {
+	                if (con != null) con.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        return;
+		
+	}
+
+	public void customer_interseted_in_property(String a, String b, String c, String d, String e, String f) {
+		int i = 0;
+        Connection con = null;
+
+        try {
+            con = create_connection();
+            PreparedStatement stmt = con.prepareStatement(
+                "INSERT INTO customer_interest (customer_id, customer_mail_id, property_id, property_name, customer_name, agent_id, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())"
+            );
+            stmt.setString(1, a);
+            stmt.setString(2, b);
+            stmt.setString(3, c);
+            stmt.setString(4, d);
+            stmt.setString(5, e);
+            stmt.setString(6, f);
+
+            i = stmt.executeUpdate();
+        } catch (SQLException e2) {
+            e2.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e2) {
+                e2.printStackTrace();
+            }
+        }
+        return;
+	
+}
+
+	public ArrayList get_no_of_hit() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -31,6 +31,8 @@ public class customer_intersted extends HttpServlet {
 		String c=(String)request.getParameter("proprty_id");
 		String d=(String)request.getParameter("property_name");
 		String e=(String)request.getParameter("customer_name");
+		String f=(String)request.getParameter("agent_id");
+		
 		
 		
 		
@@ -40,10 +42,12 @@ public class customer_intersted extends HttpServlet {
 		
 		model model=new model();
 		
-		
+
 		 String recipientEmail = b; // Retrieve customer's email.
 			/* String orderDetails = generateOrderDetails(); */ // Create the order details content.
 		    sendOrderConfirmationEmail(recipientEmail,a,b,c,d,e);
+		    
+		    model.customer_interseted_in_property(a,b,c,d,e,f);
 
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("thankyou.jsp");
 		    dispatcher.forward(request, response);
