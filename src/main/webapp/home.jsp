@@ -1,11 +1,27 @@
 <%@page import="dao.Admin"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="javax.servlet.http.HttpServletRequest" %>
+<%
+    HttpSession session2 = request.getSession(false);
+    if (session2 == null || session2.getAttribute("email") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+
+    String name = (String) session2.getAttribute("name");
+    String email = (String) session2.getAttribute("email");
+    String pictureUrl = (String) session2.getAttribute("pictureUrl");
+%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
 
 #formContainer {
@@ -41,6 +57,14 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
+
+
+<h1>Welcome, <%= name %></h1>
+    <img src="<%= pictureUrl %>" alt="Profile Picture">
+    <p>Email: <%= email %></p>
+    <form action="LogoutServlet" method="post">
+        <button type="submit">Logout</button>
+    </form>
 
 
 

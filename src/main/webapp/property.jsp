@@ -703,7 +703,8 @@ Filter
 </div>
 
 <style>
-    @media (max-width: 768px) {
+    @media only screen and (max-width: 768px) and (orientation: portrait) {
+        /* Styles for iPhone and Android mobile devices in portrait orientation */
         .card {
             flex-direction: column;
         }
@@ -738,23 +739,25 @@ Filter
         }
     }
 
-    .card img.main-image {
-        width: 300px;
-        height: auto;
-    }
+    @media only screen and (max-width: 768px) and (orientation: landscape) {
+        /* Styles for iPhone and Android mobile devices in landscape orientation */
+        .card img.main-image {
+            width: 300px;
+            height: auto;
+        }
 
-    .mobile-images {
-        display: none;
-        flex-wrap: wrap;
-        gap: 4px;
-    }
+        .mobile-images {
+            display: none;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
 
-    .mobile-images img {
-        width: 60px;
-        height: auto;
+        .mobile-images img {
+            width: 60px;
+            height: auto;
+        }
     }
 </style>
-
 
 
 

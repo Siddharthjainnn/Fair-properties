@@ -6,6 +6,9 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
@@ -270,6 +273,58 @@ if(lk!=null)
             	</div>
             	
             	<span>
+            	
+
+          <div id="g_id_onload"
+         data-client_id="40875275759-e6m67r02ur0r9hv85n7mn8j62tn9nafr.apps.googleusercontent.com"
+         data-login_uri="http://localhost:8080/Bitsquad_real_estate/file"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
+
+     <script>
+        function handleCredentialResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
+            fetch('/Bitsquad_real_estate/file', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ token: response.credential })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = "/Bitsquad_real_estate/home.jsp";
+                } else {
+                    console.error('Login failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        window.onload = function () {
+            window.google.accounts.id.initialize({
+                client_id: "40875275759-e6m67r02ur0r9hv85n7mn8j62tn9nafr.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+            window.google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"),
+                { theme: "outline", size: "large" }  // customization attributes
+            );
+            window.google.accounts.id.prompt(); // also display the One Tap dialog
+        };
+    </script>
+
+          
+          
+          
+          
+          
+          
+            	
             	<a href="#">Forgot Password?</a>
             	<a href="#" id="newCustomerLink" style="text-decoration: underline; color: blue; cursor: pointer;">New Customer?</a>
             	</span>
@@ -278,6 +333,9 @@ if(lk!=null)
             </form>
         </div>
     </div>
+    
+    
+    
     
     
      <%
