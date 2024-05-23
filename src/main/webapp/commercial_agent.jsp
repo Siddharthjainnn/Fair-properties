@@ -132,7 +132,7 @@ body{
                     <div class="col-lg-3">
                       <div class="mb-3">
                         <label class="form-label">Area(Sq.feet)</label>
-                        <input type="text" class="form-control" name="area" required="required" >
+                        <input type="text" class="form-control" name="area" required="required" value="<%=pro.getArea_sqft() %>" readonly="readonly" >
                       </div>
                     </div>
                   </div>

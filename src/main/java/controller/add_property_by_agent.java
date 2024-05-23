@@ -101,7 +101,10 @@ public class add_property_by_agent extends HttpServlet {
 		String property_type = request.getParameter("Property_type");
 		String category = request.getParameter("category");
 		String price = request.getParameter("price");
-		String area = request.getParameter("area");
+		String area1Param = request.getParameter("area1");
+	Double	area1 = Double.parseDouble(area1Param);
+		
+		String area= request.getParameter("area");
 		String width = request.getParameter("width");
 		String length = request.getParameter("length");
 		String transaction = request.getParameter("Transaction");
@@ -218,10 +221,10 @@ public class add_property_by_agent extends HttpServlet {
         
         if(category.equals("commercial"))
         {
-        	 i = model.add_property_1(property_name, property_id, property_type, category, price, area, width, length, transaction, ownership, cons_year, floors, direction, openside, address, landmark, scheme_no, ward, assembly, zipcode, city, country, state, security, park_area, gas_con, water_con, no_of_lift, overlooking, elec, fur, internet, owner_name, owner_number, owner_email, agent_name, agent_id, status, notes, rent,is,is1,is2,is3,is4,is5);
+        	 i = model.add_property_1(property_name, property_id, property_type, category, price, area, width, length, transaction, ownership, cons_year, floors, direction, openside, address, landmark, scheme_no, ward, assembly, zipcode, city, country, state, security, park_area, gas_con, water_con, no_of_lift, overlooking, elec, fur, internet, owner_name, owner_number, owner_email, agent_name, agent_id, status, notes, rent,is,is1,is2,is3,is4,is5,area1);
 
         }else {
-        	 j = model.add_property_2(property_name, property_id, property_type, category, price, area, width, length, transaction, ownership, cons_year, floors, direction, openside, address, landmark, scheme_no, ward, assembly, zipcode, city, country, state, security, park_area, gas_con, water_con, no_of_lift, overlooking, elec, fur, internet, owner_name, owner_number, owner_email, agent_name, agent_id, status, notes, rent, is, is1, is2, is3, is4, is5, bedrooms, bathrooms, kitchen, living, dining, parking, carpet_area, garden);
+        	 j = model.add_property_2(property_name, property_id, property_type, category, price, area, width, length, transaction, ownership, cons_year, floors, direction, openside, address, landmark, scheme_no, ward, assembly, zipcode, city, country, state, security, park_area, gas_con, water_con, no_of_lift, overlooking, elec, fur, internet, owner_name, owner_number, owner_email, agent_name, agent_id, status, notes, rent, is, is1, is2, is3, is4, is5, bedrooms, bathrooms, kitchen, living, dining, parking, carpet_area, garden,area1);
 
         }
         

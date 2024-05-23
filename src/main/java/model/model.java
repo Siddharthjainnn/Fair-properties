@@ -9,8 +9,11 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import controller.customer_intersted;
 import dao.Admin;
 import dao.Customer;
+import dao.CustomerInterest;
+import dao.LoginActivity;
 import dao.PropertyDTO;
 import dao.agent;
 
@@ -117,7 +120,8 @@ public class model {
 	                rs.getString("dining"),
 	                rs.getString("parking"),
 	                rs.getString("carpet_area"),
-	                rs.getString("garden")
+	                rs.getString("garden"),
+	                rs.getDouble("area_sqft")
 	            );
 
 	            properties.add(property);
@@ -656,13 +660,13 @@ System.out.println("INSERT INTO AgentRegistration agent_id="+agentid+",full_name
 	        String agent_name, String agent_id, String status, String notes, String rent, InputStream is,
 	        InputStream is1, InputStream is2, InputStream is3, InputStream is4, InputStream is5, String bedrooms,
 	        String bathrooms, String kitchen, String living, String dining, String parking, String carpet_area,
-	        String garden) {
+	        String garden, Double area1) {
 	    int i = 0;
 	    Connection con = null;
 
 	    try {
 	        con = create_connection();
-	        PreparedStatement stmt = con.prepareStatement("INSERT INTO property_12 (property_name, property_id, property_type, category, price, area, width, length, transaction, ownership, cons_year, floors, direction, openside, address, landmark, scheme_no, ward, assembly, zipcode, city, country, state, security, park_area, gas_con, water_con, no_of_lift, overlooking, elec, fur, internet, owner_name, owner_number, owner_email, agent_name, agent_id, status, notes, rent, font_image, image_1, image_2, image_3, image_4, video, bedrooms, bathrooms, kitchen, living, dining, parking, carpet_area, garden) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+	        PreparedStatement stmt = con.prepareStatement("INSERT INTO property_12 (property_name, property_id, property_type, category, price, area, width, length, transaction, ownership, cons_year, floors, direction, openside, address, landmark, scheme_no, ward, assembly, zipcode, city, country, state, security, park_area, gas_con, water_con, no_of_lift, overlooking, elec, fur, internet, owner_name, owner_number, owner_email, agent_name, agent_id, status, notes, rent, font_image, image_1, image_2, image_3, image_4, video, bedrooms, bathrooms, kitchen, living, dining, parking, carpet_area, garden,area_sqft) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
 
 	        stmt.setString(1, property_name);
 	        stmt.setString(2, property_id);
@@ -722,6 +726,7 @@ System.out.println("INSERT INTO AgentRegistration agent_id="+agentid+",full_name
 	        stmt.setString(52, parking);
 	        stmt.setString(53, carpet_area);
 	        stmt.setString(54, garden);
+	        stmt.setDouble(55, area1);
 
 	        i = stmt.executeUpdate();
 
@@ -867,7 +872,8 @@ agent aa=null;
 	                rs.getString("dining"),
 	                rs.getString("parking"),
 	                rs.getString("carpet_area"),
-	                rs.getString("garden")
+	                rs.getString("garden"),
+	                rs.getDouble("area_sqft")
 	            );
 
 	            properties.add(property);
@@ -958,7 +964,8 @@ agent aa=null;
 	                rs.getString("dining"),
 	                rs.getString("parking"),
 	                rs.getString("carpet_area"),
-	                rs.getString("garden")
+	                rs.getString("garden"),
+	                rs.getDouble("area_sqft")
 	            );
 	            System.out.println("Retrieved property: " + property.getAgentName());
 	            properties.add(property);
@@ -1041,7 +1048,8 @@ agent aa=null;
 	                rs.getString("dining"),
 	                rs.getString("parking"),
 	                rs.getString("carpet_area"),
-	                rs.getString("garden")
+	                rs.getString("garden"),
+	                rs.getDouble("area_sqft")
 	            );
 
 	           
@@ -1093,13 +1101,13 @@ agent aa=null;
             String scheme_no, String ward, String assembly, String zipcode, String city, String country, String state,
             String security, String park_area, String gas_con, String water_con, String no_of_lift, String overlooking,
             String elec, String fur, String internet, String owner_name, String owner_number, String owner_email,
-            String agent_name, String agent_id, String status, String notes, String rent) {
+            String agent_name, String agent_id, String status, String notes, String rent, Double area1) {
 int i = 0;
 Connection con = null;
-
+System.out.println("yaha tk aya "+area1);
 try {
 con = create_connection();
-String sql = "UPDATE property_12 SET property_name = ?, property_type = ?, category = ?, price = ?, area = ?, width = ?, length = ?, transaction = ?, ownership = ?, cons_year = ?, floors = ?, direction = ?, openside = ?, address = ?, landmark = ?, scheme_no = ?, ward = ?, assembly = ?, zipcode = ?, city = ?, country = ?, state = ?, security = ?, park_area = ?, gas_con = ?, water_con = ?, no_of_lift = ?, overlooking = ?, elec = ?, fur = ?, internet = ?, owner_name = ?, owner_number = ?, owner_email = ?, agent_name = ?, agent_id = ?, status = ?, notes = ?, rent = ? WHERE property_id = ?";
+String sql = "UPDATE property_12 SET property_name = ?, property_type = ?, category = ?, price = ?, area = ?, width = ?, length = ?, transaction = ?, ownership = ?, cons_year = ?, floors = ?, direction = ?, openside = ?, address = ?, landmark = ?, scheme_no = ?, ward = ?, assembly = ?, zipcode = ?, city = ?, country = ?, state = ?, security = ?, park_area = ?, gas_con = ?, water_con = ?, no_of_lift = ?, overlooking = ?, elec = ?, fur = ?, internet = ?, owner_name = ?, owner_number = ?, owner_email = ?, agent_name = ?, agent_id = ?, status = ?, notes = ?, rent = ?,area_sqft = ? WHERE property_id = ?";
 PreparedStatement stmt = con.prepareStatement(sql);
 
 stmt.setString(1, property_name);
@@ -1141,7 +1149,11 @@ stmt.setString(36, agent_id);
 stmt.setString(37, status);
 stmt.setString(38, notes);
 stmt.setString(39, rent);
-stmt.setString(40, property_id);
+stmt.setDouble(40, area1);
+stmt.setString(41, property_id);
+
+
+System.out.println(area1);
 
 i = stmt.executeUpdate(); // Execute the update statement and get the number of affected rows
 
@@ -1168,13 +1180,13 @@ return i; // Return the number of rows affected
             String elec, String fur, String internet, String owner_name, String owner_number, String owner_email,
             String agent_name, String agent_id, String status, String notes, String rent, String bedrooms,
             String bathrooms, String kitchen, String living, String dining, String parking, String carpet_area,
-            String garden) {
+            String garden, Double area1) {
 int i = 0;
 Connection con = null;
 
 try {
 con = create_connection();
-String sql = "UPDATE property_12 SET property_name = ?, property_type = ?, category = ?, price = ?, area = ?, width = ?, length = ?, transaction = ?, ownership = ?, cons_year = ?, floors = ?, direction = ?, openside = ?, address = ?, landmark = ?, scheme_no = ?, ward = ?, assembly = ?, zipcode = ?, city = ?, country = ?, state = ?, security = ?, park_area = ?, gas_con = ?, water_con = ?, no_of_lift = ?, overlooking = ?, elec = ?, fur = ?, internet = ?, owner_name = ?, owner_number = ?, owner_email = ?, agent_name = ?, agent_id = ?, status = ?, notes = ?, rent = ?, bedrooms = ?, bathrooms = ?, kitchen = ?, living = ?, dining = ?, parking = ?, carpet_area = ?, garden = ? WHERE property_id = ?";
+String sql = "UPDATE property_12 SET property_name = ?, property_type = ?, category = ?, price = ?, area = ?, width = ?, length = ?, transaction = ?, ownership = ?, cons_year = ?, floors = ?, direction = ?, openside = ?, address = ?, landmark = ?, scheme_no = ?, ward = ?, assembly = ?, zipcode = ?, city = ?, country = ?, state = ?, security = ?, park_area = ?, gas_con = ?, water_con = ?, no_of_lift = ?, overlooking = ?, elec = ?, fur = ?, internet = ?, owner_name = ?, owner_number = ?, owner_email = ?, agent_name = ?, agent_id = ?, status = ?, notes = ?, rent = ?, bedrooms = ?, bathrooms = ?, kitchen = ?, living = ?, dining = ?, parking = ?, carpet_area = ?, garden = ?,area_sqft=?WHERE property_id = ?";
 PreparedStatement stmt = con.prepareStatement(sql);
 
 stmt.setString(1, property_name);
@@ -1224,7 +1236,10 @@ stmt.setString(44, dining);
 stmt.setString(45, parking);
 stmt.setString(46, carpet_area);
 stmt.setString(47, garden);
-stmt.setString(48, property_id);
+stmt.setDouble(48, area1);
+stmt.setString(49, property_id);
+
+
 
 i = stmt.executeUpdate(); // Execute the update statement and get the number of affected rows
 
@@ -1309,7 +1324,8 @@ return i; // Return the number of rows affected
 	                rs.getString("dining"),
 	                rs.getString("parking"),
 	                rs.getString("carpet_area"),
-	                rs.getString("garden")
+	                rs.getString("garden"),
+	                rs.getDouble("area_sqft")
 	            );
 	            System.out.println("Retrieved property: " + property.getAgentName());
 	            properties.add(property);
@@ -1396,7 +1412,8 @@ return i; // Return the number of rows affected
 	                rs.getString("dining"),
 	                rs.getString("parking"),
 	                rs.getString("carpet_area"),
-	                rs.getString("garden")
+	                rs.getString("garden"),
+	                rs.getDouble("area_sqft")
 	            );
 	            System.out.println("Retrieved property: " + property.getAgentName());
 	            properties.add(property);
@@ -1474,8 +1491,252 @@ return i; // Return the number of rows affected
 	
 }
 
-	public ArrayList get_no_of_hit() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<LoginActivity> getLoginActivities() {
+		ArrayList<LoginActivity> loginActivities = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = create_connection();
+            PreparedStatement stmt = con.prepareStatement(
+                "SELECT * FROM login_activity"
+            );
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                // Retrieve data from the ResultSet and create LoginActivity objects
+                int id = rs.getInt("id");
+                String userId = rs.getString("user_id");
+                String email = rs.getString("email");
+                String name = rs.getString("name");
+                String loginTimestamp = rs.getString("login_timestamp");
+
+                // Create a LoginActivity object and add it to the list
+                LoginActivity activity = new LoginActivity(id, userId, email, name, loginTimestamp);
+                loginActivities.add(activity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return loginActivities;
+    }
+
+	public ArrayList<LoginActivity> getLoginActivities2(LocalDate now) {
+		ArrayList<LoginActivity> loginActivities = new ArrayList<>();
+	        Connection con = null;
+	        try {
+	            con = create_connection();
+	            PreparedStatement stmt = con.prepareStatement(
+	                "SELECT * FROM login_activity WHERE DATE(login_timestamp) = ?"
+	            );
+	            stmt.setObject(1, now);
+	            ResultSet rs = stmt.executeQuery();
+	            while (rs.next()) {
+	                int id = rs.getInt("id");
+	                String userId = rs.getString("user_id");
+	                String email = rs.getString("email");
+	                String name = rs.getString("name");
+	                String loginTimestamp = rs.getString("login_timestamp");
+
+	                //LoginActivity activityDetails = "ID: " + id + ", User ID: " + userId + ", Email: " + email + ", Name: " + name + ", Login Timestamp: " + loginTimestamp;
+	                LoginActivity ok=new LoginActivity(id, userId, email, name, loginTimestamp);
+	                loginActivities.add(ok);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            try {
+	                if (con != null) con.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        return loginActivities;
+	    }
+
+	public ArrayList<LoginActivity> getLoginActivityCountForDate(LocalDate startDate1, LocalDate endDate1) {
+		ArrayList<LoginActivity> loginActivities = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = create_connection();
+            PreparedStatement stmt = con.prepareStatement(
+                "SELECT * FROM login_activity WHERE DATE(login_timestamp) BETWEEN ? AND ?"
+            );
+            stmt.setObject(1, startDate1);
+            stmt.setObject(2, endDate1);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String userId = rs.getString("user_id");
+                String email = rs.getString("email");
+                String name = rs.getString("name");
+                String loginTimestamp = rs.getString("login_timestamp");
+LoginActivity ok=new LoginActivity(id, userId, email, name, loginTimestamp);
+                //String activityDetails = "ID: " + id + ", User ID: " + userId + ", Email: " + email + ", Name: " + name + ", Login Timestamp: " + loginTimestamp;
+                loginActivities.add(ok);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return loginActivities;
+    }
+
+	public ArrayList<LoginActivity> getLoginActivityCountForDate1(LocalDate startDate, LocalDate endDate) {
+        ArrayList<LoginActivity> loginActivities = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = create_connection();
+            PreparedStatement stmt = con.prepareStatement(
+                "SELECT * FROM login_activity WHERE login_timestamp >= ? AND login_timestamp <= ?"
+            );
+            stmt.setDate(1, java.sql.Date.valueOf(startDate));
+            stmt.setDate(2, java.sql.Date.valueOf(endDate));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String userId = rs.getString("user_id");
+                String email = rs.getString("email");
+                String name = rs.getString("name");
+                String loginTimestamp = rs.getString("login_timestamp");
+
+                LoginActivity activity = new LoginActivity(id, userId, email, name, loginTimestamp);
+                loginActivities.add(activity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return loginActivities;
+    }
+
+	public ArrayList<CustomerInterest> get_interseted_agent_property(String a) {
+		ArrayList<CustomerInterest> interests = new ArrayList<CustomerInterest>();
+	        Connection con = null;
+	        try {
+	            con = create_connection();
+	            PreparedStatement stmt = con.prepareStatement(
+	                "SELECT * FROM customer_interest where agent_id=?"
+	            );
+	            stmt.setString(1, a);
+	            ResultSet rs = stmt.executeQuery();
+	            while (rs.next()) {
+	                int id = rs.getInt("id");
+	                String customerId = rs.getString("customer_id");
+	                String customerMailId = rs.getString("customer_mail_id");
+	                String propertyId = rs.getString("property_id");
+	                String propertyName = rs.getString("property_name");
+	                String customerName = rs.getString("customer_name");
+	                String agentId = rs.getString("agent_id");
+	                String createdAt = rs.getString("created_at");
+
+	                CustomerInterest interest = new CustomerInterest(id, customerId, customerMailId, propertyId, propertyName, customerName, agentId, createdAt);
+	                interests.add(interest);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            try {
+	                if (con != null) con.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        return interests;
+	    }
+
+	public int add_property_1(String property_name, String property_id, String property_type, String category,
+			String price, String area, String width, String length, String transaction, String ownership,
+			String cons_year, String floors, String direction, String openside, String address, String landmark,
+			String scheme_no, String ward, String assembly, String zipcode, String city, String country, String state,
+			String security, String park_area, String gas_con, String water_con, String no_of_lift, String overlooking,
+			String elec, String fur, String internet, String owner_name, String owner_number, String owner_email,
+			String agent_name, String agent_id, String status, String notes, String rent, InputStream is,
+			InputStream is1, InputStream is2, InputStream is3, InputStream is4, InputStream is5, Double area1) {
+		int i = 0;
+	    Connection con = null;
+
+	    try {
+	        con = create_connection();
+	        PreparedStatement stmt = con.prepareStatement("INSERT INTO property_12 (property_name, property_id, property_type, category, price, area, width, length, transaction, ownership, cons_year, floors, direction, openside, address, landmark, scheme_no, ward, assembly, zipcode, city, country, state, security, park_area, gas_con, water_con, no_of_lift, overlooking, elec, fur, internet, owner_name, owner_number, owner_email, agent_name, agent_id, status, notes, rent, font_image, image_1, image_2, image_3, image_4, video, area_sqft) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+	        stmt.setString(1, property_name);
+	        stmt.setString(2, property_id);
+	        stmt.setString(3, property_type);
+	        stmt.setString(4, category);
+	        stmt.setString(5, price);
+	        stmt.setString(6, area);
+	        stmt.setString(7, width);
+	        stmt.setString(8, length);
+	        stmt.setString(9, transaction);
+	        stmt.setString(10, ownership);
+	        stmt.setString(11, cons_year);
+	        stmt.setString(12, floors);
+	        stmt.setString(13, direction);
+	        stmt.setString(14, openside);
+	        stmt.setString(15, address);
+	        stmt.setString(16, landmark);
+	        stmt.setString(17, scheme_no);
+	        stmt.setString(18, ward);
+	        stmt.setString(19, assembly);
+	        stmt.setString(20, zipcode);
+	        stmt.setString(21, city);
+	        stmt.setString(22, country);
+	        stmt.setString(23, state);
+	        stmt.setString(24, security);
+	        stmt.setString(25, park_area);
+	        stmt.setString(26, gas_con);
+	        stmt.setString(27, water_con);
+	        stmt.setString(28, no_of_lift);
+	        stmt.setString(29, overlooking);
+	        stmt.setString(30, elec);
+	        stmt.setString(31, fur);
+	        stmt.setString(32, internet);
+	        stmt.setString(33, owner_name);
+	        stmt.setString(34, owner_number);
+	        stmt.setString(35, owner_email);
+	        stmt.setString(36, agent_name);
+	        stmt.setString(37, agent_id);
+	        stmt.setString(38, "pending");
+	        stmt.setString(39, notes);
+	        stmt.setString(40, rent);
+
+	        // Set InputStream parameters for images and video
+	        stmt.setBlob(41, is);
+	        stmt.setBlob(42, is1);
+	        stmt.setBlob(43, is2);
+	        stmt.setBlob(44, is3);
+	        stmt.setBlob(45, is4);
+	        stmt.setBlob(46, is5);
+	        stmt.setDouble(47, area1);
+
+	        // Set additional parameters for bedrooms, bathrooms, kitchen, living, dining, parking, carpet_area, and garden
+	        
+
+	        i = stmt.executeUpdate();
+
+	    } catch (Exception e2) {
+	        e2.printStackTrace();
+	    }
+	    return i;
 	}
+
+    // Other methods in your model class
 }
+
+    // Other methods in your model class
+
+

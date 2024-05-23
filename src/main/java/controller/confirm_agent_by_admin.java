@@ -84,7 +84,7 @@ public class confirm_agent_by_admin extends HttpServlet {
 		        message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
 
 		        // Set the email subject.
-		        message.setSubject("Order Confirmation");
+		        message.setSubject("Confirmation of Agent Registration Request");
 	String ok="hello to everyone";
 		       
 				// Set the email content (HTML content in this example).

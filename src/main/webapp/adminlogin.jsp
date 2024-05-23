@@ -241,6 +241,8 @@ response.setHeader("cache-control", "no-store");
 response.setHeader("pragma", "no-cache");
 response.setHeader("expire", "0");
 %>
+
+
 <img class="wave" src="./image/wave.png">
 	<div class="container">
 		<div class="img">

@@ -1,3 +1,5 @@
+<%@page import="dao.LoginActivity"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="dao.Admin"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -665,6 +667,33 @@ sidebarToggle.addEventListener("click", () => {
     
     
 <%Admin ak=(Admin)session.getAttribute("m"); %>
+<%
+    ArrayList<LoginActivity> list= (ArrayList<LoginActivity>)session.getAttribute("aa");
+    ArrayList<LoginActivity> list1= (ArrayList<LoginActivity>)session.getAttribute("aa1");
+    ArrayList<LoginActivity> list2= (ArrayList<LoginActivity>)session.getAttribute("aa2");
+    ArrayList<LoginActivity> list3= (ArrayList<LoginActivity>)session.getAttribute("aa3");
+
+    int countToday = 0;
+    int countWeek = 0;
+    int countMonth = 0;
+
+    for (LoginActivity activity : list) {
+        countToday++;
+    }
+
+    for (LoginActivity activity : list1) {
+        countWeek++;
+    }
+
+    for (LoginActivity activity : list2) {
+        countMonth++;
+    }
+%>
+
+<p>Number of logins today: <%= countToday %></p>
+<p>Number of logins this week: <%= countWeek %></p>
+<p>Number of logins this month: <%= countMonth %></p>
+
 <%-- <%if(ak!=null)
 	{%>
 	<h1>WELCOME ADMIN - <%=ak.getName() %></h1>

@@ -294,25 +294,38 @@ a:hover {
             </form>
         </div>
     </div>
-    <script>
-    const inputs = document.querySelectorAll(".input");
+   <script>
+    window.onload = function() {
+        // Get all input elements
+        const inputs = document.querySelectorAll(".input");
 
+        // Loop through each input element
+        inputs.forEach(input => {
+            // Clear the value of each input
+            input.value = "";
+
+            // Add event listeners for focus and blur events
+            input.addEventListener("focus", addcl);
+            input.addEventListener("blur", remcl);
+        });
+    };
+
+    // Function to add focus class
     function addcl() {
         let parent = this.parentNode.parentNode;
         parent.classList.add("focus");
     }
 
+    // Function to remove focus class if input value is empty
     function remcl() {
         let parent = this.parentNode.parentNode;
         if (this.value == "") {
             parent.classList.remove("focus");
         }
     }
+</script>
 
-    inputs.forEach(input => {
-        input.addEventListener("focus", addcl);
-        input.addEventListener("blur", remcl);
-    });
-    </script>
+    
+    
 </body>
 </html>

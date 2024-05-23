@@ -35,7 +35,7 @@ html, body{
 }
 </style>
 <head>
-    <title>404 - Site Zoon</title>
+    <title>Duplicate Email</title>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,10 +63,10 @@ html, body{
                 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                     <div class="main-img text-center">
-                        <img src="./image/main.png" alt="Main" class="img-fluid pb-3">
+                        <img src="./image/email.png" alt="Main" class="img-fluid pb-3">
 
                         <h2>Duplicate Email Registeration</h2>
-                        <p class="main-description pt-2">We're sorry, As Per My record This Id Has Been Registerd Before Please Try To Login</p>
+                        <p class="main-description pt-2">We're Sorry, As Per My record This Id Has Been Registerd Before Please Try To Login</p>
                         <a href="agent_login.jsp" class="btn btn-sz-primary">Go Home</a>
                     </div>
                 </div>

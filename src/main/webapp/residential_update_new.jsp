@@ -147,7 +147,7 @@
                     <div class="col-lg-3">
                       <div class="mb-3">
                         <label class="form-label">Area(Sq.feet)</label>
-                        <input type="text" class="form-control"  required="required" value="<%=pro.getArea()%>">
+                        <input type="text" class="form-control"  required="required" name="area1" value="<%=pro.getArea_sqft()%>">
                       </div>
                     </div>
                   </div>

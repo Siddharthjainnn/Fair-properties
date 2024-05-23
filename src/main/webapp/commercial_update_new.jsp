@@ -141,11 +141,12 @@
                       </div>
 
                     <div class="col-lg-3">
-                      <div class="mb-3">
-                        <label class="form-label">Area(Sq.feet)</label>
-                        <input type="text" class="form-control"  required="required" value="<%=pro.getArea()%>">
-                      </div>
-                    </div>
+    <div class="mb-3">
+        <label class="form-label">Area (Sq.feet)</label>
+        <input type="number" class="form-control" name="area1" required="required" step="0.01" value="<%=pro.getArea_sqft()%>">
+    </div>
+</div>
+
                   </div>
 
 

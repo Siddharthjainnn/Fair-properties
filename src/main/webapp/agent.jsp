@@ -1,4 +1,8 @@
 
+<%@page import="dao.PropertyDTO"%>
+<%@page import="dao.CustomerInterest"%>
+<%@page import="dao.LoginActivity"%>
+<%@page import="java.util.ArrayList"%>
 <%agent ak=(agent)session.getAttribute("m"); %>
 
     <%
@@ -564,6 +568,42 @@ nav .profile-details i{
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+  <%
+    ArrayList<LoginActivity> list= (ArrayList<LoginActivity>)session.getAttribute("aa");
+    ArrayList<LoginActivity> list1= (ArrayList<LoginActivity>)session.getAttribute("aa1");
+    ArrayList<LoginActivity> list2= (ArrayList<LoginActivity>)session.getAttribute("aa2");
+    ArrayList<LoginActivity> list3= (ArrayList<LoginActivity>)session.getAttribute("aa3");
+    ArrayList<CustomerInterest> list4= (ArrayList<CustomerInterest>)session.getAttribute("aa4");
+    ArrayList<PropertyDTO> list5= (ArrayList<PropertyDTO>)session.getAttribute("aa5");
+
+    int countToday = 0;
+    int countWeek = 0;
+    int countMonth = 0;
+    int countintersted=0;
+    int countproperty=0;
+
+    for (LoginActivity activity : list1) {
+        countToday++;
+    }
+
+    for (LoginActivity activity1 : list2) {
+        countWeek++;
+    }
+
+    for (LoginActivity activity2 : list3) {
+        countMonth++;
+    }
+    for (CustomerInterest activity3 : list4) {
+    	countintersted++;
+    }
+    
+    for (PropertyDTO activity3 : list5) {
+    	countproperty++;
+    }
+%>
+
+
+
   
     
     
@@ -663,6 +703,108 @@ nav .profile-details i{
         <div class="overview-boxes">
           <div class="box">
             <div class="right-side">
+              <div class="box-topic">Customers Login Today</div>
+              <div class="number"><%= countToday %></div>
+              <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <span class="text">Up from yesterday</span>
+              </div>
+            </div>
+            <img alt="" src="./image/key.png" style="width: 2cm;height: 2cm;">
+           
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Customers Login Current Week</div>
+              <div class="number"><%= countWeek %></div>
+              <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <span class="text">Up from 	Previous Week</span>
+              </div>
+            </div>
+            <img alt="" src="./image/key.png" style="width: 2cm;height: 2cm;">
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Customers Login Current Month</div>
+              <div class="number"><%= countMonth %></div>
+              <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <span class="text">Up from Previous Month</span>
+              </div>
+            </div>
+            <img alt="" src="./image/key.png" style="width: 2cm;height: 2cm;">
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total interested Customers</div>
+              <div class="number"><%= countintersted %></div>
+              <div class="indicator">
+                <i class="bx bx-down-arrow-alt down"></i>
+                <span class="text">Down From Today</span>
+              </div>
+            </div>
+            <img alt="" src="./image/rating.png" style="width: 2cm;height: 2cm;">
+          </div>
+          
+          
+        </div>
+        
+        
+         <div class="overview-boxes">
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Property By You</div>
+              <div class="number"><%=countproperty %></div>
+              <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <span class="text">Up from yesterday</span>
+              </div>
+            </div>
+              <img alt="" src="./image/search.png" style="width: 2cm;height: 2cm;">
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Sales</div>
+              <div class="number">38,876</div>
+              <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <span class="text">Up from yesterday</span>
+              </div>
+            </div>
+            <i class="bx bxs-cart-add cart two"></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Profit</div>
+              <div class="number">$12,876</div>
+              <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <span class="text">Up from yesterday</span>
+              </div>
+            </div>
+            <i class="bx bx-cart cart three"></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Return</div>
+              <div class="number">11,086</div>
+              <div class="indicator">
+                <i class="bx bx-down-arrow-alt down"></i>
+                <span class="text">Down From Today</span>
+              </div>
+            </div>
+            <i class="bx bxs-cart-download cart four"></i>
+          </div>
+          
+          
+        </div>
+        
+        
+        
+         <div class="overview-boxes">
+          <div class="box">
+            <div class="right-side">
               <div class="box-topic">Total Order</div>
               <div class="number">40,876</div>
               <div class="indicator">
@@ -705,6 +847,8 @@ nav .profile-details i{
             </div>
             <i class="bx bxs-cart-download cart four"></i>
           </div>
+          
+          
         </div>
 
         <div class="sales-boxes">

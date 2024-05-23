@@ -26,17 +26,23 @@ public class check_password extends HttpServlet {
 		String pass=(String)request.getParameter("pass");
 		String agentid=(String)request.getParameter("agentid");
 		String a=(String)request.getParameter("1");
+		System.out.println(a);
 		String b=(String)request.getParameter("2");
+		System.out.println(b);
+		
 		String c=(String)request.getParameter("3");
+		System.out.println(c);
 		String d=(String)request.getParameter("4");
+		System.out.println(d);
 		String e=(String)request.getParameter("5");
+		System.out.println(e);
 		
 		String concatenatedString = a + b + c + d + e;
 		
-		System.out.println(concatenatedString);
+		System.out.println("new string password"+concatenatedString);
 		
 		System.out.println("-------------------");
-		System.out.println(otp2);
+		System.out.println("otp  password"+otp2);
 		
 		if(concatenatedString.equals(otp2))
 		{

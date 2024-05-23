@@ -7,14 +7,11 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <style>
-
-body{
-    background:#eee;
+body {
+    background: #eee;
 }
 .card {
     box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
-}
-.card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -42,34 +39,18 @@ body{
 </head>
 <body>
 
+<% agent kll = (agent) request.getAttribute("a3"); %>
 
+<% if (kll != null) { %>
+    
 
-<%agent kll=(agent)request.getAttribute("a3"); %>
+    <% String a4 = (String) request.getAttribute("a2"); %>
+ <%=a4 %>
+    <% String d = (String) request.getAttribute("msg4"); %> 
 
-
-
-<%if(kll!=null){ %>
-
-
-
-
-
-
-<h1><%=kll.getPassword() %></h1>
-<h1><%=kll.getAgentId() %></h1>
-
-
-
-<%String a4=(String)request.getAttribute("a2"); %> 
-
-
-<%String d=(String)request.getAttribute("msg4"); %> 
-
-<%if(d!=null){ %>
-<h1 style="color: red;"><%=d %></h1>
-<%} %>
-
-
+    <% if (d != null) { %>
+        <h1 style="color: red;"><%= d %></h1>
+    <% } %>
 
     <br>
     <div class="row">
@@ -78,53 +59,45 @@ body{
                 <div class="card-body px-lg-5 py-lg-5 text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle avatar-lg img-thumbnail mb-4" alt="profile-image">
                     <h2 class="text-info">2FA Security</h2>
-                    <p class="mb-4">Enter 5-digits code from your athenticatior app.</p>
+                    <p class="mb-4">Enter 5-digits code from your authenticator app.</p>
                     <form action="check_password" method="post">
-<input type="hidden" value="<%=a4%>" name="otp2">
-<input type="hidden" value="<%=kll.getAgentId()%>" name="pass">
-<input type="hidden" value="<%=kll.getAgentId()%>" name="agentid">
+                        <input type="hidden" value="<%= a4 %>" name="otp2">
+                        <input type="hidden" value="<%= kll.getAgentId() %>" name="pass">
+                        <input type="hidden" value="<%= kll.getAgentId() %>" name="agentid">
                         <div class="row mb-4">
-    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
-        <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" oninput="moveToNext(this)" name="1">
-    </div>
-    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
-        <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" oninput="moveToNext(this)" name="2">
-    </div>
-    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
-        <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" oninput="moveToNext(this)" name="3">
-    </div>
-    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
-        <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" oninput="moveToNext(this)" name="4">
-    </div>
-    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
-        <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" oninput="moveToNext(this)" name="5">
-    </div>
-    <!-- Repeat for other input fields -->
-</div>
-<div class="text-center">
-    <button type="submit" class="btn bg-info btn-lg my-4">Continue</button>
-</div>
+                            <% for (int i = 1; i <= 5; i++) { %>
+                                <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
+                                    <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" name="<%= i %>">
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn bg-info btn-lg my-4">Continue</button>
+                        </div>
 
-<script>
-function moveToNext(input) {
-    // Get the parent div of the input
-    var parentDiv = input.parentElement;
+                        <script>
+                            function moveToNext(input) {
+                                if (input.value.length === 1) {
+                                    let parentDiv = input.parentElement.parentElement;
+                                    let inputs = parentDiv.querySelectorAll('input[type="text"]');
+                                    let currentIndex = Array.from(inputs).indexOf(input);
+                                    if (currentIndex < inputs.length - 1) {
+                                        inputs[currentIndex + 1].focus();
+                                    }
+                                }
+                            }
 
-    // Get all input fields within the parent div
-    var inputs = parentDiv.querySelectorAll('input');
-
-    // Find the index of the current input field
-    var currentIndex = Array.from(inputs).indexOf(input);
-
-    // If the current input is not the last one
-    if (currentIndex < inputs.length - 1) {
-        // Move focus to the next input field
-        inputs[currentIndex + 1].focus();
-    }
-}
-</script>
-                        
-                        
+                            function moveToPrevious(event, input) {
+                                if (event.key === "Backspace" && input.value.length === 0) {
+                                    let parentDiv = input.parentElement.parentElement;
+                                    let inputs = parentDiv.querySelectorAll('input[type="text"]');
+                                    let currentIndex = Array.from(inputs).indexOf(input);
+                                    if (currentIndex > 0) {
+                                        inputs[currentIndex - 1].focus();
+                                    }
+                                }
+                            }
+                        </script>
                     </form>
                 </div>
             </div>
@@ -132,34 +105,16 @@ function moveToNext(input) {
     </div>
 </div>
 
+<% } else { %>
 
+    <% String a = (String) request.getAttribute("msg"); %> 
+    <% String b = (String) request.getAttribute("msg1"); %> 
+    <% String c = (String) request.getAttribute("msg2"); %> 
+    <% String d = (String) request.getAttribute("msg4"); %> 
 
-
-
-
-
-
-
-
-<%}else{ %>
-
-
-
-
-
-
-<%String a=(String)request.getAttribute("msg"); %> 
-
-<%String b=(String)request.getAttribute("msg1"); %> 
-<%String c=(String)request.getAttribute("msg2"); %> 
-
-<%String d=(String)request.getAttribute("msg4"); %> 
-
-<%if(d!=null){ %>
-<h1 style="color: red;"><%=d %></h1>
-<%} %>
-
-
+    <% if (d != null) { %>
+        <h1 style="color: red;"><%= d %></h1>
+    <% } %>
 
     <br>
     <div class="row">
@@ -168,53 +123,45 @@ function moveToNext(input) {
                 <div class="card-body px-lg-5 py-lg-5 text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle avatar-lg img-thumbnail mb-4" alt="profile-image">
                     <h2 class="text-info">2FA Security</h2>
-                    <p class="mb-4">Enter 5-digits code from your athenticatior app.</p>
+                    <p class="mb-4">Enter 5-digits code from your authenticator app.</p>
                     <form action="check_password" method="post">
-<input type="hidden" value="<%=a%>" name="otp2">
-<input type="hidden" value="<%=b%>" name="pass">
-<input type="hidden" value="<%=c%>" name="agentid">
+                        <input type="hidden" value="<%= a %>" name="otp2">
+                        <input type="hidden" value="<%= b %>" name="pass">
+                        <input type="hidden" value="<%= c %>" name="agentid">
                         <div class="row mb-4">
-    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
-        <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" oninput="moveToNext(this)" name="1">
-    </div>
-    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
-        <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" oninput="moveToNext(this)" name="2">
-    </div>
-    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
-        <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" oninput="moveToNext(this)" name="3">
-    </div>
-    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
-        <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" oninput="moveToNext(this)" name="4">
-    </div>
-    <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
-        <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" oninput="moveToNext(this)" name="5">
-    </div>
-    <!-- Repeat for other input fields -->
-</div>
-<div class="text-center">
-    <button type="submit" class="btn bg-info btn-lg my-4">Continue</button>
-</div>
+                            <% for (int i = 1; i <= 5; i++) { %>
+                                <div class="col-lg-2 col-md-2 col-2 ps-0 ps-md-2">
+                                    <input type="text" class="form-control text-lg text-center" placeholder="_" aria-label="2fa" maxlength="1" oninput="moveToNext(this)" onkeydown="moveToPrevious(event, this)" name="<%= i %>">
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn bg-info btn-lg my-4">Continue</button>
+                        </div>
 
-<script>
-function moveToNext(input) {
-    // Get the parent div of the input
-    var parentDiv = input.parentElement;
+                        <script>
+                            function moveToNext(input) {
+                                if (input.value.length === 1) {
+                                    let parentDiv = input.parentElement.parentElement;
+                                    let inputs = parentDiv.querySelectorAll('input[type="text"]');
+                                    let currentIndex = Array.from(inputs).indexOf(input);
+                                    if (currentIndex < inputs.length - 1) {
+                                        inputs[currentIndex + 1].focus();
+                                    }
+                                }
+                            }
 
-    // Get all input fields within the parent div
-    var inputs = parentDiv.querySelectorAll('input');
-
-    // Find the index of the current input field
-    var currentIndex = Array.from(inputs).indexOf(input);
-
-    // If the current input is not the last one
-    if (currentIndex < inputs.length - 1) {
-        // Move focus to the next input field
-        inputs[currentIndex + 1].focus();
-    }
-}
-</script>
-                        
-                        
+                            function moveToPrevious(event, input) {
+                                if (event.key === "Backspace" && input.value.length === 0) {
+                                    let parentDiv = input.parentElement.parentElement;
+                                    let inputs = parentDiv.querySelectorAll('input[type="text"]');
+                                    let currentIndex = Array.from(inputs).indexOf(input);
+                                    if (currentIndex > 0) {
+                                        inputs[currentIndex - 1].focus();
+                                    }
+                                }
+                            }
+                        </script>
                     </form>
                 </div>
             </div>
@@ -222,6 +169,6 @@ function moveToNext(input) {
     </div>
 </div>
 
-<%} %>
+<% } %>
 </body>
 </html>

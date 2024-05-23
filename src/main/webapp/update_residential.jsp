@@ -261,7 +261,7 @@ small, time, .small {
             <a class="btn btn-xs fs-10 btn-bold btn-warning" href="commercial_view?property_id=<%=p.getPropertyId() %>" style="font-size: large;width: 3cm;size: 5cm;" >View</a>
                 <a class="btn btn-xs fs-10 btn-bold btn-info" href="./commercial_update_new?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"" style="font-size: large;width: 3cm;size: 5cm;" >Update</a>
 
-                <a class="btn btn-xs fs-10 btn-bold btn-danger" href="./residential_delete?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"  onclick=" return alert('are you sure you whant to delete')" style="font-size: large;size: 5cm;">Delete</a>
+                <a class="btn btn-xs fs-10 btn-bold btn-danger" href="./residential_delete?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"  onclick=" return confirm('are you sure you want to delete')" style="font-size: large;size: 5cm;">Delete</a>
             </div>
         </footer>
     </div>

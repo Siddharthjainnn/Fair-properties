@@ -87,7 +87,7 @@ public class customer_intersted extends HttpServlet {
 	        message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
 
 	        // Set the email subject.
-	        message.setSubject("Order Confirmation");
+	        message.setSubject("Notification: Thanks for your interest in Property");
 String ok="hello to everyone";
 	       
 			// Set the email content (HTML content in this example).

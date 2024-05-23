@@ -74,6 +74,9 @@
               
               <button type="submit" class="btn btn-primary btn-sm btn-icon-text" style="width: 4cm;height: 1cm;"><i class="bi bi-save"></i> <span class="text">Save</span></button>
             </div>
+            
+            
+            
           </div>
         
            <!-- Main content -->
@@ -146,7 +149,7 @@
                     <div class="col-lg-3">
                       <div class="mb-3">
                         <label class="form-label">Area(Sq.ft)</label>
-                        <input type="text" class="form-control" name="area" required="required">
+                        <input type="text" class="form-control" name="area1" required="required">
                       </div>
                     </div>
                   </div>
@@ -621,7 +624,7 @@
                     <div class="col-lg-4">
                       <div class="mb-3">
                         <label class="form-label">Scheme No</label>
-                       <select name="scheme" id="scheme" class="form-control" name="scheme_no">
+                       <select  id="scheme" class="form-control" name="scheme_no">
     
      <option value="TPS-8">TPS-8</option>
     <option value="scheme No 9">scheme No 9</option>
@@ -1385,19 +1388,18 @@ document.getElementById("openside").addEventListener("input", function() {
 
 
 
-
 function constructionYearValidation() {
     var consYearInput = document.getElementById("cons_year");
     var consYearError = document.getElementById("consYearError");
 
-    // Check if the construction year input is empty
+    // Check if the construction month input is empty
     if (consYearInput.value.trim() === "") {
-        consYearError.textContent = "Please select the construction year.";
+        consYearError.textContent = "Please select the construction month.";
         consYearInput.classList.add("is-invalid");
         return false; // Prevent form submission
-    } else if (isCurrentOrFutureYearMonth(consYearInput.value.trim())) {
-        // Check if the selected year and month is the current or a future year and month
-        consYearError.textContent = "Please select a construction year and month earlier than the current one.";
+    } else if (isCurrentOrFutureMonth(consYearInput.value.trim())) {
+        // Check if the selected month is the current or a future month
+        consYearError.textContent = "Please select a construction month earlier than the current one.";
         consYearInput.classList.add("is-invalid");
         return false; // Prevent form submission
     } else {
@@ -1407,18 +1409,27 @@ function constructionYearValidation() {
     }
 }
 
-
-// Function to check if the selected year and month is the current or a future year and month
-function isCurrentOrFutureYearMonth(yearMonth) {
+// Function to check if the selected month is the current or a future month
+function isCurrentOrFutureMonth(yearMonth) {
     var currentDate = new Date();
     var selectedDate = new Date(yearMonth + "-01");
-    return selectedDate.getFullYear() >= currentDate.getFullYear(); // Compare only years
+
+    // Check if the selected date is the current month or a future month
+    if (
+        (selectedDate.getFullYear() === currentDate.getFullYear() &&
+            selectedDate.getMonth() === currentDate.getMonth()) ||
+        selectedDate > currentDate
+    ) {
+        return true;
+    }
+    return false;
 }
 
 // Add event listener to trigger validation on input change
 document.getElementById("cons_year").addEventListener("input", function() {
     constructionYearValidation();
 });
+
 
 
 

@@ -131,7 +131,7 @@
                     <div class="col-lg-3">
                       <div class="mb-3">
                         <label class="form-label">Area(Sq.feet)</label>
-                        <input type="text" class="form-control" name="area" required="required" >
+                        <input type="text" class="form-control" name="area" required="required" value="<%=pro.getArea_sqft() %>" readonly="readonly" >
                       </div>
                     </div>
                   </div>
@@ -606,7 +606,7 @@
               <div class="card mb-4">
                 <div class="card-body">
                   <h3 class="h6">Status</h3>
-                  <input class="form-control" type="text" value="Draft" name="status" readonly="readonly">
+                  <input class="form-control" type="text" value="<%=pro.getStatus() %>" name="status" readonly="readonly">
                 </div>
               </div>
               <!-- Avatar -->

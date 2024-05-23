@@ -198,6 +198,84 @@ public class PropertyDTO {
     private String parking;
     private String carpetArea;
     private String garden;
+    private Double area_sqft;
+    
+    public PropertyDTO() {
+		// TODO Auto-generated constructor stub
+	}
+    
+    
+	public PropertyDTO(String propertyName, String propertyId, String propertyType, String category, String price,
+			String area, String width, String length, String transaction, String ownership, String consYear,
+			String floors, String direction, String openside, String address, String landmark, String schemeNo,
+			String ward, String assembly, String zipcode, String city, String country, String state, String security,
+			String parkArea, String gasCon, String waterCon, String noOfLift, String overlooking, String elec,
+			String fur, String internet, String ownerName, String ownerNumber, String ownerEmail, String agentName,
+			String agentId, String status, String notes, String rent, String bedrooms, String bathrooms, String kitchen,
+			String living, String dining, String parking, String carpetArea, String garden, Double area_sqft) {
+		super();
+		this.propertyName = propertyName;
+		this.propertyId = propertyId;
+		this.propertyType = propertyType;
+		this.category = category;
+		this.price = price;
+		this.area = area;
+		this.width = width;
+		this.length = length;
+		this.transaction = transaction;
+		this.ownership = ownership;
+		this.consYear = consYear;
+		this.floors = floors;
+		this.direction = direction;
+		this.openside = openside;
+		this.address = address;
+		this.landmark = landmark;
+		this.schemeNo = schemeNo;
+		this.ward = ward;
+		this.assembly = assembly;
+		this.zipcode = zipcode;
+		this.city = city;
+		this.country = country;
+		this.state = state;
+		this.security = security;
+		this.parkArea = parkArea;
+		this.gasCon = gasCon;
+		this.waterCon = waterCon;
+		this.noOfLift = noOfLift;
+		this.overlooking = overlooking;
+		this.elec = elec;
+		this.fur = fur;
+		this.internet = internet;
+		this.ownerName = ownerName;
+		this.ownerNumber = ownerNumber;
+		this.ownerEmail = ownerEmail;
+		this.agentName = agentName;
+		this.agentId = agentId;
+		this.status = status;
+		this.notes = notes;
+		this.rent = rent;
+		this.bedrooms = bedrooms;
+		this.bathrooms = bathrooms;
+		this.kitchen = kitchen;
+		this.living = living;
+		this.dining = dining;
+		this.parking = parking;
+		this.carpetArea = carpetArea;
+		this.garden = garden;
+		this.area_sqft = area_sqft;
+	}
+
+
+	public Double getArea_sqft() {
+		return area_sqft;
+	}
+
+
+	public void setArea_sqft(Double area_sqft) {
+		this.area_sqft = area_sqft;
+	}
+
+
 	public String getPropertyName() {
 		return propertyName;
 	}
