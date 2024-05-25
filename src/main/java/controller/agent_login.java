@@ -74,6 +74,9 @@ public class agent_login extends HttpServlet {
 					session.setAttribute("aa3", list4);
 					session.setAttribute("aa4", list5);
 					session.setAttribute("aa5", list6);
+					
+					
+					
 				
 					
 		}else {

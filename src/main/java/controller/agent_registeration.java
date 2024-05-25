@@ -135,7 +135,7 @@ public class agent_registeration extends HttpServlet {
 //			request.setAttribute("msg", "product added succesffuly");
 	sendOrderConfirmationEmail(email, fullName, agentid, phone, licenseNumber, notes);
 //			rx.forward(request, response);
-        	response.sendRedirect("home.jsp");
+        	response.sendRedirect("agent_module.jsp");
         	
         	
         	

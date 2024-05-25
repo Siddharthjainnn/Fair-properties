@@ -16,9 +16,9 @@
 body {
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
-    background-image: url("./image/Fair Property (2).gif");
+    background-image: url("./image/Schematiq Mobile App (1).gif");
     background-repeat: no-repeat;
-    background-size: 80%;
+    background-size: 100%;
 }
 
 .wave {
@@ -204,9 +204,24 @@ a:hover {
     background-position: right;
 }
 
+.g_id_signin {
+    width: 100%;
+    
+}
+
+.g_id_signin > div {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media screen and (max-width: 1050px) {
     .container {
         grid-gap: 5rem;
+    }
+    .input {
+        color: white;
     }
 }
 
@@ -223,6 +238,9 @@ a:hover {
     .img img {
         width: 400px;
     }
+    .input {
+        color: white;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -232,6 +250,9 @@ a:hover {
 
     .img {
         display: none;
+    }
+    .input {
+        color: black;
     }
 
     .wave {
@@ -256,76 +277,128 @@ a:hover {
     }
 }
 </style>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
+
 <!-- <img class="wave" src="./image/Fair Property.gif">  -->
-    <div class="container">
-        <div class="img">
-            <!-- <img src="./image/bg.svg"> -->
-        </div>
-        <div class="login-content">
-            <form action="agent_login" method="post">
-                <img src="./image/avatar.svg">
-                <h2 class="title">Welcome To Agent Login</h2>
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Username</h5>
-                        <input type="text" class="input" name="user_id">
-                    </div>
+<div class="container">
+    <div class="img">
+        <!-- <img src="./image/bg.svg"> -->
+    </div>
+    <div class="login-content">
+        <form action="agent_login" method="post">
+            <img src="./image/avatar.svg">
+            <h2 class="title" style="font-weight: 1000">Welcome To Agent Login</h2>
+            <div class="input-div one">
+                <div class="i">
+                    <i style="color: black;" class="fas fa-user"></i>
                 </div>
-                <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="div">
-                        <h5>Password</h5>
-                        <input type="password" class="input" name="password">
-                    </div>
+                <div class="div">
+                    <h5 style="color: black;font-weight: 300">Username</h5>
+                    <input  style="color: black;" type="text" class="input" name="user_id">
                 </div>
-                <div class="links" style="margin-top: 1cm;margin-bottom: 1cm;">
-    <a href="agent_registeration.jsp">Want To Register?</a>
-    <a href="forgotpasswordagent.jsp">Forgot Password?</a>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i style="color: black;" class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <h5 style="color: black;font-weight: 300">Password</h5>
+                    <input  style="color: black;" type="password" class="input" name="password">
+                </div>
+            </div>
+            
+            <br>
+            <div id="g_id_onload"
+                 data-client_id="822779823535-7rm5lqkhpmq38ah9fntl9bm3gidk7ahd.apps.googleusercontent.com"
+                 data-login_uri="http://localhost:8080/Bitsquad_real_estate/file2"
+                 data-auto_prompt="false">
+            </div>
+            <div id="buttonDiv" class="g_id_signin" data-type="standard" data-size="large" data-text="sign_in_with" data-shape="pill"></div>
+            <div class="links" style="margin-top: 1cm;margin-bottom: 1cm;">
+                <a href="agent_registeration.jsp" style="color: black;">Want To Register?</a>
+                <a href="forgotpasswordagent.jsp" style="color: black;">Forgot Password?</a>
+            </div>
+            <input type="submit" class="btn" value="Login">
+        </form>
+    </div>
 </div>
 
-                <input type="submit" class="btn" value="Login">
-            </form>
-        </div>
-    </div>
-   <script>
-    window.onload = function() {
-        // Get all input elements
-        const inputs = document.querySelectorAll(".input");
+<script>
+window.onload = function() {
+    // Initialize Google Sign-In
+    google.accounts.id.initialize({
+        client_id: "822779823535-7rm5lqkhpmq38ah9fntl9bm3gidk7ahd.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large", width: "100%" }
+    );
+    google.accounts.id.prompt();
 
-        // Loop through each input element
-        inputs.forEach(input => {
-            // Clear the value of each input
-            input.value = "";
-
-            // Add event listeners for focus and blur events
-            input.addEventListener("focus", addcl);
-            input.addEventListener("blur", remcl);
+    // Change the hidden text within the Google Sign-In button
+    const observer = new MutationObserver(function() {
+        const buttonText = document.querySelectorAll('span');
+        buttonText.forEach((span) => {
+            if (span.innerText === 'Sign in with Google') {
+                span.innerText = 'Sign in as Agent';
+            }
         });
-    };
+    });
 
-    // Function to add focus class
-    function addcl() {
-        let parent = this.parentNode.parentNode;
-        parent.classList.add("focus");
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+
+    // Input field focus and blur event listeners
+    const inputs = document.querySelectorAll(".input");
+    inputs.forEach(input => {
+        input.value = "";
+        input.addEventListener("focus", addcl);
+        input.addEventListener("blur", remcl);
+    });
+};
+
+// Function to add focus class
+function addcl() {
+    let parent = this.parentNode.parentNode;
+    parent.classList.add("focus");
+}
+
+// Function to remove focus class if input value is empty
+function remcl() {
+    let parent = this.parentNode.parentNode;
+    if (this.value == "") {
+        parent.classList.remove("focus");
     }
+}
 
-    // Function to remove focus class if input value is empty
-    function remcl() {
-        let parent = this.parentNode.parentNode;
-        if (this.value == "") {
-            parent.classList.remove("focus");
+function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token: " + response.credential);
+    fetch('/Bitsquad_real_estate/file2', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ token: response.credential })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = "/Bitsquad_real_estate/agent.jsp";
+        } else {
+            console.error('Login failed:', data.message);
         }
-    }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
 </script>
 
-    
-    
+
 </body>
 </html>

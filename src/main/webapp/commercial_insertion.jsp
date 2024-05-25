@@ -62,7 +62,7 @@
 
 <%} %>
 
-<form action="add_property_by_agent" method="post" enctype="multipart/form-data" >
+<form action="add_property_by_agent" method="post" enctype="multipart/form-data" id="add_property_by_agent" >
     <div class="container-fluid" style="padding-left: 5%;padding-right: 5%;">
 
        
@@ -190,7 +190,7 @@
                   <div class="row">
                     <div class="col-lg-3">
                       <div class="mb-3">
-                        <label class="form-label">Construction Year <span style="color: red;"> *</span></label>
+                        <label class="form-label">Construction Year </label>
                         <input type="month" class="form-control" id="cons_year" name="cons_year">
                         <div id="consYearError" class="invalid-feedback"></div>
                       </div>
@@ -221,7 +221,7 @@
 
                     <div class="col-lg-3">
                         <div class="mb-3">
-                            <label class="form-label">Numbers Of Open Sides <span style="color: red;"> *</span></label>
+                            <label class="form-label">Numbers Of Open Sides </label>
                             <input type="text" class="form-control" id="openside" name="openside" required="required">
                             <div id="opensideError" class="invalid-feedback"></div>
                         </div>
@@ -1351,6 +1351,26 @@ document.getElementById("cons_year").addEventListener("input", function() {
 
 
 
+
 </script> 
+
+<script>
+document.getElementById('add_property_by_agent').addEventListener('submit', function(event) {
+    // Your custom function
+    function customValidationFunction() {
+        // Implement your validation logic here
+        // Return true if valid, false otherwise
+        return true; // or false
+    }
+
+    // Call your custom function
+    if (!nameValidation() || !phoneValidation|| !emailValidation()|| !constructionYearValidation()   ) {
+        // If the function returns false, prevent the form from submitting
+        event.preventDefault();
+        alert('Validation failed. Please check your inputs.');
+    }
+    // If the function returns true, the form will be submitted as usual
+});
+</script>
 </body>
 </html>

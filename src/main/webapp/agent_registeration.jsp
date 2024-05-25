@@ -37,9 +37,42 @@ body{
     flex: 1 1 auto;
     padding: 1.5rem 1.5rem;
 }
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    backdrop-filter: blur(5px); /* Add blur effect */
+    display: none; /* Initially hidden */
+}
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
+    border-radius: 50%;
+    animation: spin 2s linear infinite; /* Animation for spinning */
+    z-index: 9999; /* Ensure loader appears above other content */
+    cursor: pointer;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 </style>
 </head>
 <body>
+
+
 
  <%
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -171,7 +204,7 @@ body{
 		
 		
 		
-		<form   action="agent_registeration" method="post" enctype="multipart/form-data" >
+		<form  id="agentRegistrationForm" action="agent_registeration" method="post" enctype="multipart/form-data" >
 		
 		<div class="container-fluid">
 
@@ -181,7 +214,7 @@ body{
     
     <div class="hstack gap-3">
       <!-- <button type="submit" class="btn btn-light btn-sm btn-icon-text" style="width: 4cm;height: 1cm;"><i class="bi bi-x"></i> <span class="text">Draft</span></button> -->
-      <button type="submit" class="btn btn-primary btn-sm btn-icon-text" style="width: 4cm;height: 1cm;" ><i class="bi bi-save"></i> <span class="text">Save</span></button>
+      <button id="saveButton" type="submit" class="btn btn-primary btn-sm btn-icon-text" style="width: 4cm;height: 1cm;" ><i class="bi bi-save"></i> <span class="text">Save</span></button>
     </div>
   </div>
 
@@ -239,7 +272,7 @@ body{
             <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">Specialization</label>
-                <input type="text" class="form-control" name="specialization" required="required">
+                <input type="text" class="form-control" name="specialization" >
               </div>
             </div>
           </div>
@@ -250,21 +283,21 @@ body{
             <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">Experience(Year)</label>
-                <input type="text" class="form-control" name="experience" required="required" >
+                <input type="text" class="form-control" name="experience"  >
               </div>
             </div>
             
             <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">Languages Spoken</label>
-                <input type="text" class="form-control" name="languagesSpoken" required="required" >
+                <input type="text" class="form-control" name="languagesSpoken"  >
               </div>
             </div>
             
             <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">Commission Rate(%)</label>
-                <input type="text" class="form-control" name="commissionRate" required="required">
+                <input type="text" class="form-control" name="commissionRate" >
               </div>
             </div>
           </div>
@@ -273,8 +306,8 @@ body{
            <div class="row">
             <div class="col-lg-4">
               <div class="mb-3">
-                <label class="form-label">Date Of Birth<span style="color: red;"> *</span></label>
-    <input type="date" class="form-control" id="dob" name="dob" required="required">
+                <label class="form-label">Date Of Birth</label>
+    <input type="date" class="form-control" id="dob" name="dob" >
     <div id="dobError" class="invalid-feedback"></div>
 
                <div id="dobError" class="invalid-feedback"></div>
@@ -300,7 +333,7 @@ body{
             <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">Sales Performance (Number Of Properties Sold)</label>
-                <input type="text" class="form-control" name="salesperformance" required="required">
+                <input type="text" class="form-control" name="salesperformance" >
               </div>
             </div>
           </div>
@@ -703,6 +736,24 @@ document.getElementsByName("pancard")[0].addEventListener("keypress", function(e
 
 
 
+</script>
+<script>
+    document.getElementById('agentRegistrationForm').addEventListener('submit', function(event) {
+        // Your custom function
+        function customValidationFunction() {
+            // Implement your validation logic here
+            // Return true if valid, false otherwise
+            return false; // or false
+        }
+
+        // Call your custom function
+        if (!fullNameValidation() || !emailValidation()|| !licenseNumberValidation()|| !phoneValidation() || !dateOfBirthValidation() || !zipCodeValidation() || !aadhaarCardValidation() || !panCardValidation()  ) {
+            // If the function returns false, prevent the form from submitting
+            event.preventDefault();
+            alert('Validation failed. Please check your inputs.');
+        }
+        // If the function returns true, the form will be submitted as usual
+    });
 </script>
 
 

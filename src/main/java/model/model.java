@@ -1734,7 +1734,150 @@ LoginActivity ok=new LoginActivity(id, userId, email, name, loginTimestamp);
 	    return i;
 	}
 
+	public byte[] get_property_admin(String a) {
+		byte img[]=null;
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement ps=con.prepareStatement("select * from property_12 where property_id=? ");
+			ps.setString(1, a);
+		ResultSet rs=	ps.executeQuery();
+		while(rs.next())
+		{
+			img=rs.getBytes("image_3");
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return img;
+	}
+
+	public byte[] get_property_admin_front(String a) {
+		byte img[]=null;
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement ps=con.prepareStatement("select * from property_12 where property_id=? ");
+			ps.setString(1, a);
+		ResultSet rs=	ps.executeQuery();
+		while(rs.next())
+		{
+			img=rs.getBytes("font_image");
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return img;
+	}
+
+	public byte[] get_property_admin_1(String a) {
+		byte img[]=null;
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement ps=con.prepareStatement("select * from property_12 where property_id=? ");
+			ps.setString(1, a);
+		ResultSet rs=	ps.executeQuery();
+		while(rs.next())
+		{
+			img=rs.getBytes("image_1");
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return img;
+	}
+
+	public byte[] get_property_admin_2(String a) {
+		byte img[]=null;
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement ps=con.prepareStatement("select * from property_12 where property_id=? ");
+			ps.setString(1, a);
+		ResultSet rs=	ps.executeQuery();
+		while(rs.next())
+		{
+			img=rs.getBytes("image_2");
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return img;
+	}
     // Other methods in your model class
+
+	public byte[] get_property_admin_4(String a) {
+		byte img[]=null;
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement ps=con.prepareStatement("select * from property_12 where property_id=? ");
+			ps.setString(1, a);
+		ResultSet rs=	ps.executeQuery();
+		while(rs.next())
+		{
+			img=rs.getBytes("image_4");
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return img;
+	}
+
+	public byte[] get_property_admin_video(String a) {
+		byte img[]=null;
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement ps=con.prepareStatement("select * from property_12 where property_id=? ");
+			ps.setString(1, a);
+		ResultSet rs=	ps.executeQuery();
+		while(rs.next())
+		{
+			img=rs.getBytes("video");
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return img;
+	}
+
+	public int add_photo_to_property(String a, InputStream is) {
+		int i=0;
+		Connection con=null;
+				
+				try {
+					con=create_connection();
+					
+					
+					
+					PreparedStatement stmt=con.prepareStatement("UPDATE property_12 SET image_3 = ? WHERE property_id = ?");
+					
+					 stmt.setBlob(1, is);
+					stmt.setString(2, a);
+		           
+		           
+
+					
+					
+					
+				i=	stmt.executeUpdate();
+				
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				return i;
+			}
+
+	public agent check_agent_exist(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
 }
 
     // Other methods in your model class

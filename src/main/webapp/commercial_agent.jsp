@@ -86,7 +86,7 @@ body{
               <!-- Basic information -->
               <div class="card mb-4">
                 <div class="card-body">
-                  <h3 class="h6 mb-4">Property information</h3>
+                  <h3 class="h6 mb-4">Property Information</h3>
 
 <%@ page import="java.util.Random" %>
 <%@ page import="java.util.UUID" %>
@@ -414,7 +414,7 @@ body{
                                 <div class="col-lg-4">
                                   <div class="mb-3">
                                     <label class="form-label">Interior</label>
-                                    <input type="text" class="form-control"  name="width" required="required" readonly="readonly"  >
+                                    <input type="text" class="form-control"  name="width" required="required" value="<%=pro.getFur() %>" readonly="readonly"  >
                                   </div>
                                 </div>
             
@@ -541,45 +541,65 @@ body{
               <div class="card mb-4">
                 <div class="card-body">
                   <h3 class="h6">Status</h3>
-                  <input class="form-control" type="text" value="Draft" name="status" readonly="readonly">
+                  <input class="form-control" type="text" value="<%=pro.getStatus() %>" name="status"  readonly="readonly">
                 </div>
               </div>
               <!-- Avatar -->
               <div class="card mb-4">
-                <div class="card-body">
-                  <h3 class="h6">Front Image</h3>
-                  <input class="form-control" type="file" name="font_image">
-                </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="h6" style="font-weight: 1000">Front Image</h3>
+                <img src="./get_image_property_front?property_id=<%=pro.getPropertyId()%>"
+                     class="categ-img" alt="" height="250px" width="100%">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="h6" style="font-weight: 1000">Image 1</h3>
+                <img src="./get_image_property_1?property_id=<%=pro.getPropertyId()%>"
+                     class="categ-img" alt="" height="250px" width="100%">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="h6" style="font-weight: 1000">Image 2</h3>
+                <img src="./get_image_property_2?property_id=<%=pro.getPropertyId()%>"
+                     class="categ-img" alt="" height="250px" width="100%">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="h6" style="font-weight: 1000">Image 3</h3>
+                <img src="./get_image_property_3?property_id=<%=pro.getPropertyId()%>"
+                     class="categ-img" alt="" height="250px" width="100%">
+                 
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="h6" style="font-weight: 1000">Image 4</h3>
+                <img src="./get_image_property_4?property_id=<%=pro.getPropertyId()%>"
+                     class="categ-img" alt="" height="250px" width="100%">
+            </div>
+        </div>
+        <div class="col-md-6">
+    <div class="card-body">
+        <h3 class="h6" style="font-weight: 1000">Video</h3>
+        <video controls height="250px" width="100%">
+            <source src="./get_image_property_video?property_id=<%=pro.getPropertyId()%>" >
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
 
+    </div>
+</div>
 
-                <div class="card-body">
-                    <h3 class="h6">Image 1</h3>
-                    <input class="form-control" type="file" name="image_1">
-                  </div>
-
-
-                  <div class="card-body">
-                    <h3 class="h6">Image 2</h3>
-                    <input class="form-control" type="file" name="image_2">
-                  </div>
-
-                  <div class="card-body">
-                    <h3 class="h6">Image 3</h3>
-                    <input class="form-control" type="file" name="image_3">
-                  </div>
-
-                  <div class="card-body">
-                    <h3 class="h6">Image 4</h3>
-                    <input class="form-control" type="file" name="image_4">
-                  </div>
-              </div>
-
-              <div class="card mb-4">
-                <div class="card-body">
-                  <h3 class="h6">video</h3>
-                  <input class="form-control" type="file" name="video">
-                </div>
-              </div>
               <!-- Notes -->
               <div class="card mb-4">
                 <div class="card-body">

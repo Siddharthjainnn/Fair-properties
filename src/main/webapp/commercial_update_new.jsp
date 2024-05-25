@@ -66,7 +66,7 @@
 
 <%} %>
 
-<form action="commercial_update" method="post" enctype="multipart/form-data">
+<form action="commercial_update" method="post" enctype="multipart/form-data" id="add_property_by_agent">
     <div class="container-fluid" style="padding-left: 5%;padding-right: 5%;">
 
        
@@ -1104,40 +1104,60 @@
               </div>
               <!-- Avatar -->
               <div class="card mb-4">
-                <div class="card-body">
-                  <h3 class="h6">Front Image</h3>
-                  <input class="form-control" type="file"  disabled="disabled">
-                </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="h6" style="font-weight: 1000">Front Image</h3>
+                <img src="./get_image_property_front?property_id=<%=pro.getPropertyId()%>"
+                     class="categ-img" alt="" height="250px" width="100%">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="h6" style="font-weight: 1000">Image 1</h3>
+                <img src="./get_image_property_1?property_id=<%=pro.getPropertyId()%>"
+                     class="categ-img" alt="" height="250px" width="100%">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="h6" style="font-weight: 1000">Image 2</h3>
+                <img src="./get_image_property_2?property_id=<%=pro.getPropertyId()%>"
+                     class="categ-img" alt="" height="250px" width="100%">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="h6" style="font-weight: 1000">Image 3</h3>
+                <img src="./get_image_property_3?property_id=<%=pro.getPropertyId()%>"
+                     class="categ-img" alt="" height="250px" width="100%">
+                     
+                  
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-body">
+                <h3 class="h6" style="font-weight: 1000">Image 4</h3>
+                <img src="./get_image_property_4?property_id=<%=pro.getPropertyId()%>"
+                     class="categ-img" alt="" height="250px" width="100%">
+            </div>
+        </div>
+        <div class="col-md-6">
+    <div class="card-body">
+        <h3 class="h6" style="font-weight: 1000">Video</h3>
+        <video controls height="250px" width="100%">
+            <source src="./get_image_property_video?property_id=<%=pro.getPropertyId()%>" >
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
 
-
-                <div class="card-body">
-                    <h3 class="h6">Image 1</h3>
-                    <input class="form-control" type="file"  disabled="disabled">
-                  </div>
-
-
-                  <div class="card-body">
-                    <h3 class="h6">Image 2</h3>
-                    <input class="form-control" type="file"  disabled="disabled">
-                  </div>
-
-                  <div class="card-body">
-                    <h3 class="h6">Image 3</h3>
-                    <input class="form-control" type="file"  disabled="disabled">
-                  </div>
-
-                  <div class="card-body">
-                    <h3 class="h6">Image 4</h3>
-                    <input class="form-control" type="file" disabled="disabled">
-                  </div>
-              </div>
-
-              <div class="card mb-4">
-                <div class="card-body">
-                  <h3 class="h6">video</h3>
-                  <input class="form-control" type="file"  disabled="disabled">
-                </div>
-              </div>
+    </div>
+</div>
               <!-- Notes -->
               <div class="card mb-4">
                 <div class="card-body">
@@ -1353,5 +1373,24 @@ document.getElementById("cons_year").addEventListener("input", function() {
 
 
 </script> 
+
+<script>
+document.getElementById('add_property_by_agent').addEventListener('submit', function(event) {
+    // Your custom function
+    function customValidationFunction() {
+        // Implement your validation logic here
+        // Return true if valid, false otherwise
+        return true; // or false
+    }
+
+    // Call your custom function
+    if (!nameValidation() || !phoneValidation|| !emailValidation()|| !constructionYearValidation()   ) {
+        // If the function returns false, prevent the form from submitting
+        event.preventDefault();
+        alert('Validation failed. Please check your inputs.');
+    }
+    // If the function returns true, the form will be submitted as usual
+});
+</script>
 </body>
 </html>

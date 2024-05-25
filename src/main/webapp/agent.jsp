@@ -42,6 +42,7 @@ body{
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <body>
 
+
 <div class="container h-100">
     		<div class="row h-100">
 				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
@@ -675,7 +676,7 @@ nav .profile-details i{
           </a>
         </li>  -->
         <li class="log_out">
-          <a href="logoutctrl">
+          <a href="logoutserveletagent">
             <i class="bx bx-log-out"></i>
             <span class="links_name">Log out</span>
           </a>
@@ -765,91 +766,43 @@ nav .profile-details i{
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Sales</div>
-              <div class="number">38,876</div>
+              <div class="box-topic">Notification(Customer Enquiry) </div>
+              <div class="number">0</div>
               <div class="indicator">
                 <i class="bx bx-up-arrow-alt"></i>
                 <span class="text">Up from yesterday</span>
               </div>
             </div>
-            <i class="bx bxs-cart-add cart two"></i>
+            <img alt="" src="./image/notification.png" style="width: 2cm;height: 2cm;">
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Profit</div>
-              <div class="number">$12,876</div>
+              <div class="box-topic">Appointment Reminders</div>
+              <div class="number">0</div>
               <div class="indicator">
                 <i class="bx bx-up-arrow-alt"></i>
                 <span class="text">Up from yesterday</span>
               </div>
             </div>
-            <i class="bx bx-cart cart three"></i>
+            <img alt="" src="./image/notification.png" style="width: 2cm;height: 2cm;">
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Return</div>
-              <div class="number">11,086</div>
+              <div class="box-topic">Property New Changes</div>
+              <div class="number">6</div>
               <div class="indicator">
                 <i class="bx bx-down-arrow-alt down"></i>
-                <span class="text">Down From Today</span>
+                <span class="text">Till Today</span>
               </div>
             </div>
-            <i class="bx bxs-cart-download cart four"></i>
+           <img alt="" src="./image/search.png" style="width: 2cm;height: 2cm;">
           </div>
           
           
         </div>
         
         
-        
-         <div class="overview-boxes">
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Order</div>
-              <div class="number">40,876</div>
-              <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
-              </div>
-            </div>
-            <i class="bx bx-cart-alt cart"></i>
-          </div>
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Sales</div>
-              <div class="number">38,876</div>
-              <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
-              </div>
-            </div>
-            <i class="bx bxs-cart-add cart two"></i>
-          </div>
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Profit</div>
-              <div class="number">$12,876</div>
-              <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
-              </div>
-            </div>
-            <i class="bx bx-cart cart three"></i>
-          </div>
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Return</div>
-              <div class="number">11,086</div>
-              <div class="indicator">
-                <i class="bx bx-down-arrow-alt down"></i>
-                <span class="text">Down From Today</span>
-              </div>
-            </div>
-            <i class="bx bxs-cart-download cart four"></i>
-          </div>
-          
-          
-        </div>
+       
 
         <div class="sales-boxes">
           <div class="recent-sales box">
