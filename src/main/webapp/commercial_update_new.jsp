@@ -1384,7 +1384,7 @@ document.getElementById('add_property_by_agent').addEventListener('submit', func
     }
 
     // Call your custom function
-    if (!nameValidation() || !phoneValidation|| !emailValidation()|| !constructionYearValidation()   ) {
+    if (!nameValidation() || !phoneValidation|| !emailValidation()|| !constructionYearValidation()||!opensideValidation() ) {
         // If the function returns false, prevent the form from submitting
         event.preventDefault();
         alert('Validation failed. Please check your inputs.');

@@ -258,10 +258,10 @@ small, time, .small {
             </div>
             <div class="card-hover-show">
 
-            <a class="btn btn-xs fs-10 btn-bold btn-warning" href="commercial_view?property_id=<%=p.getPropertyId() %>" style="font-size: large;width: 3cm;size: 5cm;" >View</a>
-                <a class="btn btn-xs fs-10 btn-bold btn-info" href="./commercial_update_new?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"" style="font-size: large;width: 3cm;size: 5cm;" >Update</a>
+            <a class="btn btn-xs fs-10 btn-bold btn-warning" href="commercial_view?property_id=<%=p.getPropertyId() %>" style="font-size: large;width: 3cm;size: 5cm;" ><label style="font-size: large;">View</label></a>
+                <a class="btn btn-xs fs-10 btn-bold btn-info" href="./commercial_update_new?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"" style="font-size: large;width: 3cm;size: 5cm;" ><label style="font-size: large;">Update</label></a>
 
-                <a class="btn btn-xs fs-10 btn-bold btn-danger" href="./commercial_delete?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"  onclick=" return confirm('are you sure you want to delete')" style="font-size: large;size: 5cm;">Delete</a>
+                <a class="btn btn-xs fs-10 btn-bold btn-danger" href="./commercial_delete?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"  onclick=" return confirm('are you sure you want to delete')" style="font-size: large;size: 5cm;"><label style="font-size: large;">Delete</label></a>
             </div>
         </footer>
     </div>

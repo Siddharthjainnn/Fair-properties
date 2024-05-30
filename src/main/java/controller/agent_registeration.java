@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.catalina.connector.Request;
+
 import model.model;
 
 @MultipartConfig(maxFileSize = 160300000)
@@ -135,6 +137,9 @@ public class agent_registeration extends HttpServlet {
 //			request.setAttribute("msg", "product added succesffuly");
 	sendOrderConfirmationEmail(email, fullName, agentid, phone, licenseNumber, notes);
 //			rx.forward(request, response);
+	RequestDispatcher rd=request.getRequestDispatcher("agent_login.jsp");
+	request.setAttribute("msg23", "inserted scussfully");
+	rd.forward(request, response);
         	response.sendRedirect("agent_module.jsp");
         	
         	

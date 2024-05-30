@@ -16,6 +16,7 @@ import dao.CustomerInterest;
 import dao.LoginActivity;
 import dao.PropertyDTO;
 import dao.agent;
+import dao.transiction_property;
 
 public class model {
 	public static Connection create_connection()
@@ -175,8 +176,9 @@ public class model {
 		}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}	System.out.println(ok);
 		return ok;
+	
 	}
 
 //	public PropertyDTO get_particular_property_view(String a) {
@@ -1870,16 +1872,441 @@ LoginActivity ok=new LoginActivity(id, userId, email, name, loginTimestamp);
 				return i;
 			}
 
-	public agent check_agent_exist(String email) {
-		// TODO Auto-generated method stub
-		return null;
+
+
+	public int add_Property_TransitionServlet(String transitionId, String propertyId, String propertyType,
+	        String oldOwnerName, String oldOwnerEmail, String oldOwnerPhoneNo, String newOwnerName,
+	        String status, String oldPrice, String newPrice, String oldRent, String newRent,
+	        String oldLeaseEndDate, String newLeaseEndDate, String comments, String newOwnerEmail,
+	        String newOwnerPhoneNo, String propertyCategory, String currentRent, String agentId,
+	        String currentPrice, String currentOwnerName, String currentOwnerEmail, String currentOwnerPhoneNo) {
+	    int i = 0;
+	    Connection con = null;
+
+	    try {
+	        con = create_connection();
+	        PreparedStatement stmt = con.prepareStatement("INSERT INTO property_transition (transition_id, property_id, property_type, old_owner_name, old_owner_email, old_owner_phone_no, new_owner_name, status, old_price, new_price, old_rent, new_rent, old_lease_end_date, new_lease_end_date, comments, new_owner_email, new_owner_phone_no, property_category, current_rent, agent_id, current_price, current_owner_name, current_owner_email, current_owner_phone_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+	        stmt.setString(1, transitionId);
+	        stmt.setString(2, propertyId);
+	        stmt.setString(3, propertyType);
+	        stmt.setString(4, oldOwnerName);
+	        stmt.setString(5, oldOwnerEmail);
+	        stmt.setString(6, oldOwnerPhoneNo);
+	        stmt.setString(7, newOwnerName);
+	        stmt.setString(8, status);
+	        stmt.setString(9, oldPrice);
+	        stmt.setString(10, newPrice);
+	        stmt.setString(11, oldRent);
+	        stmt.setString(12, newRent);
+	        stmt.setString(13, oldLeaseEndDate);
+	        stmt.setString(14, newLeaseEndDate);
+	        stmt.setString(15, comments);
+	        stmt.setString(16, newOwnerEmail);
+	        stmt.setString(17, newOwnerPhoneNo);
+	        stmt.setString(18, propertyCategory);
+	        stmt.setString(19, currentRent);
+	        stmt.setString(20, agentId);
+	        stmt.setString(21, currentPrice);
+	        stmt.setString(22, currentOwnerName);
+	        stmt.setString(23, currentOwnerEmail);
+	        stmt.setString(24, currentOwnerPhoneNo);
+
+	        i = stmt.executeUpdate();
+
+	    } catch (Exception e2) {
+	        e2.printStackTrace();
+	    }
+	    return i;
 	}
 
-	
+	public int add_Property_TransitionServlet(String transitionId, String propertyId, String propertyType,
+	        String oldOwnerName, String oldOwnerEmail, String oldOwnerPhoneNo, String currentOwnerName,
+	        String currentOwnerEmail, String currentOwnerPhoneNo, String newOwnerName, String newOwnerEmail,
+	        String newOwnerPhoneNo, String status, String currentPrice, String oldPrice, String newPrice,
+	        String currentAgentId, String oldRent, String newRent, String currentRent, String oldLeaseEndDate,
+	        String currentLeaseEndDate, String propertyCategory) {
+	    int i = 0;
+	    Connection con = null;
 
-	
+	    try {
+	        con = create_connection();
+	        
+	        PreparedStatement stmt = con.prepareStatement("INSERT INTO PropertyTransitions(TransitionID, PropertyID, PropertyType, OldOwnername, OldOwneremail, OldOwnerphoneno, NewOwnername, Status, OldPrice, NewPrice, OldRent, NewRent, OldLeaseEndDate, NewLeaseEndDate,NewOwnerEmail, NewOwnerPhoneNo, Propertcategory, Currentrent, agent_id, Currenprice, currentownername, currentowneremail, currentownerphone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+	        stmt.setString(1, transitionId);
+	        stmt.setString(2, propertyId);
+	        stmt.setString(3, propertyType);
+	        stmt.setString(4, oldOwnerName);
+	        stmt.setString(5, oldOwnerEmail);
+	        stmt.setString(6, oldOwnerPhoneNo);
+	        stmt.setString(7, newOwnerName);
+	        stmt.setString(8,status );
+	        stmt.setString(9,oldPrice );
+	        stmt.setString(10,newPrice );
+	        stmt.setString(11,oldRent );
+	        stmt.setString(12,newRent );
+	        stmt.setString(13,oldLeaseEndDate );
+	        stmt.setString(14,currentLeaseEndDate );
+	        stmt.setString(15,newOwnerEmail );
+	        stmt.setString(16,newOwnerPhoneNo );
+	        stmt.setString(17,propertyCategory );
+	        stmt.setString(18,currentRent );
+	        stmt.setString(19,currentAgentId );
+	        stmt.setString(20,currentPrice );
+	        stmt.setString(21,currentOwnerName );
+	        stmt.setString(22,currentOwnerEmail );
+	        stmt.setString(23,currentOwnerPhoneNo );
+	      
+	        i = stmt.executeUpdate();
+
+	    } catch (Exception e2) {
+	        e2.printStackTrace();
+	    }
+	    return i;
+	}
+
+	public transiction_property getParticularTranProperty(String transitionId) {
+	    Connection con = null;
+	    transiction_property transictionProperty = null;
+	    try {
+	        con = create_connection();
+	        PreparedStatement stmt = con.prepareStatement(
+	        		"SELECT * FROM PropertyTransitions WHERE propertyId = ? ORDER BY transitionDate DESC LIMIT 1"
+	        );
+	        stmt.setObject(1, transitionId);
+	        ResultSet rs = stmt.executeQuery();
+	        if (rs.next()) {
+	            String propertyId = rs.getString("propertyId");
+	            String propertyType = rs.getString("propertyType");
+	            String oldOwnerName = rs.getString("oldOwnerName");
+	            String oldOwnerEmail = rs.getString("oldOwnerEmail");
+	            String oldOwnerPhoneNo = rs.getString("oldOwnerPhoneNo");
+	            String currentOwnerName = rs.getString("currentOwnerName");
+	            String currentOwnerEmail = rs.getString("currentOwnerEmail");
+	            String currentOwnerPhoneNo = rs.getString("currentOwnerPhoneNo");
+	            String newOwnerName = rs.getString("newOwnerName");
+	            String newOwnerEmail = rs.getString("newOwnerEmail");
+	            String newOwnerPhoneNo = rs.getString("newOwnerPhoneNo");
+	            String status = rs.getString("status");
+	            String currentPrice = rs.getString("currentPrice");
+	            String oldPrice = rs.getString("oldPrice");
+	            String newPrice = rs.getString("newPrice");
+	            String currentAgentId = rs.getString("currentAgentId");
+	            String oldRent = rs.getString("oldRent");
+	            String newRent = rs.getString("newRent");
+	            String currentRent = rs.getString("currentRent");
+	            String oldLeaseEndDate = rs.getString("oldLeaseEndDate");
+	            String currentLeaseEndDate = rs.getString("currentLeaseEndDate");
+	            String transitionDate = rs.getString("transitionDate");
+	            String comments = rs.getString("comments");
+	            String propertyCategory = rs.getString("propertyCategory");
+
+	            transictionProperty = new transiction_property(
+	                    transitionId, propertyId, propertyType, oldOwnerName, oldOwnerEmail, oldOwnerPhoneNo,
+	                    currentOwnerName, currentOwnerEmail, currentOwnerPhoneNo, newOwnerName, newOwnerEmail,
+	                    newOwnerPhoneNo, status, currentPrice, oldPrice, newPrice, currentAgentId, oldRent,
+	                    newRent, currentRent, oldLeaseEndDate, currentLeaseEndDate, transitionDate, comments,
+	                    propertyCategory
+	            );
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (con != null) con.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return transictionProperty;
+	}
+
+	public transiction_property get_particular_tran_property(String a) {
+		 Connection con = null;
+		    transiction_property transictionProperty = null;
+		    try {
+		        con = create_connection();
+		        PreparedStatement stmt = con.prepareStatement(
+		        		"SELECT * FROM PropertyTransitions WHERE propertyId = ? ORDER BY transitionDate DESC LIMIT 1"
+		        );
+		        stmt.setString(1, a);
+		        ResultSet rs = stmt.executeQuery();
+		        if (rs.next()) {
+		        	 
+		        	String transitionId=rs.getString("TransitionID");
+		            String propertyId = rs.getString("PropertyID");
+		            String propertyType = rs.getString("PropertyType");
+		            String oldOwnerName = rs.getString("OldOwnername");
+		            String oldOwnerEmail = rs.getString("OldOwneremail");
+		            String oldOwnerPhoneNo = rs.getString("OldOwnerphoneno");
+		            String currentOwnerName = rs.getString("currentownername");
+		            String currentOwnerEmail = rs.getString("currentowneremail");
+		            String currentOwnerPhoneNo = rs.getString("currentownerphone");
+		            String newOwnerName = rs.getString("NewOwnername");
+		            String newOwnerEmail = rs.getString("NewOwnerEmail");
+		            String newOwnerPhoneNo = rs.getString("NewOwnerPhoneNo");
+		            String status = rs.getString("Status");
+		            String currentPrice = rs.getString("Currenprice");
+		            String oldPrice = rs.getString("OldPrice");
+		            String newPrice = rs.getString("NewPrice");
+		            String currentAgentId = rs.getString("agent_id");
+		            String oldRent = rs.getString("OldRent");
+		            String newRent = rs.getString("NewRent");
+		            String currentRent = rs.getString("Currentrent");
+		            String oldLeaseEndDate = rs.getString("OldLeaseEndDate");
+		            String currentLeaseEndDate = rs.getString("NewLeaseEndDate");
+		            String transitionDate = rs.getString("TransitionDate");
+		            String comments = rs.getString("Comments");
+		            String propertyCategory = rs.getString("Propertcategory");
+
+		            transictionProperty = new transiction_property(
+		                    transitionId, propertyId, propertyType, oldOwnerName, oldOwnerEmail, oldOwnerPhoneNo,
+		                    currentOwnerName, currentOwnerEmail, currentOwnerPhoneNo, newOwnerName, newOwnerEmail,
+		                    newOwnerPhoneNo, status, currentPrice, oldPrice, newPrice, currentAgentId, oldRent,
+		                    newRent, currentRent, oldLeaseEndDate, currentLeaseEndDate, transitionDate, comments,
+		                    propertyCategory
+		            );
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (con != null) con.close();
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		    }
+		    return transictionProperty;
+		}
+
+	public ArrayList<transiction_property> get_property_transition_view(String a) {
+	    Connection con = null;
+	    ArrayList<transiction_property> transictionProperties = new ArrayList<>();
+	    try {
+	        con = create_connection();
+	        PreparedStatement stmt = con.prepareStatement(
+	                "SELECT * FROM PropertyTransitions WHERE propertyId = ? ORDER BY transitionDate DESC"
+	        );
+	        stmt.setString(1, a);
+	        ResultSet rs = stmt.executeQuery();
+	        while (rs.next()) {
+	            String transitionId = rs.getString("TransitionID");
+	            String propertyId = rs.getString("PropertyID");
+	            String propertyType = rs.getString("PropertyType");
+	            String oldOwnerName = rs.getString("OldOwnername");
+	            String oldOwnerEmail = rs.getString("OldOwneremail");
+	            String oldOwnerPhoneNo = rs.getString("OldOwnerphoneno");
+	            String currentOwnerName = rs.getString("currentownername");
+	            String currentOwnerEmail = rs.getString("currentowneremail");
+	            String currentOwnerPhoneNo = rs.getString("currentownerphone");
+	            String newOwnerName = rs.getString("NewOwnername");
+	            String newOwnerEmail = rs.getString("NewOwnerEmail");
+	            String newOwnerPhoneNo = rs.getString("NewOwnerPhoneNo");
+	            String status = rs.getString("Status");
+	            String currentPrice = rs.getString("Currenprice");
+	            String oldPrice = rs.getString("OldPrice");
+	            String newPrice = rs.getString("NewPrice");
+	            String currentAgentId = rs.getString("agent_id");
+	            String oldRent = rs.getString("OldRent");
+	            String newRent = rs.getString("NewRent");
+	            String currentRent = rs.getString("Currentrent");
+	            String oldLeaseEndDate = rs.getString("OldLeaseEndDate");
+	            String currentLeaseEndDate = rs.getString("NewLeaseEndDate");
+	            String transitionDate = rs.getString("TransitionDate");
+	            String comments = rs.getString("Comments");
+	            String propertyCategory = rs.getString("Propertcategory");
+
+	            transiction_property transictionProperty = new transiction_property(
+	                    transitionId, propertyId, propertyType, oldOwnerName, oldOwnerEmail, oldOwnerPhoneNo,
+	                    currentOwnerName, currentOwnerEmail, currentOwnerPhoneNo, newOwnerName, newOwnerEmail,
+	                    newOwnerPhoneNo, status, currentPrice, oldPrice, newPrice, currentAgentId, oldRent,
+	                    newRent, currentRent, oldLeaseEndDate, currentLeaseEndDate, transitionDate, comments,
+	                    propertyCategory
+	            );
+	            transictionProperties.add(transictionProperty);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (con != null) con.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return transictionProperties;
+	}
+
+	public transiction_property get_particular_tran_property_a(String ok, String jk) {
+		 Connection con = null;
+		    transiction_property transictionProperty = null;
+		    try {
+		        con = create_connection();
+		        PreparedStatement stmt = con.prepareStatement(
+		        		"SELECT * FROM PropertyTransitions WHERE TransitionID = ? AND TransitionDate = ?  "
+		        );
+		        System.out.println("SELECT * FROM PropertyTransitions WHERE TransitionID = "+ok);
+		        stmt.setString(1, ok);
+		        stmt.setString(2, jk);
+		        ResultSet rs = stmt.executeQuery();
+		        if (rs.next()) {
+		        	 
+		        	String transitionId=rs.getString("TransitionID");
+		            String propertyId = rs.getString("PropertyID");
+		            String propertyType = rs.getString("PropertyType");
+		            String oldOwnerName = rs.getString("OldOwnername");
+		            String oldOwnerEmail = rs.getString("OldOwneremail");
+		            String oldOwnerPhoneNo = rs.getString("OldOwnerphoneno");
+		            String currentOwnerName = rs.getString("currentownername");
+		            String currentOwnerEmail = rs.getString("currentowneremail");
+		            String currentOwnerPhoneNo = rs.getString("currentownerphone");
+		            String newOwnerName = rs.getString("NewOwnername");
+		            String newOwnerEmail = rs.getString("NewOwnerEmail");
+		            String newOwnerPhoneNo = rs.getString("NewOwnerPhoneNo");
+		            String status = rs.getString("Status");
+		            String currentPrice = rs.getString("Currenprice");
+		            String oldPrice = rs.getString("OldPrice");
+		            String newPrice = rs.getString("NewPrice");
+		            String currentAgentId = rs.getString("agent_id");
+		            String oldRent = rs.getString("OldRent");
+		            String newRent = rs.getString("NewRent");
+		            String currentRent = rs.getString("Currentrent");
+		            String oldLeaseEndDate = rs.getString("OldLeaseEndDate");
+		            String currentLeaseEndDate = rs.getString("NewLeaseEndDate");
+		            String transitionDate = rs.getString("TransitionDate");
+		            String comments = rs.getString("Comments");
+		            String propertyCategory = rs.getString("Propertcategory");
+
+		            transictionProperty = new transiction_property(
+		                    transitionId, propertyId, propertyType, oldOwnerName, oldOwnerEmail, oldOwnerPhoneNo,
+		                    currentOwnerName, currentOwnerEmail, currentOwnerPhoneNo, newOwnerName, newOwnerEmail,
+		                    newOwnerPhoneNo, status, currentPrice, oldPrice, newPrice, currentAgentId, oldRent,
+		                    newRent, currentRent, oldLeaseEndDate, currentLeaseEndDate, transitionDate, comments,
+		                    propertyCategory
+		            );
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (con != null) con.close();
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		    }
+		    return transictionProperty;
+		}
+
+	public int update_agent_1(String agentid, String fullName, String email, String phone, String licenseNumber,
+	        String specialization, String experience, String languagesSpoken, String commissionRate, String dob,
+	        String gender, String salesPerformance, String address, String address1, String country, String state,
+	        String city, String zipcode, String status, String adharcard, String pancard, String notes, InputStream is,
+	        InputStream is1, InputStream is2) {
+	    int i = 0;
+	    Connection con = null;
+
+	    try {
+	        con = create_connection();
+	        PreparedStatement stmt = con.prepareStatement("UPDATE AgentRegistration SET full_name = ?, email = ?, phone = ?, license_number = ?, specialization = ?, experience = ?, languages_spoken = ?, commission_rate = ?, dob = ?, gender = ?, sales_performance = ?, address = ?, address1 = ?, country = ?, state = ?, city = ?, zipcode = ?, status = ?, adharcard = ?, pancard = ?, notes = ?, adharcard_image = ?, pancard_doc = ?, profile = ? WHERE agent_id = ?");
+	        System.out.println("UPDATE AgentRegistration SET full_name=" + fullName + ", email=" + email);
+
+	        stmt.setString(1, fullName);
+	        stmt.setString(2, email);
+	        stmt.setString(3, phone);
+	        stmt.setString(4, licenseNumber);
+	        stmt.setString(5, specialization);
+	        stmt.setString(6, experience);
+	        stmt.setString(7, languagesSpoken);
+	        stmt.setString(8, commissionRate);
+	        stmt.setString(9, dob);
+	        stmt.setString(10, gender);
+	        stmt.setString(11, salesPerformance);
+	        stmt.setString(12, address);
+	        stmt.setString(13, address1);
+	        stmt.setString(14, country);
+	        stmt.setString(15, state);
+	        stmt.setString(16, city);
+	        stmt.setString(17, zipcode);
+	        stmt.setString(18, status);
+	        stmt.setString(19, adharcard);
+	        stmt.setString(20, pancard);
+	        stmt.setString(21, notes);
+	        stmt.setBlob(22, is1); // adharcard_image
+	        stmt.setBlob(23, is2); // pancard_doc
+	        stmt.setBlob(24, is);  // profile
+	        stmt.setString(25, agentid);
+
+	        i = stmt.executeUpdate();
+
+	    } catch (Exception e2) {
+	        e2.printStackTrace();
+	    } finally {
+	        if (con != null) {
+	            try {
+	                con.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	    return i;
+	}
+
+	public byte[] get_pancard_agent(String a) {
+		byte img[]=null;
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement ps=con.prepareStatement("select * from AgentRegistration where agent_id=? ");
+			ps.setString(1, a);
+		ResultSet rs=	ps.executeQuery();
+		while(rs.next())
+		{
+			img=rs.getBytes("pancard_doc");
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return img;
+	}
+
+	public byte[] get_adhar_agent(String a) {
+		byte img[]=null;
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement ps=con.prepareStatement("select * from AgentRegistration where agent_id=? ");
+			ps.setString(1, a);
+		ResultSet rs=	ps.executeQuery();
+		while(rs.next())
+		{
+			img=rs.getBytes("adharcard_image");
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return img;
+	}
+
+	public byte[] get_profile_agent(String a) {
+		byte img[]=null;
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement ps=con.prepareStatement("select * from AgentRegistration where agent_id=? ");
+			ps.setString(1, a);
+		ResultSet rs=	ps.executeQuery();
+		while(rs.next())
+		{
+			img=rs.getBytes("profile");
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return img;
+	}
 }
-
     // Other methods in your model class
 
 

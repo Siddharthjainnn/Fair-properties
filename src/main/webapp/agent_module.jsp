@@ -93,11 +93,11 @@
     // JavaScript to show loader after 4 seconds and redirect after 10 seconds
     setTimeout(function(){
         document.getElementById('loader').style.display = 'block';
-    }, 4000); // Show loader after 4 seconds
+    }, 3000); // Show loader after 4 seconds
 
     setTimeout(function(){
         window.location.href = 'agent_login.jsp';
-    }, 10000); // Redirect after 10 seconds
+    }, 3800); // Redirect after 10 seconds
 </script>
 </head>
 <body>

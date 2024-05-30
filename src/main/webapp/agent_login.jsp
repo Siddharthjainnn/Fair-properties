@@ -280,6 +280,25 @@ a:hover {
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
+<%String kl=(String)request.getAttribute("msg23"); %>
+
+<% if (kl != null) { %>
+<br>
+<br>
+<center>
+<h2>
+  <div class="alert alert-light" role="alert" style="color: black;font-weight: 1000;">
+    Thank you for submitting your agent request. We will notify you by email when the admin approves your request !!.
+  </div>
+</h2>
+</center>
+
+<script>
+  setTimeout(function() {
+    window.location.href = 'agent_login.jsp';
+  }, 8000); // 5000 milliseconds = 5 seconds
+</script>
+<% } %>
 
 <!-- <img class="wave" src="./image/Fair Property.gif">  -->
 <div class="container">
@@ -295,7 +314,7 @@ a:hover {
                     <i style="color: black;" class="fas fa-user"></i>
                 </div>
                 <div class="div">
-                    <h5 style="color: black;font-weight: 300">Username</h5>
+                    <h5 style="color: black;font-weight: 300">Agent Id</h5>
                     <input  style="color: black;" type="text" class="input" name="user_id">
                 </div>
             </div>

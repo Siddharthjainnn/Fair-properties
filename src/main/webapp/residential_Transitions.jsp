@@ -1,8 +1,11 @@
-<%@page import="org.apache.catalina.connector.Request"%>
-<%@page import="dao.PropertyDTO"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="dao.PropertyDTO"%>
+
+    
+    <%@page import="org.apache.catalina.connector.Request"%>
+
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -225,13 +228,13 @@ small, time, .small {
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-
 <h1 style="font-size: 2em; font-weight: bold; background: linear-gradient(to right, #1e3c72, #2a5298); -webkit-background-clip: text; color: transparent; text-align: center;">
-        RESIDENTIALS PROPERTY BY YOU
+        RESIDENTIAL PROPERTY BY YOU
     </h1>
 <br>
 <br>
 <br>
+
 <div class="" style="margin-left: 2cm;margin-right: 2cm;">
 <div class="col-md-12">
 <%  for (PropertyDTO p : list) { %>
@@ -258,10 +261,14 @@ small, time, .small {
             </div>
             <div class="card-hover-show">
 
-            <a class="btn btn-xs fs-10 btn-bold btn-warning" href="commercial_view?property_id=<%=p.getPropertyId() %>" style="font-size: large;width: 3cm;size: 5cm;" ><label style="font-size: large;">View</label></a>
-                <a class="btn btn-xs fs-10 btn-bold btn-info" href="./commercial_update_new?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"" style="font-size: large;width: 3cm;size: 5cm;" ><label style="font-size: large;">Update</label></a>
 
-                <a class="btn btn-xs fs-10 btn-bold btn-danger" href="./residential_delete?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"  onclick=" return confirm('are you sure you want to delete')" style="font-size: large;size: 5cm;"><label style="font-size: large;">Delete</label></a>
+
+            <a class="btn btn-xs fs-10 btn-bold btn-warning" href="commercial_view?property_id=<%=p.getPropertyId() %>" style="font-size: large;width: 3cm;size: 5cm;" ><label style="font-size: large;">View</label></a>
+                <a class="btn btn-xs fs-10 btn-bold btn-info" href="./commercial_Transition_new?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"" style="font-size: large;width: 7cm;size: 5cm;" ><label style="font-size: large;">Add Residential Transitions</label></a>
+<a class="btn btn-xs fs-10 btn-bold btn-danger" href="./commercial_Transition_view?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"   style="font-size: large;size: 5cm;"><label style="font-size: large;">History</label></a> 
+                <%-- <a class="btn btn-xs fs-10 btn-bold btn-info" href="./commercial_update_new?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"" style="font-size: large;width: 3cm;size: 5cm;" >Update</a>
+ --%>
+                <%-- <a class="btn btn-xs fs-10 btn-bold btn-danger" href="./commercial_delete?property_id=<%=p.getPropertyId() %>&category=<%=p.getCategory() %>&agent_id=<%=p.getAgentId() %>"  onclick=" return confirm('are you sure you want to delete')" style="font-size: large;size: 5cm;">Delete</a> --%>
             </div>
         </footer>
     </div>
