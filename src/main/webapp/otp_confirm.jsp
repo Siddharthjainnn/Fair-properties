@@ -1,14 +1,20 @@
 <%@page import="dao.agent"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
 <style>
-body {
-    background: #eee;
+body{
+    margin-top:20px;
+ background-image: url("./image/Untitled design (2).gif");
+/*     background-color: #f2f3f8; */
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
 }
 .card {
     box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
@@ -53,13 +59,13 @@ body {
     <% } %>
 
     <br>
-    <div class="row">
+    <div class="row" style="margin-top: 5cm;">
         <div class="col-lg-5 col-md-7 mx-auto my-auto">
             <div class="card">
                 <div class="card-body px-lg-5 py-lg-5 text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle avatar-lg img-thumbnail mb-4" alt="profile-image">
                     <h2 class="text-info">2FA Security</h2>
-                    <p class="mb-4">Enter 5-digits code from your authenticator app.</p>
+                    <p class="mb-4">Enter the 5-digit OTP sent to your registered email..</p>
                     <form action="check_password" method="post">
                         <input type="hidden" value="<%= a4 %>" name="otp2">
                         <input type="hidden" value="<%= kll.getAgentId() %>" name="pass">
@@ -117,13 +123,13 @@ body {
     <% } %>
 
     <br>
-    <div class="row">
+    <div class="row" style="margin-top: 5cm;">
         <div class="col-lg-5 col-md-7 mx-auto my-auto">
             <div class="card">
                 <div class="card-body px-lg-5 py-lg-5 text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle avatar-lg img-thumbnail mb-4" alt="profile-image">
                     <h2 class="text-info">2FA Security</h2>
-                    <p class="mb-4">Enter 5-digits code from your authenticator app.</p>
+                    <p class="mb-4">Enter the 5-digit OTP sent to your registered email.</p>
                     <form action="check_password" method="post">
                         <input type="hidden" value="<%= a %>" name="otp2">
                         <input type="hidden" value="<%= b %>" name="pass">
