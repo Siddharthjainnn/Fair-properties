@@ -431,6 +431,114 @@ public class model {
 		}
 		return aa;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	public agent get_agent_login_mobile(String a, String b) {
+		agent aa=null;
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement ps=con.prepareStatement("select * from AgentRegistration where phone=? and Password=?");
+			ps.setString(1, a);
+			ps.setString(2, b);
+			System.out.println(a+" "+b);
+		ResultSet rs=	ps.executeQuery();
+		System.out.println("till this done");
+		
+		while(rs.next())
+		{
+			System.out.println("till this done");
+			 aa = new agent(
+				    rs.getString("agent_id"),
+				    rs.getString("full_name"),
+				    rs.getString("email"),
+				    rs.getString("phone"),
+				    rs.getString("license_number"),
+				    rs.getString("specialization"),
+				    rs.getString("experience"),
+				    rs.getString("languages_spoken"),
+				    rs.getString("commission_rate"),
+				    rs.getString("dob"),
+				    rs.getString("gender"),
+				    rs.getString("sales_performance"),
+				    rs.getString("address"),
+				    rs.getString("address1"),
+				    rs.getString("country"),
+				    rs.getString("state"),
+				    rs.getString("city"),
+				    rs.getString("zipcode"),
+				    rs.getString("status"),
+				    rs.getString("adharcard"),
+				    rs.getString("pancard"),
+				    rs.getString("notes"),
+				    rs.getString("password")
+				);
+		//System.out.println(rs.getString("name")+"  "+ rs.getString("user_id")+"  "+ rs.getString("password")+"  "+ rs.getString("gender"));
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return aa;
+	}
+	
+	
+	
+	
+	public agent get_agent_login_email(String a, String b) {
+		agent aa=null;
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement ps=con.prepareStatement("select * from AgentRegistration where email=? and Password=?");
+			ps.setString(1, a);
+			ps.setString(2, b);
+			System.out.println(a+" "+b);
+		ResultSet rs=	ps.executeQuery();
+		System.out.println("till this done");
+		
+		while(rs.next())
+		{
+			System.out.println("till this done");
+			 aa = new agent(
+				    rs.getString("agent_id"),
+				    rs.getString("full_name"),
+				    rs.getString("email"),
+				    rs.getString("phone"),
+				    rs.getString("license_number"),
+				    rs.getString("specialization"),
+				    rs.getString("experience"),
+				    rs.getString("languages_spoken"),
+				    rs.getString("commission_rate"),
+				    rs.getString("dob"),
+				    rs.getString("gender"),
+				    rs.getString("sales_performance"),
+				    rs.getString("address"),
+				    rs.getString("address1"),
+				    rs.getString("country"),
+				    rs.getString("state"),
+				    rs.getString("city"),
+				    rs.getString("zipcode"),
+				    rs.getString("status"),
+				    rs.getString("adharcard"),
+				    rs.getString("pancard"),
+				    rs.getString("notes"),
+				    rs.getString("password")
+				);
+		//System.out.println(rs.getString("name")+"  "+ rs.getString("user_id")+"  "+ rs.getString("password")+"  "+ rs.getString("gender"));
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return aa;
+	}
+	
+	
 
 	public static int add_property(String propertyid,String propertyName, String propertyType, String location, String landmark, String price, int bedrooms, int bathrooms, double areaSqft, String description, String listedDate, String agentId, String country, String city, String postalCode) {
 		int i=0;
@@ -2259,6 +2367,7 @@ LoginActivity ok=new LoginActivity(id, userId, email, name, loginTimestamp);
 		try {
 			con=create_connection();
 			PreparedStatement ps=con.prepareStatement("select * from AgentRegistration where agent_id=? ");
+			System.out.println("select * from AgentRegistration where agent_id= "+a);
 			ps.setString(1, a);
 		ResultSet rs=	ps.executeQuery();
 		while(rs.next())
@@ -2306,6 +2415,274 @@ LoginActivity ok=new LoginActivity(id, userId, email, name, loginTimestamp);
 		}
 		return img;
 	}
+
+	public ArrayList<agent> get_agent_request1() {
+		ArrayList<agent> list=new ArrayList<>();
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement stmt=con.prepareStatement("SELECT * FROM AgentRegistration where Status=?");
+			String a="rejected";
+			stmt.setString(1, a);
+			
+			ResultSet rs=stmt.executeQuery();
+			
+			while (rs.next()) {
+				agent aa = new agent(
+					    rs.getString("agent_id"),
+					    rs.getString("full_name"),
+					    rs.getString("email"),
+					    rs.getString("phone"),
+					    rs.getString("license_number"),
+					    rs.getString("specialization"),
+					    rs.getString("experience"),
+					    rs.getString("languages_spoken"),
+					    rs.getString("commission_rate"),
+					    rs.getString("dob"),
+					    rs.getString("gender"),
+					    rs.getString("sales_performance"),
+					    rs.getString("address"),
+					    rs.getString("address1"),
+					    rs.getString("country"),
+					    rs.getString("state"),
+					    rs.getString("city"),
+					    rs.getString("zipcode"),
+					    rs.getString("status"),
+					    rs.getString("adharcard"),
+					    rs.getString("pancard"),
+					    rs.getString("notes"),
+					    rs.getString("password"),
+					    rs.getTimestamp("created_on")
+					);
+
+				
+				list.add(aa);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public ArrayList<agent> get_agent_request2() {
+		ArrayList<agent> list=new ArrayList<>();
+		Connection con=null;
+		try {
+			con=create_connection();
+			PreparedStatement stmt=con.prepareStatement("SELECT * FROM AgentRegistration where Status=?");
+			String a="need more info";
+			stmt.setString(1, a);
+			
+			ResultSet rs=stmt.executeQuery();
+			
+			while (rs.next()) {
+				agent aa = new agent(
+					    rs.getString("agent_id"),
+					    rs.getString("full_name"),
+					    rs.getString("email"),
+					    rs.getString("phone"),
+					    rs.getString("license_number"),
+					    rs.getString("specialization"),
+					    rs.getString("experience"),
+					    rs.getString("languages_spoken"),
+					    rs.getString("commission_rate"),
+					    rs.getString("dob"),
+					    rs.getString("gender"),
+					    rs.getString("sales_performance"),
+					    rs.getString("address"),
+					    rs.getString("address1"),
+					    rs.getString("country"),
+					    rs.getString("state"),
+					    rs.getString("city"),
+					    rs.getString("zipcode"),
+					    rs.getString("status"),
+					    rs.getString("adharcard"),
+					    rs.getString("pancard"),
+					    rs.getString("notes"),
+					    rs.getString("password"),
+					    rs.getTimestamp("created_on")
+					);
+
+				
+				list.add(aa);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	 public ArrayList<agent> get_agent_request3() {
+		// TODO Auto-generated method stub
+		 ArrayList<agent> list=new ArrayList<>();
+			Connection con=null;
+			try {
+				con=create_connection();
+				PreparedStatement stmt=con.prepareStatement("SELECT * FROM AgentRegistration where Status=?");
+				String a="confirm";
+				stmt.setString(1, a);
+				
+				ResultSet rs=stmt.executeQuery();
+				
+				while (rs.next()) {
+					agent aa = new agent(
+						    rs.getString("agent_id"),
+						    rs.getString("full_name"),
+						    rs.getString("email"),
+						    rs.getString("phone"),
+						    rs.getString("license_number"),
+						    rs.getString("specialization"),
+						    rs.getString("experience"),
+						    rs.getString("languages_spoken"),
+						    rs.getString("commission_rate"),
+						    rs.getString("dob"),
+						    rs.getString("gender"),
+						    rs.getString("sales_performance"),
+						    rs.getString("address"),
+						    rs.getString("address1"),
+						    rs.getString("country"),
+						    rs.getString("state"),
+						    rs.getString("city"),
+						    rs.getString("zipcode"),
+						    rs.getString("status"),
+						    rs.getString("adharcard"),
+						    rs.getString("pancard"),
+						    rs.getString("notes"),
+						    rs.getString("password"),
+						    rs.getTimestamp("created_on")
+						);
+
+					
+					list.add(aa);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
+
+	public void delete_agent_email(String a) {
+		int i=0;
+		Connection con=null;
+		
+		try {
+			con=create_connection();
+			PreparedStatement stmt=con.prepareStatement("UPDATE AgentRegistration SET email = ? WHERE agent_id = ?");
+			
+			stmt.setString(1, "");
+            stmt.setString(2, a);
+            
+            
+			
+			
+			
+		i=	stmt.executeUpdate();
+		
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+		
+	}
+
+	public agent getparticular_agent_byemail_status(String a, String b) {
+agent aa=null;
+		
+		Connection con=null;
+		try {
+			con=create_connection();
+					PreparedStatement ps=con.prepareStatement("SELECT * FROM AgentRegistration WHERE email=? and status=?");
+				ps.setString(1, a);
+				ps.setString(2, b);
+				
+				
+					ResultSet rs=	ps.executeQuery();
+				while(rs.next())
+				{
+					 aa = new agent(
+						    rs.getString("agent_id"),
+						    rs.getString("full_name"),
+						    rs.getString("email"),
+						    rs.getString("phone"),
+						    rs.getString("license_number"),
+						    rs.getString("specialization"),
+						    rs.getString("experience"),
+						    rs.getString("languages_spoken"),
+						    rs.getString("commission_rate"),
+						    rs.getString("dob"),
+						    rs.getString("gender"),
+						    rs.getString("sales_performance"),
+						    rs.getString("address"),
+						    rs.getString("address1"),
+						    rs.getString("country"),
+						    rs.getString("state"),
+						    rs.getString("city"),
+						    rs.getString("zipcode"),
+						    rs.getString("status"),
+						    rs.getString("adharcard"),
+						    rs.getString("pancard"),
+						    rs.getString("notes"),
+						    rs.getString("password")
+						);
+
+					
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return aa;
+		}
+
+	public agent get_particular_agent_by_mail(String a) {
+agent aa=null;
+		
+		Connection con=null;
+		try {
+			con=create_connection();
+					PreparedStatement ps=con.prepareStatement("SELECT * FROM AgentRegistration WHERE email=? ");
+				ps.setString(1, a);
+				
+				
+				
+					ResultSet rs=	ps.executeQuery();
+				while(rs.next())
+				{
+					 aa = new agent(
+						    rs.getString("agent_id"),
+						    rs.getString("full_name"),
+						    rs.getString("email"),
+						    rs.getString("phone"),
+						    rs.getString("license_number"),
+						    rs.getString("specialization"),
+						    rs.getString("experience"),
+						    rs.getString("languages_spoken"),
+						    rs.getString("commission_rate"),
+						    rs.getString("dob"),
+						    rs.getString("gender"),
+						    rs.getString("sales_performance"),
+						    rs.getString("address"),
+						    rs.getString("address1"),
+						    rs.getString("country"),
+						    rs.getString("state"),
+						    rs.getString("city"),
+						    rs.getString("zipcode"),
+						    rs.getString("status"),
+						    rs.getString("adharcard"),
+						    rs.getString("pancard"),
+						    rs.getString("notes"),
+						    rs.getString("password")
+						);
+
+					
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return aa;
+		}
+
 }
     // Other methods in your model class
 

@@ -17,7 +17,9 @@ public class get_pancard_agent extends HttpServlet {
        
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String a=(String)request.getAttribute("agent_id");
+		String a=(String)request.getParameter("agent_id");
+		
+		System.out.println("pan card" +a);
 		model model=new model();
 		
 		byte[] img=	model.get_pancard_agent(a);

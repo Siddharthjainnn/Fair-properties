@@ -38,6 +38,36 @@ body{
 .form-control{
 font-weight: 1000;
 }
+
+.modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            text-align: center;
+        }
+        .modal-buttons {
+            margin-top: 20px;
+        }
+        .modal-buttons button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
 </style>
 </head>
 <body>
@@ -56,8 +86,69 @@ font-weight: 1000;
     <div class="hstack gap-3">
        <a href="reject_agent_by_admin?agent_id=<%=list.getAgentId() %>&agent_user_id=<%=list.getEmail() %>&agent_login_id=<%=list.getAgentId() %>&agent_password=<%=list.getPassword() %>&agent_name=<%=list.getFullName() %>"  class="btn btn-danger btn-sm btn-icon-text" style="width: 4cm;height: 1cm;font-size: large;font-weight: 700"><i class="bi bi-x"></i> <span class="text">Reject</span></a>&nbsp;&nbsp;&nbsp;
       <a href="confirm_agent_by_admin?agent_id=<%=list.getAgentId() %>&agent_user_id=<%=list.getEmail() %>&agent_login_id=<%=list.getAgentId() %>&agent_password=<%=list.getPassword() %>&agent_name=<%=list.getFullName() %>" class="btn btn-primary btn-sm btn-icon-text" style="width: 6cm;height: 1cm;font-size: large;font-weight: 700" ><i class="bi bi-save"></i> <span class="text">Confirm The Application</span></a>
+
+    <button class="btn btn-warning" onclick="showModal()">Need More Information</button>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <p>Please enter the required information:</p>
+        <input type="text" id="userInput" placeholder="Enter your input here">
+        <div class="modal-buttons">
+            <button onclick="handleOk()">OK</button>
+            <button onclick="handleCancel()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showModal() {
+        document.getElementById('myModal').style.display = 'flex';
+    }
+
+    function handleOk() {
+        const userInput = document.getElementById('userInput').value;
+
+        // Create a form dynamically
+        const form = document.createElement('form');
+        form.method = 'GET';
+        form.action = 'need_more_agent_by_admin';
+
+        // Append input fields with data to the form
+        form.appendChild(createHiddenInput('agent_id', '<%=list.getAgentId() %>'));
+        form.appendChild(createHiddenInput('agent_user_id', '<%=list.getEmail() %>'));
+        form.appendChild(createHiddenInput('agent_login_id', '<%=list.getAgentId() %>'));
+        form.appendChild(createHiddenInput('agent_password', '<%=list.getPassword() %>'));
+        form.appendChild(createHiddenInput('agent_name', '<%=list.getFullName() %>'));
+        form.appendChild(createHiddenInput('additional_info', userInput));
+
+        // Append the form to the body and submit it
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function handleCancel() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+
+    // Close the modal if the user clicks outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById('myModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Utility function to create hidden input elements
+    function createHiddenInput(name, value) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        return input;
+    }
+</script>
     </div>
   </div>
+
 
   <!-- Main content -->
   <div class="row">
@@ -228,7 +319,7 @@ font-weight: 1000;
       <div class="card mb-4">
         <div class="card-body">
           <h3 class="h6">Professional Photo</h3>
-          <input class="form-control" type="file"name="image" >
+          <center><img src="get_image_agent?agent_id=<%=list.getAgentId()%>" style="width: 7cm;height: 300px;"></center>
         </div>
       </div>
       
@@ -240,7 +331,7 @@ font-weight: 1000;
         <input class="form-control" type="text"  name="adharcard" value="<%=list.getAdharcard() %>"  readonly="readonly">
         <br>
           <h3 class="h6">Aadhaar Card Document</h3>
-          <input class="form-control" type="file" name="adharcardimage">
+         <center>  <img src="./get_adhar_agent?agent_id=<%=list.getAgentId()%>" style="width: 100%;height: 300px;"></center>
         </div>
       </div>
       
@@ -250,7 +341,7 @@ font-weight: 1000;
         <input class="form-control" type="text" name="pancard" value="<%=list.getPancard() %>" readonly="readonly" >
         <br>
           <h3 class="h6">Pan Card Document</h3>
-          <input class="form-control" type="file" name="pancarddoc">
+           <center> <img src="./get_pancard_agent?agent_id=<%=list.getAgentId()%>" style="width: 100%;height: 300px;"></center>
         </div>
       </div>
       

@@ -67,7 +67,7 @@ html, body{
 
                         <h2>Duplicate Email Registeration</h2>
                         <p class="main-description pt-2">We're Sorry, As Per My record This Id Has Been Registerd Before Please Try To Login</p>
-                        <a href="agent_login.jsp" class="btn btn-sz-primary">Go Home</a>
+                        <a href="agent_login.jsp?source=agent" class="btn btn-sz-primary">Go Home</a>
                     </div>
                 </div>
 

@@ -38,11 +38,12 @@ public class reject_agent_by_admin extends HttpServlet {
 		String f=(String)request.getParameter("agent_name");
 		model model=new model();
 		int i=model.update_status_agent(a,b);
+	    model.delete_agent_email(a);
 		ArrayList<agent> list=model.get_agent_request();
 		if(i!=0)
 		{
 			sendOrderConfirmationEmail(c, d, e, f, a, b);
-			RequestDispatcher rd=request.getRequestDispatcher("new_agent_request.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("new_agent_request?source=rejected");
 			request.setAttribute("LIST", list);
 			rd.forward(request, response);
 		}else {

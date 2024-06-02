@@ -1,3 +1,4 @@
+<%@page import="dao.agent"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -48,55 +49,60 @@ body{
     backdrop-filter: blur(5px); /* Add blur effect */
     display: none; /* Initially hidden */
 }
+
 .loader {
-    display: none;
     position: fixed;
-    left: 50%;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    width: 100px;
+    height: 100px;
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite; /* Animation for spinning */
+    z-index: 9999; /* Ensure loader appears above other content */
+    cursor: pointer;
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
-.blur {
-    filter: blur(1px);
-}
 </style>
 </head>
 <body>
-<%String email=(String)request.getAttribute("k"); %>
-<div class="container-fluid">
-<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" >
-  <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="5000">
-      <img src="./image/Fair Property Pvt Ltdnew.png" class="d-block w-100" alt="..." style="height: 15cm;">
-    </div>
-    <div class="carousel-item" data-bs-interval="5000">
-      <img src="./image/Fair Property Pvt Ltd (1).png" class="d-block w-100" alt="..." style="height: 15cm;">
-    </div>
-    
+<%agent list=(agent)request.getAttribute("LIST"); %>
+<% String list2 = (String)request.getAttribute("msg"); %>
+<% if (list2 != null) { %>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+  <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+  </symbol>
+  <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+</svg>
+
+<div id="alert-message" class="alert alert-success d-flex align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+  <div>
+    Update Request Received!!
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
 </div>
 
-<br>
+<script>
+setTimeout(function() {
+  window.location.href = "agent_login.jsp?source=agent";
+}, 6000); // Redirect after 5 seconds
+</script>
+<% } %>
+
+
+
  <%
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String digits = "0123456789";
@@ -112,7 +118,96 @@ body{
         }
     %>
 
+    		<%-- <div class="row h-100">
+				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+					<div class="d-table-cell align-middle">
 
+						<div class="text-center mt-4">
+							<h1 class="h2">Get started</h1>
+							<p class="lead">
+								Start creating the best possible user experience for you customers.
+							</p>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<div class="m-sm-4">
+									<form   action="agent_registeration" method="post" enctype="multipart/form-data" >
+						
+						<div class="form-group">
+									
+									
+  <label for="name">Agent Id</label>
+						<input type="text" id="agentId" class="form-control form-control-lg" name="agentId" value="<%= randomUserId %>" readonly>
+												
+							</div>		
+									<div class="form-group">
+									
+									
+  <label for="name">Name</label>
+  <input type="text" class="form-control form-control-lg" id="name" name="name" required placeholder="Enter your name">
+</div>
+<div class="form-group">
+  <label for="email">Email Address</label>
+  <input type="email" class="form-control form-control-lg" id="email" name="email" required placeholder="Enter your email address">
+</div>
+<div class="form-group">
+  <label for="phone">Phone Number</label>
+  <input type="tel" class="form-control form-control-lg" id="phone" name="phone" placeholder="Enter your phone number">
+</div>
+<div class="form-group">
+  <label for="address">Address</label>
+  <input type="text" class="form-control form-control-lg" id="address" name="address" placeholder="Enter your address">
+</div>
+<div class="form-group">
+  <label for="companyName">Company Name</label>
+  <input type="text" class="form-control form-control-lg" id="companyName" name="companyName" placeholder="Enter your company name">
+</div>
+<div class="form-group">
+  <label for="licenseNumber">License Number</label>
+  <input type="text" class="form-control form-control-lg" id="licenseNumber" name="licenseNumber" placeholder="Enter your license number">
+</div>
+<div class="form-group">
+  <label for="specialization">Specialization</label>
+  <input type="text" class="form-control form-control-lg" id="specialization" name="specialization" placeholder="Enter your specialization">
+</div>
+<div class="form-group">
+  <label for="experience">Experience (years)</label>
+  <input type="number" class="form-control form-control-lg" id="experience" name="experience" placeholder="Enter your experience in years">
+</div>
+<div class="form-group">
+  <label for="languagesSpoken">Languages Spoken</label>
+  <input type="text" class="form-control form-control-lg" id="languagesSpoken" name="languagesSpoken" placeholder="Enter languages spoken">
+</div>
+<div class="form-group">
+  <label for="commissionRate">Commission Rate (%)</label>
+  <input type="number" class="form-control form-control-lg" id="commissionRate" name="commissionRate" step="0.01" placeholder="Enter commission rate">
+</div>
+<div class="form-group">
+  <label for="profilePicture">Profile Picture </label>
+ <input type="file" class="form-control form-control-lg"  placeholder=" Enter your photo" name="image">
+</div>
+<div class="form-group">
+  <label for="socialMediaLinks">Social Media Links</label>
+  <input type="text" class="form-control form-control-lg" id="socialMediaLinks" name="socialMediaLinks" placeholder="Enter your social media links">
+</div>
+<div class="form-group">
+  <label for="notes">Notes</label>
+  <textarea class="form-control form-control-lg" id="notes" name="notes" rows="3" placeholder="Enter any notes"></textarea>
+</div>
+  <button type="submit" class="btn btn-primary">ADD PRODUCT</button>
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		 --%>
 		
 		
 		
@@ -131,17 +226,50 @@ body{
 		
 		
 		
-		 <div class="loader" id="loader"></div>
 		
 		
 		
-		<form  id="agentRegistrationForm" action="agent_registeration" method="post" enctype="multipart/form-data" >
+		
+		
+		
+		
+		<form  id="agentRegistrationForm" action="check_duplicate" method="post" enctype="multipart/form-data" >
 		
 		<div class="container-fluid">
 
 
   <!-- Title -->
-  
+  <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
+    
+   <!--  <div class="hstack gap-3">
+      <button type="submit" class="btn btn-light btn-sm btn-icon-text" style="width: 4cm;height: 1cm;"><i class="bi bi-x"></i> <span class="text">Draft</span></button>
+      <button id="saveButton" type="submit" class="btn btn-primary btn-sm btn-icon-text" style="width: 4cm;height: 1cm;" ><i class="bi bi-save"></i> <span class="text">Update</span></button>
+    </div> -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+  <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+  </symbol>
+  <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+</svg>
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+  <div>
+   Your request to become an agent with Fair Property has been reviewed by the admin. The admin requires more information, which has been sent to your email. To update agent details, please ensure you submit your Aadhar card, PAN card, and a recent profile picture. These documents are mandatory for the update process.
+
+
+
+
+
+
+  </div>
+</div>
+  </div>
+
   <!-- Main content -->
   <div class="row">
     <!-- Left side -->
@@ -156,13 +284,13 @@ body{
            <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">Agent Id</label>
-                <input type="text" class="form-control" name="agentId" value="<%= randomUserId %>" readonly>
+                <input type="text" class="form-control" name="agentId" value="<%=list.getAgentId() %>" readonly>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="mb-3">
                <label class="form-label">Full Name<span style="color: red;"> *</span></label>
-    <input type="text" class="form-control" id="name" name="name" required="required">
+    <input type="text" class="form-control" id="name" name="name" value="<%=list.getFullName() %>" required="required">
     <div id="nameError" class="invalid-feedback"></div>
               </div>
             </div>
@@ -171,7 +299,7 @@ body{
             <div class="col-lg-4">
               <div class="mb-3">
                  <label class="form-label">Email<span style="color: red;"> *</span></label>
-    <input type="email" class="form-control" value="<%=email %>" id="email" name="email" required="required">
+    <input type="email" class="form-control" id="email" name="email" value="<%=list.getEmail()  %>" required="required">
     <div id="emailError" class="invalid-feedback"></div>
               </div>
             </div>
@@ -180,15 +308,15 @@ body{
              <div class="col-lg-4">
               <div class="mb-3">
                <label class="form-label">Phone Number<span style="color: red;"> *</span></label>
-    <input type="text" class="form-control" id="phone" name="phone" required="required">
+    <input type="text" class="form-control" id="phone" name="phone" value="<%=list.getPhone() %>" required="required">
     <div id="phoneError" class="invalid-feedback"></div>
               </div>
             </div>
             
             <div class="col-lg-4">
               <div class="mb-3">
-                 <label class="form-label">Agent License Number (Optional)</label>
-    <input type="text" class="form-control" id="licenseNumber" placeholder="If Not Please Enter NA" name="licenseNumber"  maxlength="20">
+                 <label class="form-label">License Number<span style="color: red;"> *</span></label>
+    <input type="text" class="form-control" id="licenseNumber" name="licenseNumber" value="<%=list.getLicenseNumber() %>" required="required" maxlength="20">
     <div id="licenseNumberError" class="invalid-feedback"></div>
               </div>
             </div>
@@ -196,71 +324,7 @@ body{
             <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">Specialization</label>
-                
-                
-                <select class="form-select" name="specialization"  >
-             <option value="" disabled selected>Select your specialization</option>
-             
-              <option value="commercial">Commercial</option>
-                <option value="industrial">Industrial</option>
-                <option value="land">Land</option>
-                <option value="rental">Rental</option>
-                <option value="investment">Investment</option>
-                <option value="residential-commercial">Residential + Commercial</option>
-<option value="residential-industrial">Residential + Industrial</option>
-<option value="residential-land">Residential + Land</option>
-<option value="residential-rental">Residential + Rental</option>
-<option value="residential-investment">Residential + Investment</option>
-<option value="commercial-industrial">Commercial + Industrial</option>
-<option value="commercial-land">Commercial + Land</option>
-<option value="commercial-rental">Commercial + Rental</option>
-<option value="commercial-investment">Commercial + Investment</option>
-<option value="industrial-land">Industrial + Land</option>
-<option value="industrial-rental">Industrial + Rental</option>
-<option value="industrial-investment">Industrial + Investment</option>
-<option value="land-rental">Land + Rental</option>
-<option value="land-investment">Land + Investment</option>
-<option value="rental-investment">Rental + Investment</option>
-
-<option value="residential-commercial-industrial">Residential + Commercial + Industrial</option>
-<option value="residential-commercial-land">Residential + Commercial + Land</option>
-<option value="residential-commercial-rental">Residential + Commercial + Rental</option>
-<option value="residential-commercial-investment">Residential + Commercial + Investment</option>
-<option value="residential-industrial-land">Residential + Industrial + Land</option>
-<option value="residential-industrial-rental">Residential + Industrial + Rental</option>
-<option value="residential-industrial-investment">Residential + Industrial + Investment</option>
-<option value="residential-land-rental">Residential + Land + Rental</option>
-<option value="residential-land-investment">Residential + Land + Investment</option>
-<option value="residential-rental-investment">Residential + Rental + Investment</option>
-<option value="commercial-industrial-land">Commercial + Industrial + Land</option>
-<option value="commercial-industrial-rental">Commercial + Industrial + Rental</option>
-<option value="commercial-industrial-investment">Commercial + Industrial + Investment</option>
-<option value="commercial-land-rental">Commercial + Land + Rental</option>
-<option value="commercial-land-investment">Commercial + Land + Investment</option>
-<option value="commercial-rental-investment">Commercial + Rental + Investment</option>
-<option value="industrial-land-rental">Industrial + Land + Rental</option>
-<option value="industrial-land-investment">Industrial + Land + Investment</option>
-<option value="industrial-rental-investment">Industrial + Rental + Investment</option>
-<option value="land-rental-investment">Land + Rental + Investment</option>
-
-<option value="residential-commercial-industrial-land">Residential + Commercial + Industrial + Land</option>
-<option value="residential-commercial-industrial-rental">Residential + Commercial + Industrial + Rental</option>
-<option value="residential-commercial-industrial-investment">Residential + Commercial + Industrial + Investment</option>
-<option value="residential-commercial-land-rental">Residential + Commercial + Land + Rental</option>
-<option value="residential-commercial-land-investment">Residential + Commercial + Land + Investment</option>
-<option value="residential-commercial-rental-investment">Residential + Commercial + Rental + Investment</option>
-<option value="residential-industrial-land-rental">Residential + Industrial + Land + Rental</option>
-<option value="residential-industrial-land-investment">Residential + Industrial + Land + Investment</option>
-<option value="residential-industrial-rental-investment">Residential + Industrial + Rental + Investment</option>
-<option value="residential-land-rental-investment">Residential + Land + Rental + Investment</option>
-<option value="commercial-industrial-land-rental">Commercial + Industrial + Land + Rental</option>
-<option value="commercial-industrial-land-investment">Commercial + Industrial + Land + Investment</option>
-<option value="commercial-industrial-rental-investment">Commercial + Industrial + Rental + Investment</option>
-<option value="commercial-land-rental-investment">Commercial + Land + Rental + Investment</option>
-<option value="industrial-land-rental-investment">Industrial + Land + Rental + Investment</option>
-                
-          </select>
-                
+                <input type="text" class="form-control" name="specialization"  value="<%=list.getSpecialization() %>">
               </div>
             </div>
           </div>
@@ -268,52 +332,65 @@ body{
           
           
           <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">Experience(Year)</label>
-                <input type="text" class="form-control" name="experience"  >
+                <input type="text" class="form-control" name="experience" value="<%=list.getExperience() %>"  >
               </div>
             </div>
             
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Languages Spoken</label>
+                <input type="text" class="form-control" name="languagesSpoken"  value="<%=list.getLanguagesSpoken() %>" >
+              </div>
+            </div>
             
-            
-            <div class="col-lg-3">
+            <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">Commission Rate(%)</label>
-                <input type="text" class="form-control" name="commissionRate" >
+                <input type="text" class="form-control" name="commissionRate" value="<%=list.getCommissionRate() %>" >
               </div>
             </div>
-            
-            
-            <div class="col-lg-3">
+          </div>
+          
+          
+           <div class="row">
+            <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">Date Of Birth</label>
-    <input type="date" class="form-control" id="dob" name="dob" >
+    <input type="date" class="form-control" id="dob" name="dob" value="<%=list.getDob() %>" >
     <div id="dobError" class="invalid-feedback"></div>
 
                <div id="dobError" class="invalid-feedback"></div>
               </div>
             </div>
             
-            <div class="col-lg-3">
+            <div class="col-lg-4">
               <div class="mb-3">
                 <label class="form-label">Gender</label>
-               <select class="form-select" name="gender" required="required" >
-            <option value="Male" selected="">Male</option>
+               <select class="form-select" name="gender" required="required"  >
+               <option value="<%=list.getGender() %>" selected=""><%=list.getGender() %></option> >
+            <option value="Male" >Male</option>
             <option value="Female">Female</option>
             <option value="Others">Others</option>
           </select>
               </div>
               
-          </div>
-          
-          
-           
+              
+               
+         
+              
+            </div>
             
-           
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label class="form-label">Sales Performance (Number Of Properties Sold)</label>
+                <input type="text" class="form-control" name="salesperformance" value="<%=list.getSalesPerformance() %>" >
+              </div>
+            </div>
           </div>
-          <input type="hidden" class="form-control" name="salesperformance" >
-          <input type="hidden" class="form-control" name="languagesSpoken"   >
+          
           
         </div>
       </div>
@@ -323,51 +400,40 @@ body{
           <h3 class="h6 mb-4">Address</h3>
           <div class="mb-3">
             <label class="form-label">Permanent Address</label>
-            <input type="text" class="form-control" name="address" required="required">
+            <input type="text" class="form-control" name="address" value="<%= list.getAddress() %>" required="required">
           </div>
           <div class="mb-3">
             <label class="form-label">Residential Address</label>
-            <input type="text" class="form-control" name="address1" required="required"  >
+            <input type="text" class="form-control" name="address1" value="<%=list.getAddress1() %>" required="required"  >
           </div>
           <div class="row">
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">Country</label>
-                <select class="select2 form-control select2-hidden-accessible" data-select2-placeholder="Select country" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true" name="country">
-                  
-                  <option value="India">India</option>
-                  
-                </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder">Select Country</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-              </div>
+                
+                <input type="text" class="form-control" name="country" value="<%=list.getCountry() %>" required="required" readonly="readonly" >
+                              </div>
             </div>
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">State</label>
-                <select class="select2 form-control select2-hidden-accessible" data-select2-placeholder="Select state" data-select2-id="select2-data-4-680y" tabindex="-1" aria-hidden="true" name="state">
-                  
-                  <option value="Madhya Pradesh">Madhya Pradesh</option>
-                  
-                </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-5-np4c" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-2fn7-container" aria-controls="select2-2fn7-container"><span class="select2-selection__rendered" id="select2-2fn7-container" role="textbox" aria-readonly="true" title="Select state"><span class="select2-selection__placeholder">Select State</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-              </div>
+               <input type="text" class="form-control" name="state" value="<%=list.getState() %>" required="required" readonly="readonly" >
+               
+                             </div>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-6">
               <div class="mb-3">
                 <label class="form-label">City</label>
-                <select class="select2 form-control select2-hidden-accessible" data-select2-placeholder="Select city" data-select2-id="select2-data-7-809c" tabindex="-1" aria-hidden="true" name="city">
-                  
-                  <option value="Indore">Indore</option>
-                  <option value="Ujjain">Ujjain</option>
-                  <option value="Dewas">Dewas</option>
-                  
-                </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-8-3peu" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-jdfi-container" aria-controls="select2-jdfi-container"><span class="select2-selection__rendered" id="select2-jdfi-container" role="textbox" aria-readonly="true" title="Select city"><span class="select2-selection__placeholder">Select City</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-              </div>
+                <input type="text" class="form-control" name="city" value="<%=list.getCity() %>" required="required"  readonly="readonly" >
+                
+                              </div>
             </div>
             <div class="col-lg-6">
               <div class="mb-3">
                  <label class="form-label">ZIP Code<span style="color: red;"> *</span></label>
-    <input type="text" class="form-control" name="zipcode">
+    <input type="text" class="form-control" name="zipcode" value="<%= list.getZipcode() %>">
     <div id="zipError" class="invalid-feedback"></div>
               </div>
             </div>
@@ -381,7 +447,7 @@ body{
       <div class="card mb-4">
         <div class="card-body">
           <h3 class="h6">Status</h3>
-          <input type="text" class="form-control" name="status" value="Draft" required="required" readonly >
+          <input type="text" class="form-control" name="status" value="Need More Information" required="required" readonly >
         </div>
       </div>
       <!-- Avatar -->
@@ -398,7 +464,7 @@ body{
         
       
         <h3 class="h6">Aadhaar Card Number<span style="color: red;"> *</span></h3>
-    <input class="form-control" type="text" name="adharcard" >
+    <input class="form-control" type="text" name="adharcard" value="<%=list.getAdharcard() %>" >
     <div id="aadhaarError" class="invalid-feedback"></div>
         <br>
           <h3 class="h6">Aadhaar Card Document</h3>
@@ -409,7 +475,7 @@ body{
       <div class="card mb-4">
         <div class="card-body">
         <h3 class="h6">Pan Card Number<span style="color: red;"> *</span></h3>
-    <input class="form-control" type="text" name="pancard">
+    <input class="form-control" type="text" name="pancard" value="<%=list.getPancard()%>">
     <div id="panError" class="invalid-feedback"></div>
         <br>
           <h3 class="h6">Pan Card Document</h3>
@@ -421,46 +487,23 @@ body{
       <div class="card mb-4">
         <div class="card-body">
           <h3 class="h6">Notes</h3>
-          <textarea style="height: 1.3cm;" class="form-control" rows="3" name="notes" ></textarea>
+          <textarea class="form-control" rows="3" name="notes" ></textarea>
         </div>
       </div>
       <!-- Notification settings -->
       
-      <!-- <button type="submit" class="btn btn-light btn-sm btn-icon-text" style="width: 4cm;height: 1cm;"><i class="bi bi-x"></i> <span class="text">Draft</span></button> -->
-      
-      
-<!--       <div style=" bottom: 1cm;margin-left: 9cm;">
-      
-  <div style="display: flex; align-items: center; gap: 10px;">
-    <a class="btn btn-danger" href="agent_login.jsp" style="display: inline-flex; align-items: center; height: 1.4cm; line-height: 1.4cm;">Cancel</a>
-  <button id="saveButton" type="submit" class="btn btn-primary btn-sm btn-icon-text" style="width: 8cm; height: 1.4cm; display: inline-flex; align-items: center;">
-    <i class="bi bi-save"></i>
-    <span class="text" style="font-size: large;width: 7cm;" >Submit </span>
-  </button>
-
-</div>
-
-</div> -->
-<div class="card mb-4" style="justify-content: flex-end;align-items:flex-end;background-color: transparent;" >
+    <div class="card mb-4" style="justify-content: flex-end;align-items:flex-end;background-color: transparent;" >
         <div class="card-body" style="justify-content: center;align-items: center;">
-        <a class="btn btn-danger" href="agent_login.jsp" style="display: inline-flex; align-items: center; height: 1.4cm; line-height: 1.4cm;">Cancel</a>
+        <a class="btn btn-danger" href="emai_check.jsp" style="display: inline-flex; align-items: center; height: 1.4cm; line-height: 1.4cm;">Cancel</a>
           <button id="saveButton" type="submit" class="btn btn-primary btn-sm btn-icon-text" style="width: 8cm; height: 1.4cm; display: inline-flex; align-items: center;">
     <i class="bi bi-save"></i>
     <span class="text" style="font-size: large;width: 7cm;" >Submit </span>
   </button>
         </div>
       </div>
-
-  
     </div>
   </div>
 </div>
-
-
-    
-
-      
-
 
 
 		
@@ -475,19 +518,7 @@ body{
 		
 		
 		</form>
-		<script>
-document.getElementById('agentRegistrationForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission to show the loader
-    document.getElementById('loader').style.display = 'block';
-    document.getElementById('loader').style.zIndex = '1000';
-    document.getElementById('agentRegistrationForm').classList.add('blur');
-
-    // Submit the form programmatically
-    event.target.submit(); 
-    
-});
-</script>
-
+		
 		<script>
     // Function to validate the Full Name.
     function fullNameValidation() {
@@ -589,38 +620,38 @@ document.getElementById("phone").addEventListener("input", function() {
 
 // Function to validate the license number
 function licenseNumberValidation() {
-      var licenseNumberInput = document.getElementById("licenseNumber");
-      var licenseNumberError = document.getElementById("licenseNumberError");
-      var licenseNumber = licenseNumberInput.value.trim();
+    var licenseNumberInput = document.getElementById("licenseNumber");
+    var licenseNumberError = document.getElementById("licenseNumberError");
+    var licenseNumber = licenseNumberInput.value.trim();
 
-      // Check if the license number input is empty
-      if (licenseNumber === "") {
+    // Check if the license number input is empty
+    if (licenseNumber === "") {
         licenseNumberError.textContent = "Please enter your license number.";
         licenseNumberInput.classList.add("is-invalid");
         return false; // Prevent form submission
-      } else if (!isValidLicenseNumber(licenseNumber)) {
+    } else if (!isValidLicenseNumber(licenseNumber)) {
         // Check if the license number is not valid
         licenseNumberError.textContent = "Please enter a valid license number.";
         licenseNumberInput.classList.add("is-invalid");
         return false; // Prevent form submission
-      } else {
+    } else {
         licenseNumberError.textContent = ""; // Clear the error message
         licenseNumberInput.classList.remove("is-invalid");
         return true; // Allow form submission
-      }
     }
+}
 
-    // Function to check if the license number is valid
-    function isValidLicenseNumber(licenseNumber) {
-      // Regular expression to validate license number format (1-20 alphanumeric characters)
-      var licenseNumberRegex = /^[a-zA-Z0-9]{1,20}$/;
-      return licenseNumberRegex.test(licenseNumber);
-    }
+// Function to check if the license number is valid
+function isValidLicenseNumber(licenseNumber) {
+    // Regular expression to validate license number format (20 numbers only)
+    var licenseNumberRegex = /^\d{1,20}$/;
+    return licenseNumberRegex.test(licenseNumber);
+}
 
-    // Add event listener to trigger validation on input change
-    document.getElementById("licenseNumber").addEventListener("input", function() {
-      licenseNumberValidation();
-    });
+// Add event listener to trigger validation on input change
+document.getElementById("licenseNumber").addEventListener("input", function() {
+   licenseNumberValidation();
+});
 
 // Function to validate the date of birth.
 function dateOfBirthValidation() {
@@ -766,7 +797,7 @@ document.getElementsByName("pancard")[0].addEventListener("keypress", function(e
         }
 
         // Call your custom function
-        if (!fullNameValidation() || !emailValidation()|| !phoneValidation() || !dateOfBirthValidation() || !zipCodeValidation() || !aadhaarCardValidation() || !panCardValidation()  ) {
+        if (!fullNameValidation() || !emailValidation()|| !licenseNumberValidation()|| !phoneValidation() || !dateOfBirthValidation() || !zipCodeValidation() || !aadhaarCardValidation() || !panCardValidation()  ) {
             // If the function returns false, prevent the form from submitting
             event.preventDefault();
             alert('Validation failed. Please check your inputs.');

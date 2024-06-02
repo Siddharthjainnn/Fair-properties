@@ -31,59 +31,211 @@ public class agent_login extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String a = (String) request.getParameter("user_id");
-		String b = (String) request.getParameter("password");
-
-		model model = new model();
+		
+		String n=(String)request.getParameter("source");
 		
 		
-		agent ok=model.get_agent_login_2(a,b);
-		ArrayList<LoginActivity> list=model.getLoginActivities();
-		ArrayList<CustomerInterest> list5=model.get_interseted_agent_property(a);
-	ArrayList<PropertyDTO> list6=model.get_more_property_by_agent(a);
+		System.out.println(n);
 		
-		
+		if(n.equals("mobile")) {
+			System.out.println("yaha tk aghaya");
+			String a = (String) request.getParameter("user_id");
+			String b = (String) request.getParameter("password");
 
-		if(ok!=null)
-		{
-
-				response.sendRedirect("agent.jsp");
-				
-				LocalDate startDate = LocalDate.now().withDayOfMonth(1);
-		        LocalDate endDate = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());
-		        ArrayList<LoginActivity> list4 =model.getLoginActivityCountForDate(startDate, endDate);
-		        
-		        
-		        LocalDate startDate1 = LocalDate.now().with(java.time.DayOfWeek.MONDAY);
-		        LocalDate endDate1 = LocalDate.now().with(java.time.DayOfWeek.SUNDAY);
-
-		        ArrayList<LoginActivity> list3 = model.getLoginActivityCountForDate1(startDate1, endDate1);
-
-		        
-		        LocalDate today = LocalDate.now();
-		        ArrayList<LoginActivity> list2 =model.getLoginActivities2(LocalDate.now());
+			model model = new model();
 			
-					request.setAttribute("kk", ok);		
-					
+			
+			agent ok=model.get_agent_login_mobile(a,b);
+			ArrayList<LoginActivity> list=model.getLoginActivities();
+			ArrayList<CustomerInterest> list5=model.get_interseted_agent_property(a);
+		ArrayList<PropertyDTO> list6=model.get_more_property_by_agent(a);
+			
+			
 
-					HttpSession session = request.getSession();
-					session.setAttribute("m", ok);
-					session.setAttribute("aa", list);
-					session.setAttribute("aa1", list2);
-					session.setAttribute("aa2", list3);
-					session.setAttribute("aa3", list4);
-					session.setAttribute("aa4", list5);
-					session.setAttribute("aa5", list6);
+			if(ok!=null)
+			{
+
+					response.sendRedirect("agent.jsp");
 					
-					
-					
+					LocalDate startDate = LocalDate.now().withDayOfMonth(1);
+			        LocalDate endDate = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());
+			        ArrayList<LoginActivity> list4 =model.getLoginActivityCountForDate(startDate, endDate);
+			        
+			        
+			        LocalDate startDate1 = LocalDate.now().with(java.time.DayOfWeek.MONDAY);
+			        LocalDate endDate1 = LocalDate.now().with(java.time.DayOfWeek.SUNDAY);
+
+			        ArrayList<LoginActivity> list3 = model.getLoginActivityCountForDate1(startDate1, endDate1);
+
+			        
+			        LocalDate today = LocalDate.now();
+			        ArrayList<LoginActivity> list2 =model.getLoginActivities2(LocalDate.now());
 				
+						request.setAttribute("kk", ok);		
+						
+
+						HttpSession session = request.getSession();
+						session.setAttribute("m", ok);
+						session.setAttribute("aa", list);
+						session.setAttribute("aa1", list2);
+						session.setAttribute("aa2", list3);
+						session.setAttribute("aa3", list4);
+						session.setAttribute("aa4", list5);
+						session.setAttribute("aa5", list6);
+						
+						
+						
 					
-		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("agent_login.jsp");
-			request.setAttribute("kk", "invallied username or password");	
-			rd.forward(request, response);
+						
+			}else {
+				RequestDispatcher rd = request.getRequestDispatcher("agent_login.jsp?source=mobile");
+				request.setAttribute("kk", "invallied username or password");	
+				rd.forward(request, response);
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}else if(n.equals("email")){
+			
+			String a = (String) request.getParameter("user_id");
+			String b = (String) request.getParameter("password");
+
+			model model = new model();
+			
+			
+			agent ok=model.get_agent_login_email(a,b);
+			ArrayList<LoginActivity> list=model.getLoginActivities();
+			ArrayList<CustomerInterest> list5=model.get_interseted_agent_property(a);
+		ArrayList<PropertyDTO> list6=model.get_more_property_by_agent(a);
+			
+			
+
+			if(ok!=null)
+			{
+
+					response.sendRedirect("agent.jsp");
+					
+					LocalDate startDate = LocalDate.now().withDayOfMonth(1);
+			        LocalDate endDate = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());
+			        ArrayList<LoginActivity> list4 =model.getLoginActivityCountForDate(startDate, endDate);
+			        
+			        
+			        LocalDate startDate1 = LocalDate.now().with(java.time.DayOfWeek.MONDAY);
+			        LocalDate endDate1 = LocalDate.now().with(java.time.DayOfWeek.SUNDAY);
+
+			        ArrayList<LoginActivity> list3 = model.getLoginActivityCountForDate1(startDate1, endDate1);
+
+			        
+			        LocalDate today = LocalDate.now();
+			        ArrayList<LoginActivity> list2 =model.getLoginActivities2(LocalDate.now());
+				
+						request.setAttribute("kk", ok);		
+						
+
+						HttpSession session = request.getSession();
+						session.setAttribute("m", ok);
+						session.setAttribute("aa", list);
+						session.setAttribute("aa1", list2);
+						session.setAttribute("aa2", list3);
+						session.setAttribute("aa3", list4);
+						session.setAttribute("aa4", list5);
+						session.setAttribute("aa5", list6);
+						
+						
+						
+					
+						
+			}else {
+				RequestDispatcher rd = request.getRequestDispatcher("agent_login.jsp?source=email");
+				request.setAttribute("kk", "invallied username or password");	
+				rd.forward(request, response);
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}else if(n.equals("agent")) {
+			String a = (String) request.getParameter("user_id");
+			String b = (String) request.getParameter("password");
+
+			model model = new model();
+			
+			
+			agent ok=model.get_agent_login_2(a,b);
+			ArrayList<LoginActivity> list=model.getLoginActivities();
+			ArrayList<CustomerInterest> list5=model.get_interseted_agent_property(a);
+		ArrayList<PropertyDTO> list6=model.get_more_property_by_agent(a);
+			
+			
+
+			if(ok!=null)
+			{
+
+					response.sendRedirect("agent.jsp");
+					
+					LocalDate startDate = LocalDate.now().withDayOfMonth(1);
+			        LocalDate endDate = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());
+			        ArrayList<LoginActivity> list4 =model.getLoginActivityCountForDate(startDate, endDate);
+			        
+			        
+			        LocalDate startDate1 = LocalDate.now().with(java.time.DayOfWeek.MONDAY);
+			        LocalDate endDate1 = LocalDate.now().with(java.time.DayOfWeek.SUNDAY);
+
+			        ArrayList<LoginActivity> list3 = model.getLoginActivityCountForDate1(startDate1, endDate1);
+
+			        
+			        LocalDate today = LocalDate.now();
+			        ArrayList<LoginActivity> list2 =model.getLoginActivities2(LocalDate.now());
+				
+						request.setAttribute("kk", ok);		
+						
+
+						HttpSession session = request.getSession();
+						session.setAttribute("m", ok);
+						session.setAttribute("aa", list);
+						session.setAttribute("aa1", list2);
+						session.setAttribute("aa2", list3);
+						session.setAttribute("aa3", list4);
+						session.setAttribute("aa4", list5);
+						session.setAttribute("aa5", list6);
+						
+						
+						
+					
+						
+			}else {
+				RequestDispatcher rd = request.getRequestDispatcher("agent_login.jsp?source=agent");
+				request.setAttribute("kk", "invallied username or password");	
+				rd.forward(request, response);
+			}
+			
 		}
+		
+		
+		
+		
+		
+		
+		
 	}
 
 

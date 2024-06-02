@@ -98,7 +98,12 @@ public class GoogleLoginServlet2 extends HttpServlet {
             session.setAttribute("pictureUrl", pictureUrl);
 
            agent  kl=   model.getparticular_agent_byemail(email);
+
            
+           if(kl==null)
+           {
+        	   response.sendRedirect("naf.jsp");
+           }
             
            LocalDate startDate = LocalDate.now().withDayOfMonth(1);
 	        LocalDate endDate = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());

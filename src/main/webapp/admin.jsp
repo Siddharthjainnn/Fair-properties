@@ -729,7 +729,7 @@ sidebarToggle.addEventListener("click", () => {
         </li>
         
         <li>
-          <a href="new_agent_request">
+          <a href="new_agent_request?source=submiited">
             <i class="bx bx-list-ul"></i>
             <span class="links_name">New Agent Request</span>
           </a>

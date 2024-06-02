@@ -96,7 +96,7 @@
     }, 3000); // Show loader after 4 seconds
 
     setTimeout(function(){
-        window.location.href = 'agent_login.jsp';
+        window.location.href = 'agent_login.jsp?source=agent';
     }, 3800); // Redirect after 10 seconds
 </script>
 </head>

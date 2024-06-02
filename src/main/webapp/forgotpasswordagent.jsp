@@ -11,7 +11,11 @@
 <style>
 body{
     margin-top:20px;
-    background-color: #f2f3f8;
+ background-image: url("./image/Untitled design (2).gif");
+/*     background-color: #f2f3f8; */
+
+background-size: cover;
+background-repeat: no-repeat;
 }
 .card {
     margin-bottom: 1.5rem;
@@ -30,7 +34,28 @@ body{
     border: 1px solid #e5e9f2;
     border-radius: .2rem;
 }
+.loader {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.blur {
+    filter: blur(2px);
+}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <body>
@@ -57,7 +82,9 @@ body{
 </div>
 <%} %>
 
-<div class="container h-100">
+
+<div class="loader" id="loader"></div>
+<div class="container h-100" style="  margin-top:350px;" >
     		<div class="row h-100">
 				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
 					<div class="d-table-cell align-middle">
@@ -72,7 +99,7 @@ body{
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-4">
-									<form action="forgotpassword_agent"  method="get">
+									<form id="forgotpassword"  action="forgotpassword_agent"  method="get">
 										<div class="form-group">
 											<label>Email</label>
 											
@@ -91,7 +118,20 @@ body{
 				</div>
 			</div>
 		</div>
+     <script>
     
+ 
+    document.getElementById('forgotpassword').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission to show the loader
+        document.getElementById('loader').style.display = 'block';
+        document.getElementById('loader').style.zIndex = '1000';
+        document.getElementById('forgotpassword').classList.add('blur');
+
+        // Submit the form programmatically
+        event.target.submit(); 
+        
+    });
+    </script>
     
     
     

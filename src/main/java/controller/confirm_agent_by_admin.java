@@ -28,6 +28,9 @@ public class confirm_agent_by_admin extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String a=(String)request.getParameter("agent_id");
+		String g=(String)request.getParameter("additional_info");
+		
+		System.out.println(g);
 		String b="confirm";
 		
 		String c=(String)request.getParameter("agent_user_id");
@@ -40,7 +43,7 @@ public class confirm_agent_by_admin extends HttpServlet {
 		if(i!=0)
 		{
 			sendOrderConfirmationEmail(c, d, e, f, a, b);
-			RequestDispatcher rd=request.getRequestDispatcher("new_agent_request.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("new_agent_request?source=submiited");
 			request.setAttribute("LIST", list);
 			rd.forward(request, response);
 		}else {

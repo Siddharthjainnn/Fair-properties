@@ -137,10 +137,10 @@ public class agent_registeration extends HttpServlet {
 //			request.setAttribute("msg", "product added succesffuly");
 	sendOrderConfirmationEmail(email, fullName, agentid, phone, licenseNumber, notes);
 //			rx.forward(request, response);
-	RequestDispatcher rd=request.getRequestDispatcher("agent_login.jsp");
+	RequestDispatcher rd=request.getRequestDispatcher("agent_login.jsp?source=agent");
 	request.setAttribute("msg23", "inserted scussfully");
 	rd.forward(request, response);
-        	response.sendRedirect("agent_module.jsp");
+	/* response.sendRedirect("agent_module.jsp"); */
         	
         	
         	

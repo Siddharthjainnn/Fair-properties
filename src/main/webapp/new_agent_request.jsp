@@ -488,11 +488,17 @@ nav .profile-details i{
 
 </head>
 <body>
+
+
+
 <%-- <%@include file ="admin.jsp" %> --%>
 <%ArrayList<agent> list=(ArrayList<agent>)request.getAttribute("LIST"); %>
+<%ArrayList<agent> list1=(ArrayList<agent>)request.getAttribute("LIST1"); %>
+<%ArrayList<agent> list2=(ArrayList<agent>)request.getAttribute("LIST2"); %>
+<%ArrayList<agent> list3=(ArrayList<agent>)request.getAttribute("LIST3"); %>
 
 
-<%if (list.isEmpty()) { %>
+<%if (list.isEmpty()&& list1.isEmpty()&& list2.isEmpty()&& list3.isEmpty()) { %>
 
 
 <style>
@@ -583,39 +589,7 @@ body {
 
 
 
-<%-- 
 
-<% for (agent mm : list) {%>
-<div class="panel-body">
-<div class="row">
- <div class="col-md-1"><img src="./get_agent_image?agent_id=<%=mm.getAgentId() %>" class="media-object img-thumbnail" /></div> 
-<div class="col-md-11">
-<div class="row">
-<div class="col-md-12">
-<div class="pull-right" ><a class="btn btn-primary"  href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>" style="background-color: green;width: 5cm;height: 1.4cm;font-weight: 700;font-size:x-large;">View More</a></div>
-<span><strong>Order name</strong></span> <span class="label label-info">group name</span><br/>
-Quantity : 2, cost: $323.13 <br/>
-<a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-ok" href="confirm_agent_by_admin?agent_id=<%=mm.getAgentId() %>&agent_user_id=<%=mm.getEmail() %>&agent_login_id=<%=mm.getAgentId() %>&agent_password=<%=mm.getPassword() %>&agent_name=<%=mm.getFullName() %>" title="View"></a>
-<a data-placement="top" class="btn btn-danger btn-xs glyphicon glyphicon-trash" href="#" title="Danger" href="reject_agent_by_admin?agent_id=<%=mm.getAgentId() %>&agent_user_id=<%=mm.getEmail() %>&agent_login_id=<%=mm.getAgentId() %>&agent_password=<%=mm.getPassword() %>&agent_name=<%=mm.getFullName() %>"></a>
-<a data-placement="top" class="btn btn-info btn-xs glyphicon glyphicon-usd" href="#" title="Danger"></a>
-</div>
-<div class="col-md-12">Request made on: <%=mm.getCreatedOn() %> by <a href="#"><%=mm.getFullName() %> </a></div>
-</div>
-</div>
-</div>
-
-
-</div>
-<%} %>
-
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-<%} %>                     
-                    
-</script>
-
- --%>
 
 
 
@@ -658,7 +632,7 @@ Quantity : 2, cost: $323.13 <br/>
         </li>
         
         <li>
-          <a href="new_agent_request">
+          <a href="new_agent_request?source=submiited">
             <i class="bx bx-list-ul"></i>
             <span class="links_name">New Agent Request</span>
           </a>
@@ -734,10 +708,24 @@ Quantity : 2, cost: $323.13 <br/>
         <div class="overview-boxes">
           <div class="box">
             <div class="right-side">
+            <a href="new_agent_request?source=submiited" style="text-decoration: none;color: black;">
               <div class="box-topic">Total Agent Request</div>
               <%
 // Initialize a local variable to count the number of requests
 int requestCount = 0;
+              int q=0;//
+              int m=0;
+              int c=0;
+              for (agent mk : list1) {
+            	    q++; // Increment the request count for each iteration reject
+              }
+            	    for (agent mk : list2) {
+            	        m++; // Increment the request count for each iteration mpre info
+            	    }
+            	        for (agent mk : list3) {
+            	            c++; // Increment the request count for each iteration submitted
+            	        }
+              
 for (agent mk : list) {
     requestCount++; // Increment the request count for each iteration
 %>
@@ -748,46 +736,171 @@ for (agent mk : list) {
                 <span class="text">Up from yesterday</span>
               </div> -->
             </div>
+            </a>
             <!-- <i class="bx bx-cart-alt cart"></i> -->
           </div>
+          
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Sales</div>
-              <div class="number">38,876</div>
-              <div class="indicator">
+            <a href="new_agent_request?source=rejected" style="text-decoration: none;color: black;">
+              <div class="box-topic">Total Agent Rejected</div>
+              <center>  <div class="number"><%=q %></div></center>
+              <!-- <div class="indicator">
                 <i class="bx bx-up-arrow-alt"></i>
                 <span class="text">Up from yesterday</span>
-              </div>
+              </div> -->
             </div>
-            <i class="bx bxs-cart-add cart two"></i>
+              </a>
+            <!-- <i class="bx bxs-cart-add cart two"></i> -->
+          </div>
+        
+          <div class="box">
+            <div class="right-side">
+            <a href="new_agent_request?source=need_more_info" style="text-decoration: none;color: black;">
+              <div class="box-topic">Total Agent Request Need More Info</div>
+             <center><div class="number"><%=m %></div></center> 
+              <!-- <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <span class="text">Up from yesterday</span>
+              </div> -->
+            </div>
+            </a>
+          <!--   <i class="bx bx-cart cart three"></i> -->
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Profit</div>
-              <div class="number">$12,876</div>
-              <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
-              </div>
-            </div>
-            <i class="bx bx-cart cart three"></i>
-          </div>
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Return</div>
-              <div class="number">11,086</div>
-              <div class="indicator">
+            <a href="new_agent_request?source=confirmed" style="text-decoration: none;color: black;">
+              <div class="box-topic">Total Agent family</div>
+             <center> <div class="number"><%=c %></div></center>
+              <!-- <div class="indicator">
                 <i class="bx bx-down-arrow-alt down"></i>
                 <span class="text">Down From Today</span>
-              </div>
+              </div> -->
             </div>
-            <i class="bx bxs-cart-download cart four"></i>
+            <!-- <i class="bx bxs-cart-download cart four"></i> -->
           </div>
+          </a>
         </div>
+        <%String b=(String)request.getAttribute("source"); %>
+        
 
         <div class="sales-boxes" style="width: 100%;">
       
+      <%if(b.equals("rejected")){ %>
           <div class="top-sales box">
+    <div class="title">New Rejected Request</div>
+    
+    
+    <ul class="top-sales-details">
+        <!-- Loop through your list of agents -->
+        <% for (agent mm : list1) { %>
+        
+        
+            <li style="border:5px solid #F5F6FA ;height: 2cm;border-radius: 20px ;padding: 10px; ">
+                <a href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>">
+                    <img src="./get_agent_image?agent_id=<%=mm.getAgentId() %>" alt="" />
+                    <span class="product" style="font-weight: 1000;font-size: large;"><%=mm.getFullName() %></span>
+                </a>
+                <!-- Button for mobile and tablet views -->
+                <button class="view-prices-btn">View Prices</button>
+                <!-- Price elements -->
+                
+                <span class="price"><%=mm.getAgentId() %></span>
+                <span class="price"><%=mm.getEmail() %></span>
+                <span class="price"><%=mm.getPhone() %></span>
+                <span class="price"><a class="btn btn-primary"><%=mm.getStatus() %></a></span>
+                <span class="price"><%=mm.getCreatedOn() %></span>
+                
+                <span class="price"><a href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>" style="font-size: large;">View More</a></span>
+            </li>
+            
+            <hr style="color: blue;">
+        <% } %>
+        
+        
+        
+        
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<%}else if(b.equals("confirmed")){ %>
+
+
+
+<div class="top-sales box">
+    <div class="title">Confirm Agent Request</div>
+    
+    
+    <ul class="top-sales-details">
+        <!-- Loop through your list of agents -->
+        <% for (agent mm : list3) { %>
+        
+        
+            <li style="border:5px solid #F5F6FA ;height: 2cm;border-radius: 20px ;padding: 10px; ">
+                <a href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>">
+                    <img src="./get_agent_image?agent_id=<%=mm.getAgentId() %>" alt="" />
+                    <span class="product" style="font-weight: 1000;font-size: large;"><%=mm.getFullName() %></span>
+                </a>
+                <!-- Button for mobile and tablet views -->
+                <button class="view-prices-btn">View Prices</button>
+                <!-- Price elements -->
+                
+                <span class="price"><%=mm.getAgentId() %></span>
+                <span class="price"><%=mm.getEmail() %></span>
+                <span class="price"><%=mm.getPhone() %></span>
+                <span class="price"><a class="btn btn-primary"><%=mm.getStatus() %></a></span>
+                <span class="price"><%=mm.getCreatedOn() %></span>
+                
+                <span class="price"><a href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>" style="font-size: large;">View More</a></span>
+            </li>
+            
+            <hr style="color: blue;">
+        <% } %>
+        
+        
+        
+        
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%}else if(b.equals("submiited")){ %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="top-sales box">
     <div class="title">New Agent Request</div>
     
     
@@ -817,8 +930,113 @@ for (agent mk : list) {
             <hr style="color: blue;">
         <% } %>
         
+        
+        
+        
     </ul>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%}else if(b.equals("need_more_info")) { %>
+
+
+
+
+
+
+
+<div class="top-sales box">
+    <div class="title"> Agent Need More Information Request</div>
+    
+    
+    <ul class="top-sales-details">
+        <!-- Loop through your list of agents -->
+        <% for (agent mm : list2) { %>
+        
+        
+            <li style="border:5px solid #F5F6FA ;height: 2cm;border-radius: 20px ;padding: 10px; ">
+                <a href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>">
+                    <img src="./get_agent_image?agent_id=<%=mm.getAgentId() %>" alt="" />
+                    <span class="product" style="font-weight: 1000;font-size: large;"><%=mm.getFullName() %></span>
+                </a>
+                <!-- Button for mobile and tablet views -->
+                <button class="view-prices-btn">View Prices</button>
+                <!-- Price elements -->
+                
+                <span class="price"><%=mm.getAgentId() %></span>
+                <span class="price"><%=mm.getEmail() %></span>
+                <span class="price"><%=mm.getPhone() %></span>
+                <span class="price"><a class="btn btn-primary"><%=mm.getStatus() %></a></span>
+                <span class="price"><%=mm.getCreatedOn() %></span>
+                
+                <span class="price"><a href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>" style="font-size: large;">View More</a></span>
+            </li>
+            
+            <hr style="color: blue;">
+        <% } %>
+        
+        
+        
+        
+    </ul>
+</div>
+
+<%}else{ %>
+
+
+<div class="top-sales box">
+    <div class="title">New Agent Request</div>
+    
+    
+    <ul class="top-sales-details">
+        <!-- Loop through your list of agents -->
+        <% for (agent mm : list) { %>
+        
+        
+            <li style="border:5px solid #F5F6FA ;height: 2cm;border-radius: 20px ;padding: 10px; ">
+                <a href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>">
+                    <img src="./get_agent_image?agent_id=<%=mm.getAgentId() %>" alt="" />
+                    <span class="product" style="font-weight: 1000;font-size: large;"><%=mm.getFullName() %></span>
+                </a>
+                <!-- Button for mobile and tablet views -->
+                <button class="view-prices-btn">View Prices</button>
+                <!-- Price elements -->
+                
+                <span class="price"><%=mm.getAgentId() %></span>
+                <span class="price"><%=mm.getEmail() %></span>
+                <span class="price"><%=mm.getPhone() %></span>
+                <span class="price"><a class="btn btn-primary"><%=mm.getStatus() %></a></span>
+                <span class="price"><%=mm.getCreatedOn() %></span>
+                
+                <span class="price"><a href="particular_ageny_info?agent_id=<%=mm.getAgentId() %>" style="font-size: large;">View More</a></span>
+            </li>
+            
+            <hr style="color: blue;">
+        <% } %>
+        
+        
+        
+        
+    </ul>
+</div>
+
+<%} %>
 
     </section>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

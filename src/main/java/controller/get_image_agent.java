@@ -17,7 +17,7 @@ public class get_image_agent extends HttpServlet {
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String a=(String)request.getAttribute("agent_id");
+		String a=(String)request.getParameter("agent_id");
 		model model=new model();
 		
 		byte[] img=	model.get_profile_agent(a);

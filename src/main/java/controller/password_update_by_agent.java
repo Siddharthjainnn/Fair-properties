@@ -23,12 +23,12 @@ public class password_update_by_agent extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String a=(String)request.getParameter("new_password");
 		String b=(String)request.getParameter("user_id");
-		String c=(String)request.getParameter("old_password");
+
 		model model=new model();
-  int i=model.update_agent_passwword(a,c);
+  int i=model.update_agent_passwword(a,b);
   if(i!=0)
   {
-	  response.sendRedirect("agent_login.jsp");
+	  response.sendRedirect("agent_login.jsp?source=agent");
   }else {
 	  response.sendRedirect("pnf.jsp");
   }
